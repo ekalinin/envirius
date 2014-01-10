@@ -1,0 +1,63 @@
+#!/bin/sh
+
+# enable debug mode
+if [ "$DEBUG" = "yes" ]; then
+    set -x
+fi
+
+# usefull directories
+export UVE_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+export UVE_PLUGINS_DIR=$UVE_DIR/uve-plugins
+export UVE_COMMANDS_DIR=$UVE_DIR/uve-commands
+
+export UVE_HOME_DIR=$HOME/.uve
+export UVE_CACHE_DIR=$UVE_HOME_DIR/cache
+export UVE_ENVS_DIR=$UVE_HOME_DIR/envs
+
+
+usage() {
+    show_usage "<subcommand>"
+    echo
+    echo "Available subcommands are:"
+    echo "   mk         Creates"
+    echo
+    echo "Try '$(get_cmd_name) <subcommand> --help' for details."
+    echo "Source: https://github.com/ekalinin/uve"
+}
+
+
+main() {
+
+    mkdir -p $UVE_ENVS_DIR
+    mkdir -p $UVE_CACHE_DIR
+
+    # load common functions
+    . "$UVE_COMMANDS_DIR/common"
+
+
+    # get command from first command line arg
+    SUBCOMMAND="$1"; shift
+
+    # is it exists
+    if [ ! -e "$UVE_COMMANDS_DIR/$SUBCOMMAND" ]; then
+        usage
+        exit 1
+    fi
+
+    # run command
+    . "$UVE_COMMANDS_DIR/$SUBCOMMAND"
+
+    SUBACTION="default"
+    if [ "$1" = "--help" ]; then
+        SUBACTION="help";
+    fi
+
+    # run subaction
+    cmd_$SUBACTION "$@"
+}
+
+
+main "$@"
+
+# /* vim: set filetype=sh : */
+

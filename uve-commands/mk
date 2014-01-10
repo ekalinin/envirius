@@ -1,0 +1,12 @@
+cmd_default() {
+    echo "Creating environment: $1 ..."
+}
+
+
+cmd_help() {
+    show_usage "mk environment-name"
+    show_desc "creates a new environment"
+    exit 0
+}
+
+# /* vim: set filetype=sh : */

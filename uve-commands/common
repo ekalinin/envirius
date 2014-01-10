@@ -1,0 +1,20 @@
+# Returns main command name
+get_cmd_name() {
+    echo "uve"
+}
+
+# Output a usage message
+show_usage() {
+    bold=`tput bold`
+    normal=`tput sgr0`
+    echo "${bold}usage${normal}: $(get_cmd_name) $1"
+}
+
+# Output a description for command
+show_desc() {
+    bold=`tput bold`
+    normal=`tput sgr0`
+    echo "${bold}description${normal}: $1"
+}
+
+# /* vim: set filetype=sh : */
