@@ -1,0 +1,20 @@
+cmd_default() {
+    echo "Available environment(s):"
+    for env in $(find $UVE_ENVS_DIR -mindepth 1 -maxdepth 1 -type d)
+    do
+        # display dirname only
+        echo "  ${env##*/}"
+    done
+}
+
+cmd_desc() {
+    echo "lists all environments"
+}
+
+cmd_help() {
+    show_usage "ls"
+    show_desc "$(cmd_desc)"
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
