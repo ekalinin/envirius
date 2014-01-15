@@ -24,9 +24,26 @@ show_desc() {
 #
 # http://techknack.net/bash-rpad-lpad-and-center-pad/
 lpad() {
-    word="$1"
-    while [ ${#word} -lt $2 ]; do
-        word="$3$word";
+    if [ "$1" ]; then
+        word="$1";
+    else
+        word="";
+    fi;
+
+    if [ "$2" ]; then
+        len=$2;
+    else
+        len=${#word};
+    fi;
+ 
+    if [ "$3" ]; then
+        padding="$3";
+    else
+        padding=" ";
+    fi;
+
+    while [ ${#word} -lt $len ]; do
+        word="$padding$word";
     done;
     echo "$word";
 }
@@ -37,9 +54,26 @@ lpad() {
 # w00t^^^^^^^^^^^
 #
 rpad() {
-    word="$1"
-    while [ ${#word} -lt $2 ]; do
-        word="$word$3";
+    if [ "$1" ]; then
+        word="$1";
+    else
+        word="";
+    fi;
+
+    if [ "$2" ]; then
+        len=$2;
+    else
+        len=${#word};
+    fi;
+ 
+    if [ "$3" ]; then
+        padding="$3";
+    else
+        padding=" ";
+    fi;
+
+    while [ ${#word} -lt $len ]; do
+        word="$word$padding";
     done;
     echo "$word";
 }

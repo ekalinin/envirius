@@ -1,0 +1,26 @@
+cmd_default() {
+    # lists all files in the commands directory
+    # except hidden and common file
+    for cmd in $(find $UVE_COMMANDS_DIR \
+                    -type f \
+                    -not -iname "common" \
+                    -not -iname ".*")
+    do
+        # source each command
+        . $cmd
+        # display it's filename only & description for it
+        echo "`rpad ${cmd##*/} 10` $(cmd_desc)"
+    done
+}
+
+cmd_desc() {
+    echo "lists available commands"
+}
+
+cmd_help() {
+    show_usage "commands"
+    show_desc "$(cmd_desc)"
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
