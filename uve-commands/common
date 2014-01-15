@@ -17,4 +17,32 @@ show_desc() {
     echo "${bold}description${normal}: $1"
 }
 
+# Pads the left-side of a string with a specific set of characters
+# 
+# $ lpad 3 5 0
+# 00003
+#
+# http://techknack.net/bash-rpad-lpad-and-center-pad/
+lpad() {
+    word="$1"
+    while [ ${#word} -lt $2 ]; do
+        word="$3$word";
+    done;
+    echo "$word";
+}
+
+# Pads the right-side of a string with a specific set of characters
+#
+# $ rpad "w00t" 15 ^
+# w00t^^^^^^^^^^^
+#
+rpad() {
+    word="$1"
+    while [ ${#word} -lt $2 ]; do
+        word="$word$3";
+    done;
+    echo "$word";
+}
+
+
 # /* vim: set filetype=sh : */
