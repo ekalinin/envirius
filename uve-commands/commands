@@ -4,7 +4,7 @@ cmd_default() {
     for cmd in $(find $UVE_COMMANDS_DIR \
                     -type f \
                     -not -iname "common" \
-                    -not -iname ".*")
+                    -not -iname ".*" | sort)
     do
         # source each command
         . $cmd
