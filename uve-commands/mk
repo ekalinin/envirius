@@ -1,5 +1,6 @@
 cmd_default() {
     echo "Creating environment: $1 ..."
+    mkdir -p $UVE_ENVS_DIR/$1/bin
 }
 
 cmd_desc() {
