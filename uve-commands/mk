@@ -2,10 +2,13 @@ cmd_default() {
     echo "Creating environment: $1 ..."
 }
 
+cmd_desc() {
+    echo "creates a new environment"
+}
 
 cmd_help() {
-    show_usage "mk environment-name"
-    show_desc "creates a new environment"
+    show_usage "mk <env-name>"
+    show_desc "$(cmd_desc)"
     exit 0
 }
 
