@@ -19,7 +19,7 @@ usage() {
     show_usage "<subcommand>"
     echo
     echo "Available subcommands are:"
-    echo "   mk         Creates"
+    uve commands
     echo
     echo "Try '$(get_cmd_name) <subcommand> --help' for details."
     echo "Source: https://github.com/ekalinin/uve"
