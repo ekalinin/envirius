@@ -1,0 +1,53 @@
+cmd_default() {
+    for par in "$@"
+    do
+    case $par in
+        --*)
+        # get plugin name
+        plugin_name=`echo $par | sed 's/\-*//'`
+
+        unset plug_list_versions_columns_count
+        unset plug_list_versions_columns_size
+        unset plug_list_versions
+
+        # source it
+        . $UVE_PLUGINS_DIR/$plugin_name
+        bold "* $plugin_name:"; echo
+
+        # get versions list by
+        # calling `list` command from plugin
+        versions_list=$(plug_list_versions)
+
+        # make a grid of versions
+        init_value=1
+        columns_count=${plug_list_versions_columns_count:-5}
+        columns_size=${plug_list_versions_columns_size:-12}
+        #echo "$columns_count / $columns_size"
+        columns_counter=$init_value
+        for v in $versions_list
+        do
+            echo -n "`rpad $v $columns_size`"
+            if [ $columns_counter -ge $columns_count ]; then
+                echo
+                columns_counter=$init_value;
+            else
+                columns_counter=$((columns_counter+1));
+            fi;
+        done
+        # last trailing newline
+        echo
+    esac
+    done
+}
+
+cmd_desc() {
+    echo "lists available versions for plugins"
+}
+
+cmd_help() {
+    show_usage "versions --erlang --python [--other-plugin]"
+    show_desc "$(cmd_desc)"
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
