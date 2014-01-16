@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Output lists of versions
+plug_list_versions() {
+    versions=$(curl -s http://nodejs.org/dist/ | \
+                egrep -o '[0-9]+\.[0-9]+\.[0-9]+' | \
+                sort -u -k 1,1n -k 2,2n -k 3,3n -t .)
+    echo $versions
+}
+
+plug_install() {
+    echo " * installing $1 ..."
+}
