@@ -1,0 +1,14 @@
+#!/bin/sh
+
+
+# Output lists of versions
+plug_list_versions() {
+    versions=$(curl -s https://github.com/mozilla/rust/wiki/Doc-releases | \
+        egrep 'static.rust-lang.org\/dist\/rust-[0-9]+\.[0-9]+\.tar\.gz' | \
+        egrep -o '[0-9]+\.[0-9]+' | sort | uniq)
+    echo $versions
+}
+
+plug_install() {
+    echo " * installing $1 ..."
+}
