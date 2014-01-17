@@ -1,0 +1,21 @@
+cmd_default() {
+    for plugin in $(find $UVE_PLUGINS_DIR \
+                    -type f \
+                    -not -iname "common" \
+                    -not -iname ".*" | sort)
+    do
+        filename $plugin
+    done
+}
+
+cmd_desc() {
+    echo "list available plugins"
+}
+
+cmd_help() {
+    show_usage "plugins"
+    show_desc "$(cmd_desc)"
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
