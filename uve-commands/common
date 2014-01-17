@@ -80,5 +80,50 @@ rpad() {
     echo "$word";
 }
 
+# Returns a clear plugin name
+#   '--rust'     --> 'rust'
+#   '--rust=0.9' --> 'rust'
+get_plugin_name() {
+    echo $1 | sed 's/\-*//' | sed 's/=[.0-9]*//'
+}
 
+# Returns plugin version
+#   '--rust=0.9' --> '0.9'
+get_plugin_version() {
+    echo $1 | sed 's/[-a-zA-Z0-9]*=//'
+}
+
+# Returns fullpath for file in the cache
+get_cached_file_path() {
+    echo $UVE_CACHE_DIR/$1
+}
+
+# Downloads url into cache with certain name
+download_file() {
+    url="$1"
+    file="$2"
+
+    if [ "$file" = "" ]; then
+        file=$(filename $url)
+    fi
+    file_in_cache=$(get_cached_file_path $file)
+
+    if [ ! -f $file_in_cache ]; then
+        if type curl &>/dev/null; then
+            curl -o "$file_in_cache" "$url"
+        elif type wget &>/dev/null; then
+            wget -P $UVE_CACHE_DIR "$url"
+        else
+          echo "Please, install 'curl' or 'wget' and try again."
+          exit 1
+        fi
+    fi
+
+    echo "$file_in_cache"
+}
+
+# Returns filename only from full path or url
+filename() {
+    echo "${1##*/}"
+}
 # /* vim: set filetype=sh : */
