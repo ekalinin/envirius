@@ -1,0 +1,24 @@
+cmd_default() {
+    env_name=""
+
+    # try to find env name
+    for par in "$@"
+    do
+        env_name_full=$UVE_ENVS_DIR/$par
+        if [ -d "$env_name_full" ]; then
+            rm -rf $env_name_full
+        fi
+    done
+}
+
+cmd_desc() {
+    echo "delete environment"
+}
+
+cmd_help() {
+    show_usage "rm env [env, env, ...]"
+    show_desc "$(cmd_desc)"
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
