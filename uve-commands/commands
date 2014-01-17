@@ -9,12 +9,12 @@ cmd_default() {
         # source each command
         . $cmd
         # display it's filename only & description for it
-        echo "`rpad ${cmd##*/} 10` $(cmd_desc)"
+        echo "`rpad $(filename $cmd) 10` $(cmd_desc)"
     done
 }
 
 cmd_desc() {
-    echo "lists available commands"
+    echo "list available commands"
 }
 
 cmd_help() {

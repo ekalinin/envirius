@@ -8,7 +8,7 @@ cmd_default() {
 }
 
 cmd_desc() {
-    echo "lists all environments"
+    echo "list environments"
 }
 
 cmd_help() {
