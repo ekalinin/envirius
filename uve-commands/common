@@ -126,4 +126,30 @@ download_file() {
 filename() {
     echo "${1##*/}"
 }
+
+# Returns number of cpu on the server
+get_cpu_count() {
+    echo "`grep processor /proc/cpuinfo | wc -l`"
+}
+
+# Get current time in seconds
+get_time() {
+    echo `date +%s`
+}
+
+# Returns diff in secons with enter timestamp
+get_time_diff() {
+    time_ends=$(date +%s)
+    time_diff=$(( $time_ends - $1 ))
+    echo "$time_diff"
+}
+
+# Returns full path to the `on` script for the environment
+# and plugin in it.
+get_plugin_on_script_path() {
+    $env_name_full=$1
+    $plugin_name=$2
+    echo "$env_name_full/bin/on-$plugin_name"
+}
+
 # /* vim: set filetype=sh : */
