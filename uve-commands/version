@@ -1,0 +1,18 @@
+
+UVE_VERSION=0.1.0
+
+cmd_default() {
+    echo $UVE_VERSION
+}
+
+cmd_desc() {
+    echo "show version"
+}
+
+cmd_help() {
+    show_usage "version"
+    show_desc "$(cmd_desc)"
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
