@@ -82,8 +82,7 @@ mem_cmd_desc() {
 
 mem_cmd_help() {
     show_usage "mk <env-name> --python --erlang [--other-plugin]"
-    show_desc "$(cmd_desc)"
-    exit 0
+    show_desc "$(mem_cmd_desc)"
 }
 
 # /* vim: set filetype=sh : */

@@ -19,8 +19,7 @@ mem_cmd_desc() {
 
 mem_cmd_help() {
     show_usage "commands"
-    show_desc "$(cmd_desc)"
-    exit 0
+    show_desc "$(mem_cmd_desc)"
 }
 
 # /* vim: set filetype=sh : */
