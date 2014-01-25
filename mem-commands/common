@@ -1,6 +1,6 @@
 # Returns main command name
 get_cmd_name() {
-    echo "uve"
+    echo "mem"
 }
 
 bold() {
@@ -95,7 +95,7 @@ get_plugin_version() {
 
 # Returns fullpath for file in the cache
 get_cached_file_path() {
-    echo $UVE_CACHE_DIR/$1
+    echo $MEM_CACHE_DIR/$1
 }
 
 # Downloads url into cache with certain name
@@ -112,7 +112,7 @@ download_file() {
         if type curl &>/dev/null; then
             curl -o "$file_in_cache" "$url"
         elif type wget &>/dev/null; then
-            wget -P $UVE_CACHE_DIR "$url"
+            wget -P $MEM_CACHE_DIR "$url"
         else
           echo "Please, install 'curl' or 'wget' and try again."
           exit 1
@@ -146,10 +146,21 @@ get_time_diff() {
 
 # Returns full path to the `on` script for the environment
 # and plugin in it.
-get_plugin_on_script_path() {
-    $env_name_full=$1
-    $plugin_name=$2
-    echo "$env_name_full/bin/on-$plugin_name"
+get_activate_script_path() {
+    env_name_full=$1
+    plugin_name=$2
+    if [ "$2" = "" ]; then
+        echo "$env_name_full/bin/activate"
+    else
+        echo "$env_name_full/bin/activate-$plugin_name"
+    fi
 }
+
+# Returns fullpath for the environment directory
+get_env_full_path() {
+    env_name=$1
+    echo $MEM_ENVS_DIR/$env_name
+}
+
 
 # /* vim: set filetype=sh : */

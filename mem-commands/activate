@@ -1,0 +1,43 @@
+mem_cmd_default() {
+    env_name=$1
+
+    # check that env name is not empty
+    if [ "$env_name" = "" ]; then
+        echo "Please, enter a name for a new environment."
+        echo ""
+        cmd_help
+        return 1
+    fi
+
+    # deactivate previusly activated environment
+    if [ "$MEM_USED_ENV" != "" ]; then
+        mem deactivate
+    fi
+
+    env_name_full=$(get_env_full_path $env_name)
+    env_activate_script=$(get_activate_script_path $env_name_full)
+
+    export MEM_USED_ENV=$env_name
+    export MEM_OLD_PATH=$PATH
+    export PATH=$env_name_full/bin:$PATH
+
+    # source activate for each plugin
+    for plug in $(find $env_name_full/bin -type f -iname "activate-*" )
+    do
+        . $plug
+    done
+
+    echo "Environment `bold $env_name` activated."
+}
+
+mem_cmd_desc() {
+    echo "activate environment"
+}
+
+mem_cmd_help() {
+    show_usage "activate <environment-name>"
+    show_desc "$(cmd_desc)"
+    exit 0
+}
+
+# /* vim: set filetype=sh : */

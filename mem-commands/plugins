@@ -1,5 +1,5 @@
-cmd_default() {
-    for plugin in $(find $UVE_PLUGINS_DIR \
+mem_cmd_default() {
+    for plugin in $(find $MEM_PLUGINS_DIR \
                     -type f \
                     -not -iname "common" \
                     -not -iname ".*" | sort)
@@ -8,11 +8,11 @@ cmd_default() {
     done
 }
 
-cmd_desc() {
+mem_cmd_desc() {
     echo "list available plugins"
 }
 
-cmd_help() {
+mem_cmd_help() {
     show_usage "plugins"
     show_desc "$(cmd_desc)"
     exit 0

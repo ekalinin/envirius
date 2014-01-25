@@ -1,4 +1,4 @@
-cmd_default() {
+mem_cmd_default() {
     for par in "$@"
     do
     case $par in
@@ -9,7 +9,7 @@ cmd_default() {
         unset plug_list_versions_columns_size
         unset plug_list_versions
 
-        . $UVE_PLUGINS_DIR/$plugin_name
+        . $MEM_PLUGINS_DIR/$plugin_name
         bold "* $plugin_name:"; echo
 
         # get versions list by
@@ -38,11 +38,11 @@ cmd_default() {
     done
 }
 
-cmd_desc() {
+mem_cmd_desc() {
     echo "lists available versions for plugins"
 }
 
-cmd_help() {
+mem_cmd_help() {
     show_usage "versions --erlang --python [--other-plugin]"
     show_desc "$(cmd_desc)"
     exit 0

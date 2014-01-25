@@ -1,0 +1,64 @@
+#!/bin/sh
+
+# enable debug mode
+if [ "$DEBUG" = "yes" ]; then
+    set -x
+fi
+
+# usefull directories
+#export MEM_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+export MEM_DIR=$PWD
+export MEM_PLUGINS_DIR=$MEM_DIR/mem-plugins
+export MEM_COMMANDS_DIR=$MEM_DIR/mem-commands
+
+export MEM_HOME_DIR=$HOME/.mem
+export MEM_CACHE_DIR=$MEM_HOME_DIR/cache
+export MEM_ENVS_DIR=$MEM_HOME_DIR/envs
+
+# load common functions
+. $MEM_COMMANDS_DIR/common
+
+
+mem_usage() {
+    show_usage "<subcommand>"
+    show_desc "mem: multi virtualenvs manager"
+    echo
+    echo "Available subcommands are:"
+    # call itsels
+    mem commands
+    echo
+    echo "Try '$(get_cmd_name) <subcommand> --help' for details."
+    echo "Source: https://github.com/ekalinin/mem"
+}
+
+
+mem() {
+    mkdir -p $MEM_ENVS_DIR
+    mkdir -p $MEM_CACHE_DIR
+
+    # get command from first command line arg
+    SUBCOMMAND="$1"; shift
+
+    # is it exists
+    if [ "$SUBCOMMAND" = "" ]; then
+        mem_usage
+        return
+    elif [ ! -e "$MEM_COMMANDS_DIR/$SUBCOMMAND" ]; then
+        mem_usage
+        return
+    fi
+
+    # run command
+    . "$MEM_COMMANDS_DIR/$SUBCOMMAND"
+
+    SUBACTION="default"
+    if [ "$1" = "--help" ]; then
+        SUBACTION="help";
+    fi
+
+    # run subaction
+    mem_cmd_$SUBACTION "$@"
+}
+
+
+# /* vim: set filetype=sh : */

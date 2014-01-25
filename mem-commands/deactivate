@@ -1,0 +1,26 @@
+mem_cmd_default() {
+
+    if [ "$MEM_USED_ENV" = "" ]; then
+        echo "Nothing to deactivate."
+    else
+        env_name=$MEM_USED_ENV
+
+        export PATH=$MEM_OLD_PATH
+        unset MEM_OLD_PATH
+        unset MEM_USED_ENV
+
+        echo "Environment `bold $env_name` was deactivated."
+    fi
+}
+
+mem_cmd_desc() {
+    echo "deactivate environment"
+}
+
+mem_cmd_help() {
+    show_usage "deactivate"
+    show_desc "$(cmd_desc)"
+    exit 0
+}
+
+# /* vim: set filetype=sh : */

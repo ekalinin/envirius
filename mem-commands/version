@@ -1,15 +1,14 @@
+MEM_VERSION=0.1.0
 
-UVE_VERSION=0.1.0
-
-cmd_default() {
-    echo $UVE_VERSION
+mem_cmd_default() {
+    echo $MEM_VERSION
 }
 
-cmd_desc() {
+mem_cmd_desc() {
     echo "show version"
 }
 
-cmd_help() {
+mem_cmd_help() {
     show_usage "version"
     show_desc "$(cmd_desc)"
     exit 0

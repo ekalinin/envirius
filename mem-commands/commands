@@ -1,7 +1,7 @@
-cmd_default() {
+mem_cmd_default() {
     # lists all files in the commands directory
     # except hidden and common file
-    for cmd in $(find $UVE_COMMANDS_DIR \
+    for cmd in $(find $MEM_COMMANDS_DIR \
                     -type f \
                     -not -iname "common" \
                     -not -iname ".*" | sort)
@@ -9,15 +9,15 @@ cmd_default() {
         # source each command
         . $cmd
         # display it's filename only & description for it
-        echo "`rpad $(filename $cmd) 10` $(cmd_desc)"
+        echo "`rpad $(filename $cmd) 15` $(mem_cmd_desc)"
     done
 }
 
-cmd_desc() {
+mem_cmd_desc() {
     echo "list available commands"
 }
 
-cmd_help() {
+mem_cmd_help() {
     show_usage "commands"
     show_desc "$(cmd_desc)"
     exit 0
