@@ -1,0 +1,12 @@
+. $MEM_COMMANDS_DIR/deactivate
+
+mem_cmd_desc() {
+    echo "deactivate environment (alias: deactivate)"
+}
+
+mem_cmd_help() {
+    show_usage "off"
+    show_desc "$(mem_cmd_desc)"
+}
+
+# /* vim: set filetype=sh : */

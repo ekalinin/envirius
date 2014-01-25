@@ -31,7 +31,7 @@ mem_cmd_default() {
 }
 
 mem_cmd_desc() {
-    echo "activate environment"
+    echo "activate environment (alias: on)"
 }
 
 mem_cmd_help() {

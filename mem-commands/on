@@ -1,0 +1,12 @@
+. $MEM_COMMANDS_DIR/activate
+
+mem_cmd_desc() {
+    echo "activate environment (alias: activate)"
+}
+
+mem_cmd_help() {
+    show_usage "on <environment-name>"
+    show_desc "$(mem_cmd_desc)"
+}
+
+# /* vim: set filetype=sh : */

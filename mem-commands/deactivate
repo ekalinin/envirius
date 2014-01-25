@@ -14,7 +14,7 @@ mem_cmd_default() {
 }
 
 mem_cmd_desc() {
-    echo "deactivate environment"
+    echo "deactivate environment (alias: off)"
 }
 
 mem_cmd_help() {
