@@ -4,8 +4,8 @@ get_cmd_name() {
 }
 
 bold() {
-    bold=`tput bold`
-    normal=`tput sgr0`
+    local bold=`tput bold`
+    local normal=`tput sgr0`
     echo -n "${bold}$1${normal}"
 }
 
@@ -27,21 +27,21 @@ show_desc() {
 # http://techknack.net/bash-rpad-lpad-and-center-pad/
 lpad() {
     if [ "$1" ]; then
-        word="$1";
+        local word="$1";
     else
-        word="";
+        local word="";
     fi;
 
     if [ "$2" ]; then
-        len=$2;
+        local len=$2;
     else
-        len=${#word};
+        local len=${#word};
     fi;
  
     if [ "$3" ]; then
-        padding="$3";
+        local padding="$3";
     else
-        padding=" ";
+        local padding=" ";
     fi;
 
     while [ ${#word} -lt $len ]; do
@@ -57,21 +57,21 @@ lpad() {
 #
 rpad() {
     if [ "$1" ]; then
-        word="$1";
+        local word="$1";
     else
-        word="";
+        local word="";
     fi;
 
     if [ "$2" ]; then
-        len=$2;
+        local len=$2;
     else
-        len=${#word};
+        local len=${#word};
     fi;
  
     if [ "$3" ]; then
-        padding="$3";
+        local padding="$3";
     else
-        padding=" ";
+        local padding=" ";
     fi;
 
     while [ ${#word} -lt $len ]; do
@@ -100,13 +100,13 @@ get_cached_file_path() {
 
 # Downloads url into cache with certain name
 download_file() {
-    url="$1"
-    file="$2"
+    local url="$1"
+    local file="$2"
 
     if [ "$file" = "" ]; then
         file=$(filename $url)
     fi
-    file_in_cache=$(get_cached_file_path $file)
+    local file_in_cache=$(get_cached_file_path $file)
 
     if [ ! -f $file_in_cache ]; then
         if type curl &>/dev/null; then
@@ -139,16 +139,16 @@ get_time() {
 
 # Returns diff in secons with enter timestamp
 get_time_diff() {
-    time_ends=$(date +%s)
-    time_diff=$(( $time_ends - $1 ))
+    local time_ends=$(date +%s)
+    local time_diff=$(( $time_ends - $1 ))
     echo "$time_diff"
 }
 
 # Returns full path to the `on` script for the environment
 # and plugin in it.
 get_activate_script_path() {
-    env_name_full=$1
-    plugin_name=$2
+    local env_name_full=$1
+    local plugin_name=$2
     if [ "$2" = "" ]; then
         echo "$env_name_full/bin/activate"
     else
@@ -158,7 +158,7 @@ get_activate_script_path() {
 
 # Returns fullpath for the environment directory
 get_env_full_path() {
-    env_name=$1
+    local env_name=$1
     echo $MEM_ENVS_DIR/$env_name
 }
 
