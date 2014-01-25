@@ -1,6 +1,7 @@
 mem_cmd_default() {
 
-    if [ "$MEM_USED_ENV" = "" ]; then
+    local current_env=`mem current`
+    if [ "$current_env" = "" ]; then
         echo "Nothing to deactivate."
     else
         local env_name=$MEM_USED_ENV

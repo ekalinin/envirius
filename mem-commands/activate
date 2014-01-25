@@ -10,7 +10,8 @@ mem_cmd_default() {
     fi
 
     # deactivate previusly activated environment
-    if [ "$MEM_USED_ENV" != "" ]; then
+    local current_env=`mem current`
+    if [ "$current_env" != "" ]; then
         mem deactivate
     fi
 
