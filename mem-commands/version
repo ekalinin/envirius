@@ -9,7 +9,7 @@ mem_cmd_desc() {
 }
 
 mem_cmd_help() {
-    show_usage "version"
+    show_usage
     show_desc "$(mem_cmd_desc)"
 }
 

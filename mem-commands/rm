@@ -16,7 +16,7 @@ mem_cmd_desc() {
 }
 
 mem_cmd_help() {
-    show_usage "rm env [env, env, ...]"
+    show_usage "<env-name> [env-name, ...]"
     show_desc "$(mem_cmd_desc)"
 }
 

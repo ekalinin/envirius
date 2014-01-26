@@ -5,7 +5,7 @@ mem_cmd_desc() {
 }
 
 mem_cmd_help() {
-    show_usage "on <environment-name>"
+    show_usage "<environment-name>"
     show_desc "$(mem_cmd_desc)"
 }
 

@@ -5,7 +5,7 @@ mem_cmd_desc() {
 }
 
 mem_cmd_help() {
-    show_usage "off"
+    show_usage
     show_desc "$(mem_cmd_desc)"
 }
 

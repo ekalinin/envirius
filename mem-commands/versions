@@ -43,8 +43,10 @@ mem_cmd_desc() {
 }
 
 mem_cmd_help() {
-    show_usage "versions --erlang --python [--other-plugin]"
+    show_usage "--erlang --python [--other-plugin]"
     show_desc "$(mem_cmd_desc)"
+    echo "    To see all available plugins execute:"
+    echo "    $ $(get_cmd_name) plugins"
 }
 
 # /* vim: set filetype=sh : */

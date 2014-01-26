@@ -19,11 +19,11 @@ mem_cmd_desc() {
 }
 
 mem_cmd_help() {
-    show_usage "autoon [env-name]"
+    show_usage "[env-name]"
     show_desc "$(mem_cmd_desc)"
-    echo "If environment's name is not entered then used current"
-    echo "(active) environment. If environment is not activated"
-    echo "then environment's name is required."
+    echo "    If environment's name is not entered then used current"
+    echo "    (active) environment. If environment is not activated"
+    echo "    then environment's name is required."
 }
 
 # /* vim: set filetype=sh : */
