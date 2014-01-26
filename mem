@@ -20,15 +20,14 @@ export MEM_ENVS_DIR=$MEM_HOME_DIR/envs
 
 
 mem_usage() {
+    mem version
     show_usage "<subcommand>"
-    show_desc "mem: multi virtualenvs manager"
     echo
-    echo "Available subcommands are:"
-    # call itsels
+    echo "Subcommands:"
     mem commands
     echo
     echo "Try '$(get_cmd_name) <subcommand> --help' for details."
-    echo "Source: https://github.com/ekalinin/mem"
+    echo "For more information, see: https://github.com/ekalinin/$(get_cmd_name)"
 }
 
 
