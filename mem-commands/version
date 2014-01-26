@@ -1,11 +1,11 @@
 MEM_VERSION=0.1.0
 
 mem_cmd_default() {
-    echo $MEM_VERSION
+    echo "$(get_cmd_name) $MEM_VERSION"
 }
 
 mem_cmd_desc() {
-    echo "show version"
+    echo "display the version number"
 }
 
 mem_cmd_help() {
