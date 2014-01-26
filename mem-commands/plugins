@@ -9,7 +9,7 @@ mem_cmd_default() {
 }
 
 mem_cmd_desc() {
-    echo "list available plugins"
+    echo "List available plugins"
 }
 
 mem_cmd_help() {

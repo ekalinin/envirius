@@ -1,11 +1,11 @@
 . $MEM_COMMANDS_DIR/activate
 
 mem_cmd_desc() {
-    echo "activate environment (alias: activate)"
+    echo "Activate environment (alias: activate)"
 }
 
 mem_cmd_help() {
-    show_usage "<environment-name>"
+    show_usage "<env-name>"
     show_desc "$(mem_cmd_desc)"
 }
 

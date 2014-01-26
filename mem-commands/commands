@@ -14,7 +14,7 @@ mem_cmd_default() {
 }
 
 mem_cmd_desc() {
-    echo "list available commands"
+    echo "List available commands"
 }
 
 mem_cmd_help() {

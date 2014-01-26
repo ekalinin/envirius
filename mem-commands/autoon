@@ -15,11 +15,11 @@ mem_cmd_default() {
 }
 
 mem_cmd_desc() {
-    echo "mark current directory for environment auto activating"
+    echo "Mark current directory for environment auto activating"
 }
 
 mem_cmd_help() {
-    show_usage "[env-name]"
+    show_usage "[<env-name>]"
     show_desc "$(mem_cmd_desc)"
     echo "    If environment's name is not entered then used current"
     echo "    (active) environment. If environment is not activated"

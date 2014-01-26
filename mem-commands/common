@@ -11,12 +11,12 @@ bold() {
 
 # Output a usage message
 show_usage() {
-    bold "usage"; echo ": $(get_cmd_name) $SUBCOMMAND $1"
+    bold "Usage"; echo ": $(get_cmd_name) $SUBCOMMAND $1"
 }
 
 # Output a description for command
 show_desc() {
-    bold "description"; echo ": $1"
+    bold "Description"; echo ": $1"
 }
 
 # Pads the left-side of a string with a specific set of characters

@@ -77,7 +77,7 @@ activate_script_off
 }
 
 mem_cmd_desc() {
-    echo "create environment"
+    echo "Create environment"
 }
 
 mem_cmd_help() {

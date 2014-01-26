@@ -12,7 +12,7 @@ mem_cmd_default() {
 }
 
 mem_cmd_desc() {
-    echo "delete environment"
+    echo "Delete environment"
 }
 
 mem_cmd_help() {

@@ -5,7 +5,7 @@ mem_cmd_default() {
 }
 
 mem_cmd_desc() {
-    echo "display the version number"
+    echo "Display the version number"
 }
 
 mem_cmd_help() {

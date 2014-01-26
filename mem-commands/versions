@@ -39,7 +39,7 @@ mem_cmd_default() {
 }
 
 mem_cmd_desc() {
-    echo "lists available versions for plugins"
+    echo "Lists available versions for plugins"
 }
 
 mem_cmd_help() {

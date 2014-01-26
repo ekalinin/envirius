@@ -6,7 +6,7 @@ mem_cmd_default() {
 }
 
 mem_cmd_desc() {
-    echo "output current environment's name"
+    echo "Output current environment's name"
 }
 
 mem_cmd_help() {

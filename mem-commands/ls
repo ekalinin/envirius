@@ -8,7 +8,7 @@ mem_cmd_default() {
 }
 
 mem_cmd_desc() {
-    echo "list environments"
+    echo "List environments"
 }
 
 mem_cmd_help() {

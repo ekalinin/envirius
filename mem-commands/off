@@ -1,7 +1,7 @@
 . $MEM_COMMANDS_DIR/deactivate
 
 mem_cmd_desc() {
-    echo "deactivate environment (alias: deactivate)"
+    echo "Deactivate environment (alias: deactivate)"
 }
 
 mem_cmd_help() {
