@@ -2,7 +2,7 @@
 
 load test_helper
 
-@test "plugins" {
+@test "plugins: list plugins" {
     run mem plugins
     [ "$status" -eq 0 ]
     [ "${lines[0]}" = "erlang" ]
