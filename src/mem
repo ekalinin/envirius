@@ -6,14 +6,17 @@ if [ "$DEBUG" = "yes" ]; then
 fi
 
 # usefull directories
-#export MEM_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
-export MEM_DIR=$PWD
-export MEM_PLUGINS_DIR=$MEM_DIR/mem-plugins
-export MEM_COMMANDS_DIR=$MEM_DIR/mem-commands
+if [ "$MEM_PATH" = "" ]; then
+    export MEM_PATH=$HOME/.mem
+fi
+export MEM_PLUGINS_DIR=$MEM_PATH/mem-plugins
+export MEM_COMMANDS_DIR=$MEM_PATH/mem-commands
 
-export MEM_HOME_DIR=$HOME/.mem
-export MEM_CACHE_DIR=$MEM_HOME_DIR/cache
-export MEM_ENVS_DIR=$MEM_HOME_DIR/envs
+if [ "$MEM_HOME" = "" ]; then
+    export MEM_HOME=$HOME/.mem
+fi
+export MEM_CACHE_DIR=$MEM_HOME/cache
+export MEM_ENVS_DIR=$MEM_HOME/envs
 
 # load common functions
 . $MEM_COMMANDS_DIR/common
