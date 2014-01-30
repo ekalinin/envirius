@@ -1,7 +1,7 @@
 .PHONY: install all tests uninstall
 
 MAIN_FILES =./src/mem
-MAIN_FILES+=./src/memrc
+#MAIN_FILES+=./src/memrc
 CMD_FILES=./src/mem-commands/*
 PLG_FILES=./src/mem-plugins/*
 
