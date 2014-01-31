@@ -168,5 +168,14 @@ get_env_full_path() {
     fi
 }
 
+get_plugin_full_path() {
+    local MEM_ENVS_DIR=$MEM_PATH/mem-plugins
+    if [ "$1" = "" ]; then
+        echo $MEM_ENVS_DIR
+    else
+        echo $MEM_ENVS_DIR/$1
+    fi
+}
+
 
 # /* vim: set filetype=sh : */

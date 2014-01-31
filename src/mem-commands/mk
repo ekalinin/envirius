@@ -38,15 +38,16 @@ mem_cmd_default() {
     case $par in
         # handle plugin only
         --*)
-            plugin_name=$(get_plugin_name $par)
-            plugin_ver=$(get_plugin_version $par)
+            local plugin_name=$(get_plugin_name $par)
+            local plugin_ver=$(get_plugin_version $par)
+            local plugin_full_path=$(get_plugin_full_path $plugin_name)
             echo " * installing $plugin_name==$plugin_ver ..."
 
             # activate plugin & call installation part
-            . $MEM_PLUGINS_DIR/$plugin_name
-            inst_start_time=$(get_time)
+            . $plugin_full_path
+            local inst_start_time=$(get_time)
             plug_install $plugin_ver $env_name_full
-            inst_diff_time=$(get_time_diff $inst_start_time)
+            local inst_diff_time=$(get_time_diff $inst_start_time)
 
             # create activation script for plugin
             #plugin_activate_path=$(get_activate_script_path $env_name_full $plugin_name)

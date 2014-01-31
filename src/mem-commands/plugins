@@ -1,5 +1,6 @@
 mem_cmd_default() {
-    for plugin in $(find $MEM_PLUGINS_DIR \
+    local plugin_full_path=$(get_plugin_full_path)
+    for plugin in $(find $plugin_full_path \
                     -type f \
                     -not -iname "common" \
                     -not -iname ".*" | sort)

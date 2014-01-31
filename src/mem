@@ -9,7 +9,6 @@ fi
 if [ "$MEM_PATH" = "" ]; then
     export MEM_PATH=$HOME/.mem
 fi
-export MEM_PLUGINS_DIR=$MEM_PATH/mem-plugins
 export MEM_COMMANDS_DIR=$MEM_PATH/mem-commands
 
 if [ "$MEM_HOME" = "" ]; then
