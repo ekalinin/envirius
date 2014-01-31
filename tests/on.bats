@@ -18,6 +18,7 @@ load test_helper
 }
 
 @test "activate: mk empty env & activate it" {
+    # same as in test for 'on' command
     run mem rm --all
     [ "$status" -eq 0 ]
     run mem mk empty_env2
@@ -27,6 +28,7 @@ load test_helper
     [ "$status" -eq 0 ]
     [ "${lines[0]}"  = "Available environment(s):" ]
     [ "${lines[1]}"  = "empty_env2" ]
+    # end of copy from test for 'on' command
     mem activate test_empty_env2
     [ "$status" -eq 0 ]
     [ "`echo $MEM_USED_ENV`" = "test_empty_env2" ]
