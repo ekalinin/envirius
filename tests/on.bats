@@ -16,3 +16,18 @@ load test_helper
     [ "$status" -eq 0 ]
     [ "`echo $MEM_USED_ENV`" = "test_empty_env2" ]
 }
+
+@test "activate: mk empty env & activate it" {
+    run mem rm --all
+    [ "$status" -eq 0 ]
+    run mem mk empty_env2
+    [ "$status" -eq 0 ]
+    [ "${lines[0]}"  = "Creating environment: empty_env2 ..." ]
+    run mem ls
+    [ "$status" -eq 0 ]
+    [ "${lines[0]}"  = "Available environment(s):" ]
+    [ "${lines[1]}"  = "empty_env2" ]
+    mem activate test_empty_env2
+    [ "$status" -eq 0 ]
+    [ "`echo $MEM_USED_ENV`" = "test_empty_env2" ]
+}
