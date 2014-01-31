@@ -1,6 +1,17 @@
 mem_cmd_default() {
     env_name=""
 
+    # try to find --all option
+    for opt in "$@"
+    do
+    case $opt in
+        --all)
+            env_name_full=$(get_env_full_path)
+            rm -rf $env_name_full/*
+            return
+    esac
+    done
+
     # try to find env name
     for par in "$@"
     do
@@ -16,8 +27,11 @@ mem_cmd_desc() {
 }
 
 mem_cmd_help() {
-    show_usage "<env-name> [env-name, ...]"
+    show_usage "[options] <env-name> [env-name, ...]"
     show_desc "$(mem_cmd_desc)"
+    echo ""
+    echo "Options:"
+    echo "  --all   Delete all environments"
 }
 
 # /* vim: set filetype=sh : */

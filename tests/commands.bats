@@ -4,7 +4,7 @@ load test_helper
 
 @test "commands: list commands" {
     run mem commands
-    echo ${lines[0]}
+    [ "$status" -eq 0 ]
     [ "${lines[0]}"  = "  activate        Activate environment (alias: on)" ]
     [ "${lines[1]}"  = "  autoon          Mark current directory for environment auto activating" ]
     [ "${lines[2]}"  = "  commands        List available commands" ]
