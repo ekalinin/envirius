@@ -16,7 +16,8 @@ mem_cmd_default() {
     fi
 
     local env_name_full=$(get_env_full_path $env_name)
-    local env_activate_script=$(get_activate_script_path $env_name_full)
+    mkdir -p $env_name_full/bin
+    #local env_activate_script=$(get_activate_script_path $env_name_full)
 
     export MEM_USED_ENV=$env_name
     export MEM_OLD_PATH=$PATH
