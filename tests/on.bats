@@ -15,6 +15,7 @@ load test_helper
     mem on test_empty_env2
     [ "$status" -eq 0 ]
     [ "`echo $MEM_USED_ENV`" = "test_empty_env2" ]
+    [ "`echo $MEM_OLD_PATH`" != "" ]
 }
 
 @test "activate: mk empty env & activate it" {
@@ -32,4 +33,5 @@ load test_helper
     mem activate test_empty_env2
     [ "$status" -eq 0 ]
     [ "`echo $MEM_USED_ENV`" = "test_empty_env2" ]
+    [ "`echo $MEM_OLD_PATH`" != "" ]
 }
