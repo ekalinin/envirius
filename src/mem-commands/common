@@ -93,11 +93,6 @@ get_plugin_version() {
     echo $1 | sed 's/[-a-zA-Z0-9]*=//'
 }
 
-# Returns fullpath for file in the cache
-get_cached_file_path() {
-    echo $MEM_CACHE_DIR/$1
-}
-
 # Downloads url into cache with certain name
 download_file() {
     local url="$1"
@@ -106,7 +101,7 @@ download_file() {
     if [ "$file" = "" ]; then
         file=$(filename $url)
     fi
-    local file_in_cache=$(get_cached_file_path $file)
+    local file_in_cache=$(get_cache_full_path $file)
 
     if [ ! -f $file_in_cache ]; then
         if type curl &>/dev/null; then
@@ -183,6 +178,15 @@ get_command_full_path() {
         echo $MEM_COMMANDS_DIR
     else
         echo "$MEM_COMMANDS_DIR/$1"
+    fi
+}
+
+get_cache_full_path() {
+    local MEM_CACHE_DIR="$MEM_HOME/cache"
+    if [ "$1" = "" ]; then
+        echo $MEM_CACHE_DIR
+    else
+        echo "$MEM_CACHE_DIR/$1"
     fi
 }
 

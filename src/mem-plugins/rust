@@ -18,7 +18,8 @@ plug_install() {
     tarball=$(download_file "http://static.rust-lang.org/dist/rust-${version}.tar.gz")
     # execute in subshell
     (
-        cd $MEM_CACHE_DIR
+        local cache_full_path=$(get_cache_full_path)
+        cd $cache_full_path
 
         # unpacking (if need)
         if [ ! -d "rust-$version" ]; then
@@ -26,7 +27,7 @@ plug_install() {
         fi
 
         # compiled rust path
-        rust_bin=$MEM_CACHE_DIR/rust-$version-bin
+        rust_bin="$cache_full_path/rust-$version-bin"
 
         # if rust not compiled yet then do it
         if [ ! -d "$rust_bin" ]; then

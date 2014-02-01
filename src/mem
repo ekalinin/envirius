@@ -13,7 +13,6 @@ fi
 if [ "$MEM_HOME" = "" ]; then
     export MEM_HOME=$HOME/.mem
 fi
-export MEM_CACHE_DIR=$MEM_HOME/cache
 export MEM_ENVS_DIR=$MEM_HOME/envs
 
 # load common functions
@@ -34,7 +33,7 @@ mem_usage() {
 
 mem() {
     mkdir -p $MEM_ENVS_DIR
-    mkdir -p $MEM_CACHE_DIR
+    mkdir -p $(get_cache_full_path)
 
     # get command from first command line arg
     SUBCOMMAND="$1"; shift
