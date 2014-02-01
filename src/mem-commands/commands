@@ -1,7 +1,8 @@
 mem_cmd_default() {
     # lists all files in the commands directory
     # except hidden and common file
-    for cmd in $(find $MEM_COMMANDS_DIR \
+    local commands_full_path=$(get_command_full_path)
+    for cmd in $(find $commands_full_path \
                     -type f \
                     -not -iname "common" \
                     -not -iname ".*" | sort)

@@ -1,4 +1,4 @@
-. $MEM_COMMANDS_DIR/activate
+. $(get_command_full_path)/activate
 
 mem_cmd_desc() {
     echo "Activate environment (alias: activate)"

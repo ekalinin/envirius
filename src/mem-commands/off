@@ -1,4 +1,4 @@
-. $MEM_COMMANDS_DIR/deactivate
+. $(get_command_full_path)/deactivate
 
 mem_cmd_desc() {
     echo "Deactivate environment (alias: deactivate)"

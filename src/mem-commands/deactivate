@@ -1,5 +1,4 @@
 mem_cmd_default() {
-
     local current_env=`mem current`
     if [ "$current_env" = "" ]; then
         echo "Nothing to deactivate."

@@ -9,7 +9,6 @@ fi
 if [ "$MEM_PATH" = "" ]; then
     export MEM_PATH=$HOME/.mem
 fi
-export MEM_COMMANDS_DIR=$MEM_PATH/mem-commands
 
 if [ "$MEM_HOME" = "" ]; then
     export MEM_HOME=$HOME/.mem
@@ -18,7 +17,7 @@ export MEM_CACHE_DIR=$MEM_HOME/cache
 export MEM_ENVS_DIR=$MEM_HOME/envs
 
 # load common functions
-. $MEM_COMMANDS_DIR/common
+. $MEM_PATH/mem-commands/common
 
 
 mem_usage() {
@@ -39,19 +38,20 @@ mem() {
 
     # get command from first command line arg
     SUBCOMMAND="$1"; shift
+    local command_full_path=$(get_command_full_path $SUBCOMMAND)
 
     # show help if command is empty
     if [ "$SUBCOMMAND" = "" ]; then
         mem_usage
         return
     # show help if command not exists
-    elif [ ! -e "$MEM_COMMANDS_DIR/$SUBCOMMAND" ]; then
+    elif [ ! -e "$command_full_path" ]; then
         mem_usage
         return
     fi
 
     # run command
-    . "$MEM_COMMANDS_DIR/$SUBCOMMAND"
+    . "$command_full_path"
 
     SUBACTION="default"
     if [ "$1" = "--help" ]; then

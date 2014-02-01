@@ -20,7 +20,7 @@ show_desc() {
 }
 
 # Pads the left-side of a string with a specific set of characters
-# 
+#
 # $ lpad 3 5 0
 # 00003
 #
@@ -37,7 +37,7 @@ lpad() {
     else
         local len=${#word};
     fi;
- 
+
     if [ "$3" ]; then
         local padding="$3";
     else
@@ -67,7 +67,7 @@ rpad() {
     else
         local len=${#word};
     fi;
- 
+
     if [ "$3" ]; then
         local padding="$3";
     else
@@ -177,5 +177,13 @@ get_plugin_full_path() {
     fi
 }
 
+get_command_full_path() {
+    local MEM_COMMANDS_DIR="$MEM_PATH/mem-commands"
+    if [ "$1" = "" ]; then
+        echo $MEM_COMMANDS_DIR
+    else
+        echo "$MEM_COMMANDS_DIR/$1"
+    fi
+}
 
 # /* vim: set filetype=sh : */
