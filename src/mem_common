@@ -84,7 +84,7 @@ rpad() {
 #   '--rust'     --> 'rust'
 #   '--rust=0.9' --> 'rust'
 get_plugin_name() {
-    echo $1 | sed 's/\-*//' | sed 's/=[.0-9]*//'
+    echo $1 | sed 's/\--//' | sed 's/=.*//'
 }
 
 # Returns plugin version
