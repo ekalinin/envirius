@@ -9,11 +9,14 @@ plug_list_versions_columns_size=10
 # Output lists of versions
 plug_list_versions() {
     ERL_MIRROR="http://www.erlang.org/download/"
-    versions=$(curl -s $ERL_MIRROR | \
-        egrep -o '\/download\/otp_src_(R1[-0-9A-Za-z_]+)\.tar\.gz' |
-        egrep -o 'otp_src_R1[-0-9A-Za-z]+' |
+    versions1=$(curl -s $ERL_MIRROR | \
+        egrep -o '\/download\/otp_src_(R1[-0-9A-Za-z_]+)\.tar\.gz' | \
+        egrep -o 'otp_src_R1[-0-9A-Za-z]+' | \
         egrep -o 'R1[-0-9A-Za-z]+')
-    echo $versions
+    versions2=$(curl -s $ERL_MIRROR | \
+        egrep -o "otp_src_[0-9]+\.[0-9]+(-rc[0-9]+)*\.tar\.gz" | \
+        egrep -o "[0-9]+\.[0-9]+(-rc[0-9]+)*")
+    echo "$versions1 $versions2"
 }
 
 plug_install() {
