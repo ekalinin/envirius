@@ -4,7 +4,6 @@ mem_cmd_default() {
     local commands_full_path=$(get_command_full_path)
     for cmd in $(find $commands_full_path \
                     -type f \
-                    -not -iname "common" \
                     -not -iname ".*" | sort)
     do
         # source each command

@@ -16,7 +16,7 @@ if [ "$MEM_HOME" = "" ]; then
 fi
 
 # load common functions
-. $MEM_PATH/mem-commands/common
+. $MEM_PATH/mem_common
 
 
 mem_usage() {
