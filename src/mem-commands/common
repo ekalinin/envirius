@@ -155,6 +155,7 @@ get_activate_script_path() {
 # If environment's name is nto enter then returns
 # full path to the directory where all environments live
 get_env_full_path() {
+    local MEM_ENVS_DIR="$MEM_HOME/envs"
     if [ "$1" = "" ]; then
         echo $MEM_ENVS_DIR
     else

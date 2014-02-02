@@ -1,6 +1,6 @@
 mem_cmd_default() {
     echo "Available environment(s):"
-    for env in $(find $MEM_ENVS_DIR -mindepth 1 -maxdepth 1 -type d)
+    for env in $(find $(get_env_full_path) -mindepth 1 -maxdepth 1 -type d)
     do
         # display dirname only
         filename $env

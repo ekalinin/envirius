@@ -5,15 +5,15 @@ if [ "$DEBUG" = "yes" ]; then
     set -x
 fi
 
-# usefull directories
+# path to then soure code
 if [ "$MEM_PATH" = "" ]; then
     export MEM_PATH=$HOME/.mem
 fi
 
+# path to the cache/environment/etc
 if [ "$MEM_HOME" = "" ]; then
     export MEM_HOME=$HOME/.mem
 fi
-export MEM_ENVS_DIR=$MEM_HOME/envs
 
 # load common functions
 . $MEM_PATH/mem-commands/common
@@ -32,7 +32,7 @@ mem_usage() {
 
 
 mem() {
-    mkdir -p $MEM_ENVS_DIR
+    mkdir -p $(get_env_full_path)
     mkdir -p $(get_cache_full_path)
 
     # get command from first command line arg
