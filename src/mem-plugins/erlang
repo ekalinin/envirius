@@ -6,19 +6,53 @@ plug_list_versions_columns_count=6
 # Column's width in characters in the version's grid
 plug_list_versions_columns_size=10
 
+ERL_MIRROR="http://www.erlang.org/download/"
+
 # Output lists of versions
 plug_list_versions() {
-    ERL_MIRROR="http://www.erlang.org/download/"
-    versions1=$(curl -s $ERL_MIRROR | \
+    local versions1=$(curl -s $ERL_MIRROR | \
         egrep -o '\/download\/otp_src_(R1[-0-9A-Za-z_]+)\.tar\.gz' | \
         egrep -o 'otp_src_R1[-0-9A-Za-z]+' | \
         egrep -o 'R1[-0-9A-Za-z]+')
-    versions2=$(curl -s $ERL_MIRROR | \
+    local versions2=$(curl -s $ERL_MIRROR | \
         egrep -o "otp_src_[0-9]+\.[0-9]+(-rc[0-9]+)*\.tar\.gz" | \
         egrep -o "[0-9]+\.[0-9]+(-rc[0-9]+)*")
     echo "$versions1 $versions2"
 }
 
 plug_install() {
-    echo " * installing $1 ..."
+    version=$1
+    env_name_full=$2
+
+    tarball=$(download_file "$ERL_MIRROR/otp_src_${version}.tar.gz")
+    # execute in subshell
+    (
+        local src_path=$(get_cache_full_path "erlang-$version-src")
+
+        # unpacking (if need)
+        if [ ! -d "$src_path" ]; then
+            mkdir -p "$src_path"
+            tar -xzf "$tarball" -C "$src_path"
+        fi
+
+        local build_path=$(get_cache_full_path "erlang-$version-build")
+
+        # if not buid yet then do it
+        if [ ! -d "$build_path" ]; then
+            mkdir -p "$build_path"
+
+            # change directory
+            cd "$src_path"
+            local subdir=$(find . -mindepth 1 -maxdepth 1 -type d)
+            cd "$subdir"
+
+            # compiling
+            ./configure --prefix="$build_path"
+            make --jobs=$(get_cpu_count)
+            make install
+        fi
+
+        # copy all bins into new environment
+        cp -r "$build_path"/* $env_name_full
+    )
 }
