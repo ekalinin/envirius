@@ -20,6 +20,9 @@ plug_list_versions() {
     echo "$versions1 $versions2"
 }
 
+# Install erlang into environment
+#   $1 — plugin version
+#   $2 — full path to the environment
 plug_install() {
     version=$1
     env_name_full=$2
