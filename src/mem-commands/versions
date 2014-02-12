@@ -9,9 +9,15 @@ mem_cmd_default() {
         unset plug_list_versions_columns_count
         unset plug_list_versions_columns_size
         unset plug_list_versions
+        unset plug_state
 
         . $plugin_full_path
         bold "* $plugin_name:"; echo
+
+        if [ "$plug_state" = "disabled" ]; then
+            echo " - plugin disabled."
+            continue
+        fi
 
         # get versions list by
         # calling `list` command from plugin
