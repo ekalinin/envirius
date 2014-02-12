@@ -5,7 +5,11 @@ mem_cmd_default() {
                     -not -iname "common" \
                     -not -iname ".*" | sort)
     do
-        filename $plugin
+        plug_state=""
+        . "$plugin"
+        if [ "$plug_state" != "disabled" ]; then
+            filename $plugin
+        fi
     done
 }
 
