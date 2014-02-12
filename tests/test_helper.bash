@@ -3,6 +3,7 @@ setup() {
     export MEM_HOME="$HOME/tmp/mem-tests-home"
     mkdir -p $MEM_HOME
     . $BATS_TEST_DIRNAME/../src/mem
+    mem rm --all
 }
 
 assert_equal() {

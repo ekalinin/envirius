@@ -2,12 +2,20 @@
 
 load test_helper
 
-@test "ls: all" {
-    run mem rm --all
-    [ "$status" -eq 0 ]
+@test "ls: empty list" {
     run mem ls
-    [ "$status" -eq 0 ]
-    [ "${lines[0]}"  = "Available environment(s):" ]
-    echo "${lines[1]}"
-    [ "${lines[1]}"  = "" ]
+    assert_success
+    assert_equal "Available environment(s):" "${lines[0]}"
+    assert_equal "" "${lines[1]}"
+}
+
+@test "ls: with one environment" {
+    run mem mk empty_env
+    assert_success
+
+    run mem ls
+    assert_success
+    assert_equal "Available environment(s):" "${lines[0]}"
+    assert_equal "empty_env" "${lines[1]}"
+    assert_equal "" "${lines[2]}"
 }

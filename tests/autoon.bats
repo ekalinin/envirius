@@ -7,7 +7,8 @@ load test_helper
         rm ./.mem
     fi
     run mem autoon test_env1
-    [ "$status" -eq 0 ]
+    assert_success
+
     # file should be created
     [ -e ./.mem ]
     # file should content environment name
@@ -20,7 +21,8 @@ load test_helper
         rm ./.mem
     fi
     run mem autoon
-    [ "$status" -eq 0 ]
+    assert_success
+
     # file should not be created
     [ ! -e ./.mem ]
     [ "${lines[0]}" = "`bold Usage`: mem autoon [<env-name>]" ]
@@ -34,7 +36,6 @@ load test_helper
     if [ -e ./.mem ]; then
         rm ./.mem
     fi
-    mem rm --all
     mem mk empty_env
     mem on empty_env
     mem autoon
