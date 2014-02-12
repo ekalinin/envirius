@@ -45,20 +45,21 @@ mem_cmd_default() {
 
             # activate plugin & call installation part
             . $plugin_full_path
-            if [ "$plug_state" != "disabled" ]; then
-                local inst_start_time=$(get_time)
-                plug_install $plugin_ver $env_name_full
-                local inst_diff_time=$(get_time_diff $inst_start_time)
-                # create activation script for plugin
-                #plugin_activate_path=$(get_activate_script_path $env_name_full $plugin_name)
-                #touch $plugin_activate_path
-                #chmod a+x $plugin_activate_path
-                #plug_add_activate $env_name_full $plugin_activate_path
-                #echo " - added 'activate' script"
-                echo " * done (in $inst_diff_time secs.)"
-            else
+            if [ "$plug_state" = "disabled" ]; then
                 echo " - plugin disabled."
+                continue
             fi
+
+            local inst_start_time=$(get_time)
+            plug_install $plugin_ver $env_name_full
+            local inst_diff_time=$(get_time_diff $inst_start_time)
+            # create activation script for plugin
+            #plugin_activate_path=$(get_activate_script_path $env_name_full $plugin_name)
+            #touch $plugin_activate_path
+            #chmod a+x $plugin_activate_path
+            #plug_add_activate $env_name_full $plugin_activate_path
+            #echo " - added 'activate' script"
+            echo " * done (in $inst_diff_time secs.)"
     esac
     done
     #cmd_add_activate $env_name_full
