@@ -1,5 +1,7 @@
 #!/bin/sh
 
+plug_state="disabled"
+
 # Output lists of versions
 plug_list_versions() {
     PY_MIRROR="http://www.python.org/ftp/python/"
