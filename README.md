@@ -160,6 +160,11 @@ Tests
 
 Most of the code is covered by tests. For testing
 [bats](https://github.com/sstephenson/bats) was used.
+To run tests:
+
+```bash
+➥ make tests
+```
 
 Version History
 ===============

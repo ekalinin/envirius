@@ -178,6 +178,15 @@ Environment mixed-rust-erlang was deactivated.
 и установку на Core(TM) i7-3517U CPU @ 1.90GHz с 4 GB RAM). С горячим кэшем
 (elang/rust уже скачаны и собраны) тесты занимают 26 секунд.
 
+Чтобы прогнать тесты, достаточно сделать:
+
+```bash
+➥ make tests
+...
+
+22 tests, 0 failures
+```
+
 История изменений
 =================
 
