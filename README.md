@@ -150,6 +150,11 @@ Dependencies
 * gcc
 * bats
 
+Supported OS
+============
+
+* ubuntu
+
 Tests
 =====
 

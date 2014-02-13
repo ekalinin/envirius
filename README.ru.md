@@ -164,6 +164,11 @@ Environment mixed-rust-erlang was deactivated.
 * gcc (для компиляции)
 * bats (для тестирования)
 
+Поддерживаемые ОС
+=================
+
+* ubuntu
+
 Тестирование
 ============
 
@@ -172,6 +177,11 @@ Environment mixed-rust-erlang was deactivated.
 занимают около 136 минут (включают скачивание архивов rust/erlang, их компиляцию
 и установку на Core(TM) i7-3517U CPU @ 1.90GHz с 4 GB RAM). С горячим кэшем
 (elang/rust уже скачаны и собраны) тесты занимают 26 секунд.
+
+История изменений
+=================
+
+См. файл [CHANGELOG.md](https://github.com/ekalinin/envirius/blob/master/CHANGELOG.md).
 
 Лицензия
 ========
