@@ -36,12 +36,14 @@ Then youd need to add into your ``.bashrc`` the following:
 
 ```bash
 # activate envirius itself
+# (mandatory part)
 if [ -e "~/.envirius/nv" ] ; then
     . ~/.envirius/nv
 fi
 
 # auto environment activation
 # when navigate to folder with '.envirius' file
+# (optional part)
 if [ -e ".envirius" ] ; then
     nv on `cat .envirius`
 fi
