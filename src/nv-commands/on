@@ -1,12 +1,12 @@
 . $(get_command_full_path)/activate
 
-mem_cmd_desc() {
+nv_cmd_desc() {
     echo "Activate environment (alias: activate)"
 }
 
-mem_cmd_help() {
+nv_cmd_help() {
     show_usage "<env-name>"
-    show_desc "$(mem_cmd_desc)"
+    show_desc "$(nv_cmd_desc)"
 }
 
 # /* vim: set filetype=sh : */

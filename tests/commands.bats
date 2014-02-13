@@ -3,7 +3,7 @@
 load test_helper
 
 @test "commands: list commands" {
-    run mem commands
+    run nv commands
     assert_success
 
     [ "${lines[0]}"  = "  activate        Activate environment (alias: on)" ]

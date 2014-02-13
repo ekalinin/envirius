@@ -4,7 +4,7 @@ load test_helper
 
 @test "versions: for disabled plugin [go]" {
     line_0=$(bold "* go:";)
-    run mem versions --go
+    run nv versions --go
     assert_success
     assert_equal "${lines[0]}" $line_0
     assert_equal "${lines[1]}" " - plugin disabled."
@@ -12,7 +12,7 @@ load test_helper
 
 @test "versions: for enabled plugin [rust]" {
     line_0=$(bold "* rust:";)
-    run mem versions --rust
+    run nv versions --rust
     assert_success
 
     assert_equal "${lines[0]}" $line_0

@@ -1,16 +1,16 @@
-MEM_VERSION=0.1.0
+NV_VERSION=0.1.0
 
-mem_cmd_default() {
-    echo "$(get_cmd_name) $MEM_VERSION"
+nv_cmd_default() {
+    echo "$(get_cmd_name) $NV_VERSION"
 }
 
-mem_cmd_desc() {
+nv_cmd_desc() {
     echo "Display the version number"
 }
 
-mem_cmd_help() {
+nv_cmd_help() {
     show_usage
-    show_desc "$(mem_cmd_desc)"
+    show_desc "$(nv_cmd_desc)"
 }
 
 # /* vim: set filetype=sh : */

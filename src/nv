@@ -6,32 +6,32 @@ if [ "$DEBUG" = "yes" ]; then
 fi
 
 # path to then soure code
-if [ "$MEM_PATH" = "" ]; then
-    export MEM_PATH=$HOME/.mem
+if [ "$NV_PATH" = "" ]; then
+    export NV_PATH=$HOME/.envirius
 fi
 
 # path to the cache/environment/etc
-if [ "$MEM_HOME" = "" ]; then
-    export MEM_HOME=$HOME/.mem
+if [ "$NV_HOME" = "" ]; then
+    export NV_HOME=$HOME/.envirius
 fi
 
 # load common functions
-. $MEM_PATH/mem_common
+. $NV_PATH/nv_common
 
 
-mem_usage() {
-    mem version
+nv_usage() {
+    nv version
     show_usage "<subcommand>"
     echo
     echo "Subcommands:"
-    mem commands
+    nv commands
     echo
     echo "Try '$(get_cmd_name) <subcommand> --help' for details."
     echo "For more information, see: https://github.com/ekalinin/$(get_cmd_name)"
 }
 
 
-mem() {
+nv() {
     mkdir -p $(get_env_full_path)
     mkdir -p $(get_cache_full_path)
 
@@ -41,11 +41,11 @@ mem() {
 
     # show help if command is empty
     if [ "$SUBCOMMAND" = "" ]; then
-        mem_usage
+        nv_usage
         return
     # show help if command not exists
     elif [ ! -e "$command_full_path" ]; then
-        mem_usage
+        nv_usage
         return
     fi
 
@@ -58,7 +58,7 @@ mem() {
     fi
 
     # run subaction
-    mem_cmd_$SUBACTION "$@"
+    nv_cmd_$SUBACTION "$@"
 }
 
 

@@ -1,4 +1,4 @@
-mem_cmd_default() {
+nv_cmd_default() {
     local env_name=$1
 
     # check that env name is not empty
@@ -10,17 +10,17 @@ mem_cmd_default() {
     fi
 
     # deactivate previusly activated environment
-    local current_env=`mem current`
+    local current_env=`nv current`
     if [ "$current_env" != "" ]; then
-        mem deactivate
+        nv deactivate
     fi
 
     local env_name_full=$(get_env_full_path $env_name)
     mkdir -p $env_name_full/bin
     #local env_activate_script=$(get_activate_script_path $env_name_full)
 
-    export MEM_USED_ENV=$env_name
-    export MEM_OLD_PATH=$PATH
+    export NV_USED_ENV=$env_name
+    export NV_OLD_PATH=$PATH
     export PATH=$env_name_full/bin:$PATH
 
     # source activate for each plugin
@@ -32,13 +32,13 @@ mem_cmd_default() {
     echo "Environment `bold $env_name` activated."
 }
 
-mem_cmd_desc() {
+nv_cmd_desc() {
     echo "Activate environment (alias: on)"
 }
 
-mem_cmd_help() {
+nv_cmd_help() {
     show_usage "<environment-name>"
-    show_desc "$(mem_cmd_desc)"
+    show_desc "$(nv_cmd_desc)"
 }
 
 # /* vim: set filetype=sh : */

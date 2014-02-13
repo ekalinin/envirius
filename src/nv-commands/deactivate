@@ -1,25 +1,25 @@
-mem_cmd_default() {
-    local current_env=`mem current`
+nv_cmd_default() {
+    local current_env=`nv current`
     if [ "$current_env" = "" ]; then
         echo "Nothing to deactivate."
     else
-        local env_name=$MEM_USED_ENV
+        local env_name=$NV_USED_ENV
 
-        export PATH=$MEM_OLD_PATH
-        unset MEM_OLD_PATH
-        unset MEM_USED_ENV
+        export PATH=$NV_OLD_PATH
+        unset NV_OLD_PATH
+        unset NV_USED_ENV
 
         echo "Environment `bold $env_name` was deactivated."
     fi
 }
 
-mem_cmd_desc() {
+nv_cmd_desc() {
     echo "Deactivate environment (alias: off)"
 }
 
-mem_cmd_help() {
+nv_cmd_help() {
     show_usage
-    show_desc "$(mem_cmd_desc)"
+    show_desc "$(nv_cmd_desc)"
 }
 
 # /* vim: set filetype=sh : */

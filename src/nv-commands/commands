@@ -1,4 +1,4 @@
-mem_cmd_default() {
+nv_cmd_default() {
     # lists all files in the commands directory
     # except hidden and common file
     local commands_full_path=$(get_command_full_path)
@@ -9,17 +9,17 @@ mem_cmd_default() {
         # source each command
         . $cmd
         # display it's filename only & description for it
-        echo "  `rpad $(filename $cmd) 15` $(mem_cmd_desc)"
+        echo "  `rpad $(filename $cmd) 15` $(nv_cmd_desc)"
     done
 }
 
-mem_cmd_desc() {
+nv_cmd_desc() {
     echo "List available commands"
 }
 
-mem_cmd_help() {
+nv_cmd_help() {
     show_usage
-    show_desc "$(mem_cmd_desc)"
+    show_desc "$(nv_cmd_desc)"
 }
 
 # /* vim: set filetype=sh : */

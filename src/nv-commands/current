@@ -1,17 +1,17 @@
-mem_cmd_default() {
+nv_cmd_default() {
     # deactivate previusly activated environment
-    if [ "$MEM_USED_ENV" != "" ]; then
-        echo $MEM_USED_ENV
+    if [ "$NV_USED_ENV" != "" ]; then
+        echo $NV_USED_ENV
     fi
 }
 
-mem_cmd_desc() {
+nv_cmd_desc() {
     echo "Output current environment's name"
 }
 
-mem_cmd_help() {
+nv_cmd_help() {
     show_usage
-    show_desc "$(mem_cmd_desc)"
+    show_desc "$(nv_cmd_desc)"
 }
 
 # /* vim: set filetype=sh : */

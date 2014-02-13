@@ -3,29 +3,29 @@
 load test_helper
 
 @test "autoon: file with explicity entered env" {
-    if [ -e ./.mem ]; then
-        rm ./.mem
+    if [ -e ./.envirius ]; then
+        rm ./.envirius
     fi
-    run mem autoon test_env1
+    run nv autoon test_env1
     assert_success
 
     # file should be created
-    [ -e ./.mem ]
+    [ -e ./.envirius ]
     # file should content environment name
-    [ "`cat ./.mem`" = "test_env1" ]
-    rm ./.mem
+    [ "`cat ./.envirius`" = "test_env1" ]
+    rm ./.envirius
 }
 
 @test "autoon: show help if env not activated, file not created" {
-    if [ -e ./.mem ]; then
-        rm ./.mem
+    if [ -e ./.envirius ]; then
+        rm ./.envirius
     fi
-    run mem autoon
+    run nv autoon
     assert_success
 
     # file should not be created
-    [ ! -e ./.mem ]
-    [ "${lines[0]}" = "`bold Usage`: mem autoon [<env-name>]" ]
+    [ ! -e ./.envirius ]
+    [ "${lines[0]}" = "`bold Usage`: nv autoon [<env-name>]" ]
     [ "${lines[1]}" = "`bold Description`: Mark current directory for environment auto activating" ]
     [ "${lines[2]}" = "    If environment's name is not entered then used current" ]
     [ "${lines[3]}" = "    (active) environment. If environment is not activated" ]
@@ -33,15 +33,15 @@ load test_helper
 }
 
 @test "autoon: file with activated environment name" {
-    if [ -e ./.mem ]; then
-        rm ./.mem
+    if [ -e ./.envirius ]; then
+        rm ./.envirius
     fi
-    mem mk empty_env
-    mem on empty_env
-    mem autoon
+    nv mk empty_env
+    nv on empty_env
+    nv autoon
     # file should be created
-    [ -e ./.mem ]
+    [ -e ./.envirius ]
     # file should content environment name
-    [ "`cat ./.mem`" = "empty_env" ]
-    rm ./.mem
+    [ "`cat ./.envirius`" = "empty_env" ]
+    rm ./.envirius
 }

@@ -3,7 +3,7 @@
 load test_helper
 
 @test "version: output version" {
-    run mem version
+    run nv version
     [ "$status" -eq 0 ]
-    [ "$output" = "mem 0.1.0" ]
+    [ "$output" = "nv 0.1.0" ]
 }

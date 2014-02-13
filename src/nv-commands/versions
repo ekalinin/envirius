@@ -1,4 +1,4 @@
-mem_cmd_default() {
+nv_cmd_default() {
     for par in "$@"
     do
     case $par in
@@ -45,13 +45,13 @@ mem_cmd_default() {
     done
 }
 
-mem_cmd_desc() {
+nv_cmd_desc() {
     echo "Lists available versions for plugins"
 }
 
-mem_cmd_help() {
+nv_cmd_help() {
     show_usage "--erlang --python [--other-plugin]"
-    show_desc "$(mem_cmd_desc)"
+    show_desc "$(nv_cmd_desc)"
     echo "    To see all available plugins execute:"
     echo "    $ $(get_cmd_name) plugins"
 }

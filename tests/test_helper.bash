@@ -1,9 +1,9 @@
 setup() {
-    export MEM_PATH="$BATS_TEST_DIRNAME/../src"
-    export MEM_HOME="$HOME/tmp/mem-tests-home"
-    mkdir -p $MEM_HOME
-    . $BATS_TEST_DIRNAME/../src/mem
-    mem rm --all
+    export NV_PATH="$BATS_TEST_DIRNAME/../src"
+    export NV_HOME="$HOME/tmp/mem-tests-home"
+    mkdir -p $NV_HOME
+    . $BATS_TEST_DIRNAME/../src/nv
+    nv rm --all
 }
 
 assert_equal() {

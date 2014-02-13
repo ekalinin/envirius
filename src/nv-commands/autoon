@@ -1,26 +1,26 @@
-mem_cmd_default() {
+nv_cmd_default() {
     local env_name=$1
     if [ "$env_name" != "" ]; then
-        echo $env_name > ./.mem
+        echo $env_name > ./.envirius
         return
     fi
 
-    local env_name=`mem current`
+    local env_name=`nv current`
     if [ "$env_name" != "" ]; then
-        echo $env_name > ./.mem
+        echo $env_name > ./.envirius
         return
     fi
 
-    mem_cmd_help
+    nv_cmd_help
 }
 
-mem_cmd_desc() {
+nv_cmd_desc() {
     echo "Mark current directory for environment auto activating"
 }
 
-mem_cmd_help() {
+nv_cmd_help() {
     show_usage "[<env-name>]"
-    show_desc "$(mem_cmd_desc)"
+    show_desc "$(nv_cmd_desc)"
     echo "    If environment's name is not entered then used current"
     echo "    (active) environment. If environment is not activated"
     echo "    then environment's name is required."

@@ -1,4 +1,4 @@
-mem_cmd_default() {
+nv_cmd_default() {
     local plugin_full_path=$(get_plugin_full_path)
     for plugin in $(find $plugin_full_path \
                     -type f \
@@ -13,13 +13,13 @@ mem_cmd_default() {
     done
 }
 
-mem_cmd_desc() {
+nv_cmd_desc() {
     echo "List available plugins"
 }
 
-mem_cmd_help() {
+nv_cmd_help() {
     show_usage
-    show_desc "$(mem_cmd_desc)"
+    show_desc "$(nv_cmd_desc)"
 }
 
 # /* vim: set filetype=sh : */

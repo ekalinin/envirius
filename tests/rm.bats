@@ -3,9 +3,9 @@
 load test_helper
 
 @test "rm: all" {
-    run mem rm -all
+    run nv rm -all
     [ "$status" -eq 0 ]
-    run mem ls
+    run nv ls
     [ "$status" -eq 0 ]
     [ "${lines[0]}"  = "Available environment(s):" ]
 }
