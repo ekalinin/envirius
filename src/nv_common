@@ -11,7 +11,12 @@ bold() {
 
 # Output a usage message
 show_usage() {
-    bold "Usage"; echo ": $(get_cmd_name) $SUBCOMMAND $1"
+    bold "Usage";
+    if [ "$SUBCOMMAND" = "" ]; then
+        echo ": $(get_cmd_name) $1"
+    else
+        echo ": $(get_cmd_name) $SUBCOMMAND $1"
+    fi
 }
 
 # Output a description for command

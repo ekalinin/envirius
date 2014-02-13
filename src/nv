@@ -59,6 +59,8 @@ nv() {
 
     # run subaction
     nv_cmd_$SUBACTION "$@"
+    unset SUBCOMMAND
+    unset SUBACTION
 }
 
 
