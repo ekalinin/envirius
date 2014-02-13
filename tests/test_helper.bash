@@ -1,6 +1,6 @@
 setup() {
     export NV_PATH="$BATS_TEST_DIRNAME/../src"
-    export NV_HOME="$HOME/tmp/mem-tests-home"
+    export NV_HOME="$HOME/tmp/envirius-tests"
     mkdir -p $NV_HOME
     . $BATS_TEST_DIRNAME/../src/nv
     nv rm --all
