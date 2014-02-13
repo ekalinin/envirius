@@ -1,4 +1,4 @@
-.PHONY: install all tests uninstall
+.PHONY: install all tests uninstall release
 
 MAIN_FILES =./src/nv
 MAIN_FILES+=./src/nv_common
@@ -44,3 +44,7 @@ uninstall:
 
 tests:
 	bats tests
+
+release:
+	@git tag `grep -o -E '[0-9]\.[0-9]\.[0-9]{1,2}' src/nv-commands/version`
+	@git push --tags origin master
