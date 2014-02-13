@@ -17,7 +17,7 @@ all:
 install:
 	@install -d -m 0755 $(DST_HOME)
 	@# delete prev installation
-	@rm -rf $(DST_HOME_PLG)
+	@rm -rf $(DST_HOME_CMD)
 	@rm -rf $(DST_HOME_PLG)
 	@install -d -m 0755 $(DST_HOME_CMD)
 	@install -d -m 0755 $(DST_HOME_PLG)
