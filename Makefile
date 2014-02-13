@@ -1,14 +1,14 @@
 .PHONY: install all tests uninstall
 
-MAIN_FILES =./src/mem
-MAIN_FILES+=./src/mem_common
-CMD_FILES=./src/mem-commands/*
-PLG_FILES=./src/mem-plugins/*
+MAIN_FILES =./src/nv
+MAIN_FILES+=./src/nv_common
+CMD_FILES=./src/nv-commands/*
+PLG_FILES=./src/nv-plugins/*
 
 prefix=~
-DST_HOME=$(prefix)/.mem
-DST_HOME_CMD=$(DST_HOME)/mem-commands
-DST_HOME_PLG=$(DST_HOME)/mem-plugins
+DST_HOME=$(prefix)/.envirius
+DST_HOME_CMD=$(DST_HOME)/nv-commands
+DST_HOME_PLG=$(DST_HOME)/nv-plugins
 
 all:
 	@echo "usage: make install"
@@ -27,18 +27,18 @@ install:
 	@echo "Please, add into your ~/.bashrc:"
 	@echo ""
 	@echo "# activate mem"
-	@echo 'if [ -e "$(DST_HOME)/mem" ] ; then'
-	@echo '    . $(DST_HOME)/mem'
+	@echo 'if [ -e "$(DST_HOME)/nv" ] ; then'
+	@echo '    . $(DST_HOME)/nv'
 	@echo "fi"
 	@echo ""
 	@echo "# auto env activation"
-	@echo 'if [ -e ".mem" ] ; then'
-	@echo '    mem on `cat .mem`'
+	@echo 'if [ -e ".envirius" ] ; then'
+	@echo '    mem on `cat .envirius`'
 	@echo "fi"
 
 # save rc file & cache & created environments
 uninstall:
-	@rm -rf $(DST_HOME)/mem
+	@rm -rf $(DST_HOME)/env
 	@rm -rf $(DST_HOME_CMD)
 	@rm -rf $(DST_HOME_PLG)
 
