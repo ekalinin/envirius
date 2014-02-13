@@ -49,6 +49,15 @@ if [ -e ".envirius" ] ; then
 fi
 ```
 
+Available plugins
+=================
+
+You can create environments for the following programming languages
+at the moment:
+
+* [erlang](http://erlang.org/)
+* [rust](http://rust-lang.org/)
+
 Usage
 =====
 
@@ -164,6 +173,9 @@ To run tests:
 
 ```bash
 ➥ make tests
+...
+
+22 tests, 0 failures
 ```
 
 Version History
