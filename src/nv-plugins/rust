@@ -8,70 +8,12 @@ plug_list_versions() {
     echo $versions
 }
 
-# Install rust into environment
-#   $1 — plugin version
-#   $2 — full path to the environment
-plug_install() {
+# Return full url for tarball for download
+# and future installation
+#
+# Input:
+#   $1 — version for installation
+plug_get_url_for_download() {
     version=$1
-    env_name_full=$2
-
-    tarball=$(download_file "http://static.rust-lang.org/dist/rust-${version}.tar.gz")
-    # execute in subshell
-    (
-        local src_path=$(get_cache_full_path "rust-$version-src")
-
-        # unpacking (if need)
-        if [ ! -d "$src_path" ]; then
-            mkdir -p "$src_path"
-            tar -xzf "$tarball" -C "$src_path"
-        fi
-
-        local build_path=$(get_cache_full_path "rust-$version-build")
-
-        # if not compiled yet then do it
-        if [ ! -d "$build_path" ]; then
-            mkdir -p "$build_path"
-
-            # change directory
-            cd "$src_path"
-            local subdir=$(find . -mindepth 1 -maxdepth 1 -type d)
-            cd "$subdir"
-
-            # compiling
-            ./configure --prefix="$build_path"
-            make --jobs=$(get_cpu_count)
-            make install
-        fi
-
-        # copy all bins into new environment
-        cp -r "$build_path"/* $env_name_full
-    )
+    echo "http://static.rust-lang.org/dist/rust-${version}.tar.gz"
 }
-
-# Saves `on` script into `env`/bin directory
-#plug_add_activate() {
-#    cat <<END_SCRIPT > $2
-## environment path
-#export MEM_RUST=$1
-#
-#END_SCRIPT
-#
-#    cat <<"END_SCRIPT" >> $2
-## save original path before activation
-#_MEM_RUST_OLD_PATH="$PATH"
-#
-## add environment's dir on the 1st place in the PATH
-#export PATH="$MEM_RUST/bin:$PATH"
-#
-#deactivate_rust () {
-#    # reset old environment variables
-#    if [ -n "$_OLD_NODE_VIRTUAL_PATH" ] ; then
-#        PATH="$_MEM_RUST_OLD_PATH"
-#        export PATH
-#        unset _MEM_RUST_OLD_PATH
-#    fi
-#
-#}
-#END_SCRIPT
-#
-#}

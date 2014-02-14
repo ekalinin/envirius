@@ -45,40 +45,66 @@ nv_cmd_default() {
 
             # activate plugin & call installation part
             . $plugin_full_path
+
+            # check if plugin disabled
             if [ "$plug_state" = "disabled" ]; then
                 echo " - plugin disabled."
                 continue
             fi
 
+            # install it & timer it
             local inst_start_time=$(get_time)
-            plug_install $plugin_ver $env_name_full
+            plug_install $plugin_name $plugin_ver $env_name_full
             local inst_diff_time=$(get_time_diff $inst_start_time)
-            # create activation script for plugin
-            #plugin_activate_path=$(get_activate_script_path $env_name_full $plugin_name)
-            #touch $plugin_activate_path
-            #chmod a+x $plugin_activate_path
-            #plug_add_activate $env_name_full $plugin_activate_path
-            #echo " - added 'activate' script"
             echo " * done (in $inst_diff_time secs.)"
     esac
     done
-    #cmd_add_activate $env_name_full
 }
 
-nv_cmd_add_activate() {
-    env_name_full=$1
-    env_on=$(get_activate_script_path $env_name_full)
+# Plugin installation logic.
+# Can be overridden in the plugin body
+# (for example, in $NV_HOME/nv-plugin/erlang).
+#
+# Input:
+#   $1 — plugin name (erlang, rust, ...)
+#   $2 — plugin version
+#   $3 — full path to the environment
+plug_install() {
+    plugin_name=$1
+    version=$2
+    env_name_full=$3
 
-    cat << activate_script_off > $env_on
-#!/bin/sh
+    tarball=$(download_file $(plug_get_url_for_download "$version"))
+    # execute in subshell
+    (
+        local src_path=$(get_cache_full_path "$plugin_name-$version-src")
 
-export NV_OLD_PATH=\$PATH
-export PATH=$env_name_full/bin:\$PATH
+        # unpacking (if need)
+        if [ ! -d "$src_path" ]; then
+            mkdir -p "$src_path"
+            tar -xzf "$tarball" -C "$src_path"
+        fi
 
-deactivate_rust() {
-    echo "deactivate rust"
-}
-activate_script_off
+        local build_path=$(get_cache_full_path "$plugin_name-$version-build")
+
+        # if not buid yet then do it
+        if [ ! -d "$build_path" ]; then
+            mkdir -p "$build_path"
+
+            # change directory
+            cd "$src_path"
+            local subdir=$(find . -mindepth 1 -maxdepth 1 -type d)
+            cd "$subdir"
+
+            # compiling
+            ./configure --prefix="$build_path"
+            make --jobs=$(get_cpu_count)
+            make install
+        fi
+
+        # copy all bins into new environment
+        cp -r "$build_path"/* $env_name_full
+    )
 }
 
 nv_cmd_desc() {
