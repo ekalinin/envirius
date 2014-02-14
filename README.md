@@ -133,22 +133,32 @@ Environment mixed-rust-erlang was deactivated.
 How to add a plugin?
 ====================
 
-All plugins are in the directory ``nv-plugins``.
+All plugins are in the directory ``nv-plugins``. If you need a new one
+you should add it inside this directory.
 
 Mandatory elements
 -------------------
 
-Every plugin must contain at least the following functions:
+In the simplest case you need to implement 2 functions in the plugin's
+body:
 
-* *plug_list_versions*
-* *plug_install* 
+* ``plug_list_versions`` which returns list of available versions of the plugin
+* ``plug_url_for_download`` which returns full url for downloading tarball
+
+If installation is not typical then you should implement ``plug_install``
+instead of ``plug_url_for_download``. Default implementation of the
+``plug_install`` function is in the ``src/nv-commands/mk`` file.
 
 Optional elements
 -----------------
 
-* *plug_list_versions_columns_count*
-* *plug_list_versions_columns_size*
-* *plug_state*
+* ``plug_list_versions_columns_count``
+* ``plug_list_versions_columns_size``
+* ``plug_state`` if == ``disabled`` then plugin is not active and will not
+  be account in the commands:
+  * mk
+  * versions
+  * plugins
 
 Dependencies
 ============
