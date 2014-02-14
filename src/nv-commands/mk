@@ -74,7 +74,7 @@ plug_install() {
     version=$2
     env_name_full=$3
 
-    tarball=$(download_file $(plug_get_url_for_download "$version"))
+    tarball=$(download_file $(plug_url_for_download "$version"))
     # execute in subshell
     (
         local src_path=$(get_cache_full_path "$plugin_name-$version-src")

@@ -13,7 +13,7 @@ plug_list_versions() {
 #
 # Input:
 #   $1 — version for installation
-plug_get_url_for_download() {
+plug_url_for_download() {
     version=$1
     echo "http://static.rust-lang.org/dist/rust-${version}.tar.gz"
 }
