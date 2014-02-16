@@ -6,7 +6,8 @@ load test_helper
     run nv plugins
     [ "$status" -eq 0 ]
     assert_success
-    assert_equal "${lines[0]}" "erlang"
-    assert_equal "${lines[1]}" "rust"
-    assert_equal "${lines[2]}" ""
+    assert_equal "${lines[0]}" "elixir"
+    assert_equal "${lines[1]}" "erlang"
+    assert_equal "${lines[2]}" "rust"
+    assert_equal "${lines[3]}" ""
 }
