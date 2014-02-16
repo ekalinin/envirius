@@ -166,16 +166,16 @@ get_env_full_path() {
         echo $NV_ENVS_DIR
     else
         local env_name=$1
-        echo $NV_ENVS_DIR/$env_name
+        echo "$NV_ENVS_DIR/$env_name"
     fi
 }
 
 get_plugin_full_path() {
-    local NV_ENVS_DIR=$NV_PATH/nv-plugins
+    local NV_ENVS_DIR="$NV_PATH/nv-plugins"
     if [ "$1" = "" ]; then
         echo $NV_ENVS_DIR
     else
-        echo $NV_ENVS_DIR/$1
+        echo "$NV_ENVS_DIR/$1"
     fi
 }
 
