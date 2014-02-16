@@ -111,7 +111,7 @@ download_file() {
 
     if [ ! -f $file_in_cache ]; then
         if type curl &>/dev/null; then
-            curl -o "$file_in_cache" "$url"
+            curl --location --output "$file_in_cache" "$url"
         elif type wget &>/dev/null; then
             wget -P $cache_dir "$url"
         else
