@@ -3,23 +3,22 @@
 load test_helper
 
 @test "autoon: file with explicity entered env" {
-    if [ -e ./.envirius ]; then
-        rm ./.envirius
-    fi
+    rm -f ./.envirius
+
     run nv autoon test_env1
     assert_success
 
     # file should be created
     [ -e ./.envirius ]
     # file should content environment name
-    [ "`cat ./.envirius`" = "test_env1" ]
+    assert_equal "test_env1" "`cat ./.envirius`"
+
     rm ./.envirius
 }
 
 @test "autoon: show help if env not activated, file not created" {
-    if [ -e ./.envirius ]; then
-        rm ./.envirius
-    fi
+    rm -f ./.envirius
+
     run nv autoon
     assert_success
 
@@ -30,18 +29,21 @@ load test_helper
     [ "${lines[2]}" = "    If environment's name is not entered then used current" ]
     [ "${lines[3]}" = "    (active) environment. If environment is not activated" ]
     [ "${lines[4]}" = "    then environment's name is required." ]
+
+    rm -f ./.envirius
 }
 
 @test "autoon: file with activated environment name" {
-    if [ -e ./.envirius ]; then
-        rm ./.envirius
-    fi
+    rm -f ./.envirius
+
     nv mk empty_env
     nv on empty_env
     nv autoon
+
     # file should be created
     [ -e ./.envirius ]
     # file should content environment name
-    [ "`cat ./.envirius`" = "empty_env" ]
+    assert_equal "empty_env" "`cat ./.envirius`"
+
     rm ./.envirius
 }
