@@ -6,7 +6,7 @@ load test_helper
     local usage_b=$(bold "Usage")
     run nv
     assert_success
-    assert_equal "${lines[0]}" "nv 0.1.0"
+    assert_equal "${lines[0]}" "nv 0.2.0b"
     assert_equal "${lines[1]}" "${usage_b}: nv <subcommand>"
     assert_equal "${lines[2]}" "Subcommands:"
 }
