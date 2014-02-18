@@ -43,7 +43,7 @@ uninstall:
 	@rm -rf $(DST_HOME_PLG)
 
 tests:
-	bats tests
+	time bats tests
 
 release:
 	@git tag `grep -o -E '[0-9]\.[0-9]\.[0-9]{1,2}' src/nv-commands/version`
