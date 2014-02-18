@@ -173,6 +173,7 @@ Environment mixed-rust-erlang was deactivated.
 * bash
 * curl / wget (для скачивания архивов)
 * tar
+* git
 * gcc (для компиляции)
 * bats (для тестирования)
 

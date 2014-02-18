@@ -166,6 +166,7 @@ Dependencies
 * bash
 * curl / wget
 * tar
+* git
 * gcc
 * bats
 
