@@ -67,7 +67,9 @@ To check available plugins:
 
 ```bash
 ➥ nv plugins
+elixir
 erlang
+julia
 rust
 ```
 

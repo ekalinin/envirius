@@ -68,7 +68,9 @@ fi
 
 ```bash
 ➥ nv plugins
+elixir
 erlang
+julia
 rust
 ```
 
