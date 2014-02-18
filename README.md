@@ -57,6 +57,8 @@ at the moment:
 
 * [erlang](http://erlang.org/)
 * [rust](http://rust-lang.org/)
+* [elixir](http://elixir-lang.org/)
+* [julia](http://julialang.org/)
 
 Usage
 =====
