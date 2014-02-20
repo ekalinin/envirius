@@ -129,10 +129,15 @@ nv_cmd_desc() {
 }
 
 nv_cmd_help() {
-    show_usage "<env-name> --python --erlang [--other-plugin]"
+    show_usage "[env-name] [--plugin=version [,--plugin=version]]"
     show_desc "$(nv_cmd_desc)"
+    echo "    If environment name is empty then it will be ganerated automatically."
+    echo "    For example:"
+    echo "      $ $(get_cmd_name) mk --rust=0.9 --erlang=17.0-rc1"
+    echo "    Will genarate environment with name 'rust-0.9-erlang-17.0-rc1'."
+    echo ""
     echo "    To see all available plugins execute:"
-    echo "    $ $(get_cmd_name) plugins"
+    echo "      $ $(get_cmd_name) plugins"
 }
 
 # /* vim: set filetype=sh : */
