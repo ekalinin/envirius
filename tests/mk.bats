@@ -38,3 +38,16 @@ load test_helper
     assert_equal "Available environment(s):" "${lines[0]}"
     assert_equal "test_env" "${lines[1]}"
 }
+
+@test "mk: without name" {
+    run nv mk --erlang=17.0-rc1 --rust=0.9
+    assert_success
+    assert_equal "Creating environment: erlang-17.0-rc1-rust-0.9 ..." "${lines[0]}"
+    assert_equal " * installing erlang==17.0-rc1 ..." "${lines[1]}"
+    assert_equal " * installing rust==0.9 ..." "${lines[3]}"
+
+    run nv ls
+    assert_success
+    assert_equal "Available environment(s):" "${lines[0]}"
+    assert_equal "erlang-17.0-rc1-rust-0.9" "${lines[1]}"
+}

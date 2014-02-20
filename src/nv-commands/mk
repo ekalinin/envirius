@@ -12,6 +12,22 @@ nv_cmd_default() {
     esac
     done
 
+    # if env's name is empty try to generate it
+    if [ "$env_name" = "" ]; then
+    for par in "$@"
+    do
+    case $par in
+        --*)
+            local plugin_name=$(get_plugin_name $par)
+            local plugin_ver=$(get_plugin_version $par)
+
+            env_name="$env_name-$plugin_name-$plugin_ver"
+            ;;
+    esac
+    done
+    env_name=`echo "$env_name" | sed "s/^-//"`
+    fi
+
     # check that env name is not empty
     if [ "$env_name" = "" ]; then
         echo "Please, enter a name for a new environment."
