@@ -21,6 +21,20 @@ load test_helper
 
     run nv ls
     assert_success
-    [ "${lines[0]}"  = "Available environment(s):" ]
-    [ "${lines[1]}"  = "test_env" ]
+    assert_equal "Available environment(s):" "${lines[0]}"
+    assert_equal "test_env" "${lines[1]}"
+}
+
+@test "mk: with name" {
+    run nv mk test_env --erlang=17.0-rc1 --rust=0.9
+    assert_success
+    [ "${lines[0]}"  = "Creating environment: test_env ..." ]
+    [ "${lines[1]}"  = " * installing erlang==17.0-rc1 ..." ]
+    [ `echo "${lines[2]}" | grep "done"` ]
+    [ "${lines[3]}"  = " * installing rust==0.9 ..." ]
+
+    run nv ls
+    assert_success
+    assert_equal "Available environment(s):" "${lines[0]}"
+    assert_equal "test_env" "${lines[1]}"
 }
