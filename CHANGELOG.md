@@ -1,6 +1,14 @@
 Changelog
 =========
 
+0.3.0 (XX-XX-2014)
+------------------
+* 'mk' command accept empty environment name and generate it
+  accordingly to plugins
+* added 'cp' command for copy environments
+* improved 'julia' plugin (copied binaries not simlinks on them.
+  importamt for 'cp' command)
+
 0.2.1 (20-02-2014)
 ------------------
 * fixed using ``download_file`` in ``mk`` command
