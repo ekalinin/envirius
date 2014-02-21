@@ -3,12 +3,13 @@ Changelog
 
 0.3.0 (XX-XX-2014)
 ------------------
-* 'mk' command accept empty environment name and generate it
+* ``mk`` command accept empty environment name and generate it
   accordingly to plugins
-* improved 'julia' plugin (copied binaries not simlinks on them.
-  importamt for 'cp' command)
-* added 'cp' command for copy environments
-* added 'mv' command for renaming environments
+* improved ``julia`` plugin (copied binaries not simlinks on them.
+  importamt for ``cp`` command)
+* added ``cp`` command for copy environments
+* added ``mv`` command for renaming environments
+* fixed error message if environment is not entered for ``on``/``activate``
 
 0.2.1 (20-02-2014)
 ------------------
