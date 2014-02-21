@@ -72,6 +72,7 @@ fi
 elixir
 erlang
 julia
+node
 rust
 ```
 
@@ -118,21 +119,21 @@ erl-17-rc1
 Активировать окружение:
 
 ```bash
-➥ mem on mixed-rust-erlang
+➥ mem on mixed-rust-erlang --prompt-enable
 Environment mixed-rust-erlang activated.
 ```
 
 Проверить, если активное окружение:
 
 ```bash
-➥ nv current
+(mixed-rust-erlang) ➥ nv current
 mixed-rust-erlang
 ```
 
 Выключить окружение:
 
 ```bash
-➥ nv off
+(mixed-rust-erlang) ➥ nv off
 Environment mixed-rust-erlang was deactivated.
 ```
 

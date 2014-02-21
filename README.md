@@ -71,6 +71,7 @@ To check available plugins:
 elixir
 erlang
 julia
+node
 rust
 ```
 
@@ -117,21 +118,21 @@ erl-17-rc1
 To activate environment:
 
 ```bash
-➥ mem on mixed-rust-erlang
+➥ mem on mixed-rust-erlang --prompt-enable
 Environment mixed-rust-erlang activated.
 ```
 
 To check if environment activated:
 
 ```bash
-➥ nv current
+(mixed-rust-erlang) ➥ nv current
 mixed-rust-erlang
 ```
 
 To deactivate environment:
 
 ```bash
-➥ nv off
+(mixed-rust-erlang) ➥ nv off
 Environment mixed-rust-erlang was deactivated.
 ```
 
