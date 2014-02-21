@@ -1,11 +1,25 @@
 nv_cmd_default() {
     local env_name=$1
+    local prompt_enable="no"
 
     # check that env name is not empty
     if [ "$env_name" = "" ]; then
         echo "Please, specify the name of the environment that will be activated."
         exit 1
     fi
+
+    # try to find --prompt-* options
+    for opt in "$@"
+    do
+    case $opt in
+        --prompt-enable)
+            prompt_enable="yes"
+            ;;
+        --prompt-disable)
+            prompt_enable="no"
+            ;;
+    esac
+    done
 
     # deactivate previusly activated environment
     local current_env=`nv current`
@@ -16,9 +30,14 @@ nv_cmd_default() {
     local env_name_full=$(get_env_full_path $env_name)
     mkdir -p $env_name_full/bin
 
-    export NV_USED_ENV=$env_name
-    export NV_OLD_PATH=$PATH
+    NV_USED_ENV=$env_name
+    NV_OLD_PATH=$PATH
     export PATH=$env_name_full/bin:$PATH
+
+    if [ "$prompt_enable" = "yes" ]; then
+        NV_OLD_PS1="$PS1"
+        export PS1="($env_name)$PS1"
+    fi
 
     # source activate for each plugin
     for plug in $(find $env_name_full/bin -type f -iname "activate-*" )
@@ -34,8 +53,12 @@ nv_cmd_desc() {
 }
 
 nv_cmd_help() {
-    show_usage "<environment-name>"
+    show_usage "[options] <environment-name>"
     show_desc "$(nv_cmd_desc)"
+    echo ""
+    echo "Options:"
+    echo "  --prompt-enable     Change PS1 varibale: add env name into prompt"
+    echo "  --prompt-disable    Do not change PS1 varibale (default)"
 }
 
 # /* vim: set filetype=sh : */

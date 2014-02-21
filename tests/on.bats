@@ -13,7 +13,6 @@ load test_helper
     [ "${lines[1]}"  = "empty_env2" ]
 
     nv on test_empty_env2
-    assert_success
     assert_equal "test_empty_env2" "$NV_USED_ENV"
     [ "`echo $NV_OLD_PATH`" != "" ]
 }
@@ -36,6 +35,23 @@ load test_helper
     nv on test_empty_env2
     run nv current
     assert_success "test_empty_env2"
+}
+
+@test "on: with prompt-enable" {
+    run nv mk empty_env1
+    assert_success
+
+    nv on test_empty_env1 --prompt-enable
+    [ `echo "$PS1" | grep "(test_empty_env1)"` ]
+}
+
+@test "on: with prompt-disable" {
+    run nv mk empty_env1
+    assert_success
+
+    nv on test_empty_env1 --prompt-disable
+    assert_equal "" `echo "$PS1" | grep "(test_empty_env1)"`
+    assert_equal "" "$NV_OLD_PS1"
 }
 
 @test "activate: mk empty env & activate it" {
@@ -74,4 +90,21 @@ load test_helper
     nv activate test_empty_env2
     run nv current
     assert_success "test_empty_env2"
+}
+
+@test "activate: with prompt-enable" {
+    run nv mk empty_env1
+    assert_success
+
+    nv activate test_empty_env1 --prompt-enable
+    [ `echo "$PS1" | grep "(test_empty_env1)"` ]
+}
+
+@test "activate: with prompt-disable" {
+    run nv mk empty_env1
+    assert_success
+
+    nv activate test_empty_env1 --prompt-disable
+    assert_equal "" `echo "$PS1" | grep "(test_empty_env1)"`
+    assert_equal "" "$NV_OLD_PS1"
 }
