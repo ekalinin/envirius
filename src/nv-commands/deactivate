@@ -9,6 +9,11 @@ nv_cmd_default() {
         unset NV_OLD_PATH
         unset NV_USED_ENV
 
+        if [ "$NV_OLD_PS1" != "" ]; then
+            export PS1="$NV_OLD_PS1"
+            unset NV_OLD_PS1
+        fi
+
         echo "Environment `bold $env_name` was deactivated."
     fi
 }
