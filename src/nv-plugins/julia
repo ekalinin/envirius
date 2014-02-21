@@ -37,6 +37,7 @@ plug_install() {
 
         # copy bin into new environment
         mkdir -p "$env_name_full/bin"
-        cp -r "$src_path/julia" "$env_name_full/bin"
+        cp -r "$src_path/usr"/* "$env_name_full"
+        ln -s "$env_name_full/bin/julia-readline" "$env_name_full/bin/julia"
     )
 }
