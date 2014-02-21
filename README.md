@@ -45,7 +45,7 @@ fi
 # when navigate to folder with '.envirius' file
 # (optional part)
 if [ -e ".envirius" ] ; then
-    nv on `cat .envirius`
+    nv on `cat .envirius` --prompt-enable
 fi
 ```
 
@@ -59,6 +59,7 @@ at the moment:
 * [rust](http://rust-lang.org/)
 * [elixir](http://elixir-lang.org/)
 * [julia](http://julialang.org/)
+* [node.js](http://nodejs.org/)
 
 Usage
 =====
