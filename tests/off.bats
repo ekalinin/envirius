@@ -17,6 +17,7 @@ load test_helper
 
     nv off
     [ "`echo $NV_USED_ENV`" = "" ]
+    [ "`echo $NV_OLD_PATH`" = "" ]
 }
 
 @test "deactivate: mk empty env & activate/deactivate it" {
