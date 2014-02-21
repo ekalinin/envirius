@@ -3,10 +3,8 @@ nv_cmd_default() {
 
     # check that env name is not empty
     if [ "$env_name" = "" ]; then
-        echo "Please, enter a name for a new environment."
-        echo ""
-        cmd_help
-        return 1
+        echo "Please, specify the name of the environment that will be activated."
+        exit 1
     fi
 
     # deactivate previusly activated environment
@@ -17,7 +15,6 @@ nv_cmd_default() {
 
     local env_name_full=$(get_env_full_path $env_name)
     mkdir -p $env_name_full/bin
-    #local env_activate_script=$(get_activate_script_path $env_name_full)
 
     export NV_USED_ENV=$env_name
     export NV_OLD_PATH=$PATH

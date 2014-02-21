@@ -3,19 +3,39 @@
 load test_helper
 
 @test "on: mk empty env & activate it" {
-    run nv rm --all
-    [ "$status" -eq 0 ]
     run nv mk empty_env2
-    [ "$status" -eq 0 ]
+    assert_success
     [ "${lines[0]}"  = "Creating environment: empty_env2 ..." ]
+
     run nv ls
-    [ "$status" -eq 0 ]
+    assert_success
     [ "${lines[0]}"  = "Available environment(s):" ]
     [ "${lines[1]}"  = "empty_env2" ]
+
     nv on test_empty_env2
-    [ "$status" -eq 0 ]
-    [ "`echo $NV_USED_ENV`" = "test_empty_env2" ]
+    assert_success
+    assert_equal "test_empty_env2" "$NV_USED_ENV"
     [ "`echo $NV_OLD_PATH`" != "" ]
+}
+
+@test "on: empty env name" {
+    run nv on
+    assert_fail "Please, specify the name of the environment that will be activated."
+}
+
+@test "on: off previusly activated environment" {
+    run nv mk empty_env1
+    assert_success
+    run nv mk empty_env2
+    assert_success
+
+    nv on test_empty_env1
+    run nv current
+    assert_success "test_empty_env1"
+
+    nv on test_empty_env2
+    run nv current
+    assert_success "test_empty_env2"
 }
 
 @test "activate: mk empty env & activate it" {
@@ -34,4 +54,24 @@ load test_helper
     [ "$status" -eq 0 ]
     [ "`echo $NV_USED_ENV`" = "test_empty_env2" ]
     [ "`echo $NV_OLD_PATH`" != "" ]
+}
+
+@test "activate: empty env name" {
+    run nv activate
+    assert_fail
+}
+
+@test "activate: off previusly activated environment" {
+    run nv mk empty_env1
+    assert_success
+    run nv mk empty_env2
+    assert_success
+
+    nv activate test_empty_env1
+    run nv current
+    assert_success "test_empty_env1"
+
+    nv activate test_empty_env2
+    run nv current
+    assert_success "test_empty_env2"
 }
