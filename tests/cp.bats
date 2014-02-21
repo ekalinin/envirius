@@ -47,4 +47,11 @@ load test_helper
     run rustc -v
     assert_success
     assert_equal "${lines[0]}" "rustc 0.9"
+
+    nv off
+    nv on test_env_copy
+
+    run rustc -v
+    assert_success
+    assert_equal "${lines[0]}" "rustc 0.9"
 }
