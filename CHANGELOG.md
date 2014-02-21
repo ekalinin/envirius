@@ -10,6 +10,8 @@ Changelog
 * added ``cp`` command for copy environments
 * added ``mv`` command for renaming environments
 * fixed error message if environment is not entered for ``on``/``activate``
+* added option ``--prompt-enable`` for ``on``/``activate`` commands
+* added plugin for [node.js](http://nodejs.org/)
 
 0.2.1 (20-02-2014)
 ------------------
