@@ -29,7 +29,9 @@ assert_success() {
 
 assert_fail() {
   if [ "$status" -eq 0 ]; then
-    echo "command successed"
+    echo "command successed, but should fail"
     return 1
+  elif [ "$#" -gt 0 ]; then
+    assert_output "$1"
   fi
 }
