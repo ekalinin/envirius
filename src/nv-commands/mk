@@ -1,5 +1,5 @@
 nv_cmd_default() {
-    env_name=""
+    local env_name=""
 
     # try to find env name
     for par in "$@"
@@ -32,11 +32,11 @@ nv_cmd_default() {
     if [ "$env_name" = "" ]; then
         echo "Please, enter a name for a new environment."
         echo ""
-        cmd_help
+        nv_cmd_help
         return 1
     fi
 
-    env_name_full=$(get_env_full_path $env_name)
+    local env_name_full=$(get_env_full_path $env_name)
 
     if [ -d "$env_name_full" ]; then
         echo "Environment with name '$env_name' is already exists."
