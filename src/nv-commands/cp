@@ -1,0 +1,42 @@
+nv_cmd_default() {
+    local env_name_src=$1
+    local env_name_dst=$2
+
+    # envs are mandotory
+    if [ "$env_name_src" = "" ]; then
+        echo "Please, enter a name for a source environment"
+        echo ""
+        nv_cmd_help
+        exit 1
+    fi
+    if [ "$env_name_dst" = "" ]; then
+        echo "Please, enter a name for a destination environment"
+        echo ""
+        nv_cmd_help
+        exit 1
+    fi
+
+    # full paths
+    local env_name_src_full=$(get_env_full_path $env_name_src)
+    local env_name_dst_full=$(get_env_full_path $env_name_dst)
+
+    # target env should not exists
+    if [ -d "$env_name_dst_full" ]; then
+        echo "Target directory already exists ($env_name_dst)."
+        echo "Please, choose another name for it and try again."
+        exit 1
+    fi
+
+    cp -r "$env_name_src_full" "$env_name_dst_full"
+}
+
+nv_cmd_desc() {
+    echo "Copy environment"
+}
+
+nv_cmd_help() {
+    show_usage "<env-name-src> <env-name-dst>"
+    show_desc "$(nv_cmd_desc)"
+}
+
+# /* vim: set filetype=sh : */
