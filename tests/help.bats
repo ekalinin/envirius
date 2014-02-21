@@ -2,11 +2,11 @@
 
 load test_helper
 
-@test "main help" {
+@test "help: main section" {
     local usage_b=$(bold "Usage")
     run nv
     assert_success
-    assert_equal "${lines[0]}" "nv 0.2.1"
+    assert_equal "${lines[0]}" "nv 0.3.0"
     assert_equal "${lines[1]}" "${usage_b}: nv <subcommand>"
     assert_equal "${lines[2]}" "Subcommands:"
 }

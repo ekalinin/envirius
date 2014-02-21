@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.3.0 (XX-XX-2014)
+0.3.0 (22-02-2014)
 ------------------
 * ``mk`` command accept empty environment name and generate it
   accordingly to plugins
