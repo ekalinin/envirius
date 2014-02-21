@@ -26,3 +26,10 @@ assert_success() {
     assert_output "$1"
   fi
 }
+
+assert_fail() {
+  if [ "$status" -eq 0 ]; then
+    echo "command successed"
+    return 1
+  fi
+}

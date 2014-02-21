@@ -20,10 +20,15 @@ nv_cmd_default() {
     local env_name_src_full=$(get_env_full_path $env_name_src)
     local env_name_dst_full=$(get_env_full_path $env_name_dst)
 
+    # sourc env should exists
+    if [ ! -d "$env_name_src_full" ]; then
+        echo "Source directory does not exist ($env_name_src)."
+        exit 1
+    fi
+
     # target env should not exists
     if [ -d "$env_name_dst_full" ]; then
         echo "Target directory already exists ($env_name_dst)."
-        echo "Please, choose another name for it and try again."
         exit 1
     fi
 

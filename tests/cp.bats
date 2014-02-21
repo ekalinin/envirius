@@ -4,14 +4,14 @@ load test_helper
 
 @test "cp: without src name" {
     run nv cp
+    assert_fail
     [ "${lines[0]}"  = "Please, enter a name for a source environment" ]
-    [ "$status" = 1 ]
 }
 
 @test "cp: without dst name" {
     run nv cp test_env
+    assert_fail
     [ "${lines[0]}"  = "Please, enter a name for a destination environment" ]
-    [ "$status" = 1 ]
 }
 
 @test "cp: dst already exists" {
@@ -19,9 +19,14 @@ load test_helper
     assert_success
 
     run nv cp test_env test_env
-    [ "$status" = 1 ]
-    [ "${lines[0]}"  = "Target directory already exists (test_env)." ]
-    [ "${lines[1]}"  = "Please, choose another name for it and try again." ]
+    assert_fail
+    assert_output "Target directory already exists (test_env)."
+}
+
+@test "cp: src not exists" {
+    run nv cp "some-test-env" test_env
+    assert_fail
+    assert_output "Source directory does not exist (some-test-env)."
 }
 
 @test "cp: copy env" {
