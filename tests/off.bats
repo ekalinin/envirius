@@ -20,6 +20,18 @@ load test_helper
     [ "`echo $NV_OLD_PATH`" = "" ]
 }
 
+@test "off: with prompt-enable" {
+    run nv mk empty_env2
+    assert_success
+
+    nv on test_empty_env2 --prompt-enable
+    assert_equal "test_empty_env2" "$NV_USED_ENV"
+
+    nv off
+    assert_equal "" `echo "$PS1" | grep "(test_empty_env1)"`
+    assert_equal "" "$NV_OLD_PS1"
+}
+
 @test "deactivate: mk empty env & activate/deactivate it" {
     run nv mk empty_env2
     assert_success
