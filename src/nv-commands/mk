@@ -114,7 +114,11 @@ plug_install() {
             cd "$subdir"
 
             # compiling
-            ./configure --prefix="$build_path"
+            ./configure --prefix="$build_path" || {
+                echo 'envirius: configure failed!' ;
+                rm -rf "$build_path"
+                exit 1;
+            }
             make --jobs=$(get_cpu_count)
             make install
         fi
