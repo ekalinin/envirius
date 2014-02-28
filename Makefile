@@ -26,7 +26,7 @@ install:
 	@install -m 0644 $(PLG_FILES) $(DST_HOME_PLG)
 	@echo "Please, add into your ~/.bashrc:"
 	@echo ""
-	@echo "# activate mem"
+	@echo "# activate envirius"
 	@echo 'if [ -e "$(DST_HOME)/nv" ] ; then'
 	@echo '    . $(DST_HOME)/nv'
 	@echo "fi"
