@@ -27,7 +27,7 @@ Installation
 At first:
 
 ```bash
-$ git clone git@github.com:ekalinin/envirius.git
+$ git clone https://github.com/ekalinin/envirius.git
 $ cd envirius
 $ make install
 ```
