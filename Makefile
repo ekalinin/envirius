@@ -33,7 +33,7 @@ install:
 	@echo ""
 	@echo "# auto env activation"
 	@echo 'if [ -e ".envirius" ] ; then'
-	@echo '    mem on `cat .envirius`'
+	@echo '    nv on `cat .envirius`'
 	@echo "fi"
 
 # save rc file & cache & created environments
