@@ -39,13 +39,15 @@ $ make install
 
 ```bash
 # активация envirius
-if [ -e "~/.envirius/nv" ] ; then
+# (обязательная часть)
+if [ -e "$HOME/.envirius/nv" ] ; then
     . ~/.envirius/nv
 fi
 
 # автоактивация окружения, если в текущей
 # директории есть файл .envirius
-if [ -e ".envirius" ] ; then
+# (необязательная часть)
+if [ -e ".envirius" ] && [ -f ".envirius" ]; then
     nv on `cat .envirius` --prompt-enable
 fi
 ```
