@@ -32,8 +32,8 @@ install:
 	@echo "fi"
 	@echo ""
 	@echo "# auto env activation"
-	@echo 'if [ -e ".envirius" ] ; then'
-	@echo '    nv on `cat .envirius`'
+	@echo 'if [ -e ".envirius" ] && [ -f ".envirius" ]; then'
+	@echo '    nv on `cat .envirius` --prompt-enable↲'
 	@echo "fi"
 
 # save rc file & cache & created environments
