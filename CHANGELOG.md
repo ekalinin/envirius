@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.4.0 (XX-03-2014)
+------------------
+* fixed ``on`` command if env's name is not entered
+
 0.3.0 (22-02-2014)
 ------------------
 * ``mk`` command accept empty environment name and generate it

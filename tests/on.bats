@@ -54,6 +54,19 @@ load test_helper
     assert_equal "" "$NV_OLD_PS1"
 }
 
+@test "on: don't create any envs" {
+    run nv ls
+    assert_success
+    [ "${lines[1]}"  = "" ]
+
+    run nv on --helpp
+    assert_fail
+
+    run nv ls
+    assert_success
+    assert_equal "" "${lines[1]}"
+}
+
 @test "activate: mk empty env & activate it" {
     # same as in test for 'on' command
     run nv rm --all
@@ -107,4 +120,17 @@ load test_helper
     nv activate test_empty_env1 --prompt-disable
     assert_equal "" `echo "$PS1" | grep "(test_empty_env1)"`
     assert_equal "" "$NV_OLD_PS1"
+}
+
+@test "activate: don't create any envs" {
+    run nv ls
+    assert_success
+    [ "${lines[1]}"  = "" ]
+
+    run nv activate --helpp
+    assert_fail
+
+    run nv ls
+    assert_success
+    assert_equal "" "${lines[1]}"
 }
