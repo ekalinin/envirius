@@ -150,3 +150,17 @@ load test_helper
     assert_success
     assert_output "$TEST_HOME/test-cache-entry"
 }
+
+@test "common: get_first_non_opt_value" {
+    run get_first_non_opt_value "--opt1=v1" "name" "--opt2=v3"
+    assert_success
+    assert_output "name"
+    
+    run get_first_non_opt_value "name" "name2"
+    assert_success
+    assert_output "name"
+
+    run get_first_non_opt_value "--opt1=v1"
+    assert_success
+    assert_output ""
+}

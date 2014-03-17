@@ -197,4 +197,20 @@ get_cache_full_path() {
     fi
 }
 
+get_first_non_opt_value() {
+    local res=""
+
+    for par in "$@"
+    do
+    case $par in
+        # skip --<something>
+        --*) ;;
+        # first non `--<...>` entry is what we want
+        *) res=$par; break;
+    esac
+    done
+
+    echo "$res"
+}
+
 # /* vim: set filetype=sh : */
