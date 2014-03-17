@@ -1,16 +1,5 @@
 nv_cmd_default() {
-    local env_name=""
-
-    # try to find env name
-    for par in "$@"
-    do
-    case $par in
-        # skip --<something>
-        --*) ;;
-        # first non `--<...>` entry is a env name
-        *) env_name=$par; break;
-    esac
-    done
+    local env_name=$(get_first_non_opt_value "$@")
 
     # if env's name is empty try to generate it
     if [ "$env_name" = "" ]; then
