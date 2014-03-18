@@ -4,6 +4,7 @@ Changelog
 0.4.0 (XX-03-2014)
 ------------------
 * fixed ``on`` command if env's name is not entered
+* 'activate'/'on' commands: added env's name into prompt by default
 
 0.3.0 (22-02-2014)
 ------------------

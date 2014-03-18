@@ -1,6 +1,6 @@
 nv_cmd_default() {
     local env_name=$(get_first_non_opt_value "$@")
-    local prompt_enable="no"
+    local prompt_enable="yes"
 
     # check that env name is not empty
     if [ "$env_name" = "" ]; then
