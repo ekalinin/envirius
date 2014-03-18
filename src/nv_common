@@ -213,4 +213,13 @@ get_first_non_opt_value() {
     echo "$res"
 }
 
+get_system_arch() {
+    local arch=$(uname -m)
+    if [ "$arch" = "i686" ]; then
+        echo "386"
+    else
+        echo "amd64"
+    fi
+}
+
 # /* vim: set filetype=sh : */
