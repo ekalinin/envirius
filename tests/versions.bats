@@ -2,9 +2,9 @@
 
 load test_helper
 
-@test "versions: for disabled plugin [go]" {
-    line_0=$(bold "* go:";)
-    run nv versions --go
+@test "versions: for disabled plugin [python]" {
+    line_0=$(bold "* python:";)
+    run nv versions --python
     assert_success
     assert_equal "${lines[0]}" $line_0
     assert_equal "${lines[1]}" " - plugin disabled."

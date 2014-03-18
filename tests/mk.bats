@@ -13,10 +13,10 @@ load test_helper
 }
 
 @test "mk: with disabled plugin" {
-    run nv mk test_env --go=1.2rc5
+    run nv mk test_env --python=3.2
     assert_success
     assert_equal "Creating environment: test_env ..." "${lines[0]}"
-    assert_equal " * installing go==1.2rc5 ..." "${lines[1]}"
+    assert_equal " * installing python==3.2 ..." "${lines[1]}"
     assert_equal " - plugin disabled." "${lines[2]}"
 
     run nv ls
