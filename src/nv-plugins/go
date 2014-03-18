@@ -1,7 +1,5 @@
 #!/bin/sh
 
-plug_state="disabled"
-
 # Output lists of versions
 plug_list_versions() {
     versions=$(curl -s "https://code.google.com/p/go/downloads/list?can=1&q=Linux+386" | \
@@ -11,5 +9,29 @@ plug_list_versions() {
 }
 
 plug_install() {
-    echo " * installing $1 ..."
+    local plugin_name=$1
+    local version=$2
+    local env_name_full=$3
+    local arch=$(get_system_arch)
+
+    local remote_tarball="https://go.googlecode.com/files/go${version}.linux-${arch}.tar.gz"
+    local tarball=$(download_file "$remote_tarball" "${plugin_name}-${version}.tar.gz")
+    # execute in subshell
+    (
+        local src_path=$(get_cache_full_path "$plugin_name-$version-src")
+
+        # unpacking (if need)
+        if [ ! -d "$src_path" ]; then
+            mkdir -p "$src_path"
+            tar -xzf "$tarball" -C "$src_path"
+        fi
+
+        # copy all bins into new environment
+        cp -r "$src_path/go"/* $env_name_full
+
+        # add activate script
+        local activate_path="$env_name_full/bin/activate-go"
+        echo "export GOROOT=$env_name_full" > "$activate_path"
+        chmod a+x "$activate_path"
+    )
 }
