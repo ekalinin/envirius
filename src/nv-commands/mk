@@ -75,11 +75,11 @@ nv_cmd_default() {
 #   $2 — plugin version
 #   $3 — full path to the environment
 plug_install() {
-    plugin_name=$1
-    version=$2
-    env_name_full=$3
+    local plugin_name=$1
+    local version=$2
+    local env_name_full=$3
 
-    tarball=$(download_file $(plug_url_for_download "$version") \
+    local tarball=$(download_file $(plug_url_for_download "$version") \
                 "${plugin_name}-${version}.tar.gz")
     # execute in subshell
     (

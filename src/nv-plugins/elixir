@@ -19,11 +19,11 @@ plug_list_versions() {
 #   $2 — plugin version
 #   $3 — full path to the environment
 plug_install() {
-    plugin_name=$1
-    version=$2
-    env_name_full=$3
+    local plugin_name=$1
+    local version=$2
+    local env_name_full=$3
 
-    tarball=$(download_file "$ELX_MIRROR/archive/v${version}.tar.gz"
+    local tarball=$(download_file "$ELX_MIRROR/archive/v${version}.tar.gz" \
                 "${plugin_name}-${version}.tar.gz")
     # execute in subshell
     (
