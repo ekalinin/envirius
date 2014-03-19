@@ -60,6 +60,7 @@ at the moment:
 * [elixir](http://elixir-lang.org/)
 * [julia](http://julialang.org/)
 * [node.js](http://nodejs.org/)
+* [go](http://golang.org/)
 
 Usage
 =====
@@ -70,6 +71,7 @@ To check available plugins:
 ➥ nv plugins
 elixir
 erlang
+go
 julia
 node
 rust
@@ -78,7 +80,7 @@ rust
 To check available versions for each plugin:
 
 ```bash
-➥ nv versions --rust --erlang
+➥ nv ls-versions --rust --erlang
 * rust:
 0.1         0.2         0.3         0.4         0.5
 0.6         0.7         0.8         0.9
@@ -108,7 +110,7 @@ Creating environment: mixed-rust-erlang ...
 Get list of the environments:
 
 ```bash
-➥ nv ls
+➥ nv ls-envs
 Available environment(s):
 mixed-rust-erlang
 rust-0.9
@@ -118,7 +120,7 @@ erl-17-rc1
 To activate environment:
 
 ```bash
-➥ mem on mixed-rust-erlang --prompt-enable
+➥ mem on mixed-rust-erlang
 Environment mixed-rust-erlang activated.
 ```
 
@@ -163,7 +165,7 @@ Optional elements
 * ``plug_state`` if == ``disabled`` then plugin is not active and will not
   be account in the commands:
   * mk
-  * versions
+  * ls-versions
   * plugins
 
 Dependencies

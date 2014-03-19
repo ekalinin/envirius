@@ -34,7 +34,7 @@ load test_helper
     run nv mv test_env test_env_copy
     assert_success
 
-    run nv ls
+    run nv ls-envs
     assert_success
     assert_equal "Available environment(s):" "${lines[0]}"
     assert_equal "test_env_copy" "${lines[1]}"

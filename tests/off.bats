@@ -7,7 +7,7 @@ load test_helper
     assert_success
     [ "${lines[0]}"  = "Creating environment: empty_env2 ..." ]
 
-    run nv ls
+    run nv ls-envs
     assert_success
     [ "${lines[0]}"  = "Available environment(s):" ]
     [ "${lines[1]}"  = "empty_env2" ]
@@ -37,7 +37,7 @@ load test_helper
     assert_success
     [ "${lines[0]}"  = "Creating environment: empty_env2 ..." ]
 
-    run nv ls
+    run nv ls-envs
     assert_success
     [ "${lines[0]}"  = "Available environment(s):" ]
     [ "${lines[1]}"  = "empty_env2" ]

@@ -2,17 +2,17 @@
 
 load test_helper
 
-@test "versions: for disabled plugin [python]" {
+@test "ls-versions: for disabled plugin [python]" {
     line_0=$(bold "* python:";)
-    run nv versions --python
+    run nv ls-versions --python
     assert_success
     assert_equal "${lines[0]}" $line_0
     assert_equal "${lines[1]}" " - plugin disabled."
 }
 
-@test "versions: for enabled plugin [rust]" {
+@test "ls-versions: for enabled plugin [rust]" {
     line_0=$(bold "* rust:";)
-    run nv versions --rust
+    run nv ls-versions --rust
     assert_success
 
     assert_equal "${lines[0]}" $line_0
