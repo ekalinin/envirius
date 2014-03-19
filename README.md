@@ -68,7 +68,7 @@ Usage
 To check available plugins:
 
 ```bash
-➥ nv plugins
+➥ nv ls-plugins
 elixir
 erlang
 go
@@ -166,7 +166,7 @@ Optional elements
   be account in the commands:
   * mk
   * ls-versions
-  * plugins
+  * ls-plugins
 
 Dependencies
 ============

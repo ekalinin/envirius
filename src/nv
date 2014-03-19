@@ -24,7 +24,7 @@ nv_usage() {
     show_usage "<subcommand>"
     echo
     echo "Subcommands:"
-    nv commands
+    nv ls-commands
     echo
     echo "Try '$(get_cmd_name) <subcommand> --help' for details."
     echo "For more information, see: https://github.com/ekalinin/$(get_cmd_name)"

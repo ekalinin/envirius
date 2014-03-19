@@ -70,7 +70,7 @@ fi
 Проверить список подддерживаемых плагинов:
 
 ```bash
-➥ nv plugins
+➥ nv ls-plugins
 elixir
 erlang
 julia
@@ -81,7 +81,7 @@ rust
 Проверить список доступных версий для каждого из плагинов:
 
 ```bash
-➥ nv versions --rust --erlang
+➥ nv ls-versions --rust --erlang
 * rust:
 0.1         0.2         0.3         0.4         0.5
 0.6         0.7         0.8         0.9
@@ -111,7 +111,7 @@ Creating environment: mixed-rust-erlang ...
 Получить список созданных окружений:
 
 ```bash
-➥ nv ls
+➥ nv ls-envs
 Available environment(s):
 mixed-rust-erlang
 rust-0.9
@@ -172,8 +172,8 @@ Environment mixed-rust-erlang was deactivated.
 * ``plug_state`` — если переменная имеет значение ``disabled``, то данный плагин
   считается неактивным, и не будет учитываться при выполнении комманд:
   * mk
-  * versions
-  * plugins
+  * ls-versions
+  * ls-plugins
 
 Зависимости
 ===========

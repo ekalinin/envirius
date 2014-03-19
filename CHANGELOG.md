@@ -5,6 +5,10 @@ Changelog
 ------------------
 * fixed ``on`` command if env's name is not entered
 * 'activate'/'on' commands: added env's name into prompt by default
+* 'commands' renamed to 'ls-commands'
+* 'ls' renamed to 'ls-envs'
+* 'plugins' renamed to 'ls-plugins'
+* 'version' renamed to 'ls-versions'
 
 0.3.0 (22-02-2014)
 ------------------

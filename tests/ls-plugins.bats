@@ -2,8 +2,8 @@
 
 load test_helper
 
-@test "plugins: list enabled plugins" {
-    run nv plugins
+@test "ls-plugins: list enabled plugins" {
+    run nv ls-plugins
     [ "$status" -eq 0 ]
     assert_success
     assert_equal "elixir" "${lines[0]}"
