@@ -48,7 +48,7 @@ fi
 # директории есть файл .envirius
 # (необязательная часть)
 if [ -e ".envirius" ] && [ -f ".envirius" ]; then
-    nv on `cat .envirius` --prompt-enable
+    nv on `cat .envirius`
 fi
 ```
 
