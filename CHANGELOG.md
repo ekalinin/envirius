@@ -4,14 +4,14 @@ Changelog
 0.4.0 (19-03-2014)
 ------------------
 * fixed ``on`` command if env's name is not entered
-* 'activate'/'on' commands: added env's name into prompt by default
-* 'commands' renamed to 'ls-commands'
-* 'ls' renamed to 'ls-envs'
-* 'plugins' renamed to 'ls-plugins'
-* 'rm' renamed to 'rm-envs'
-* 'version' renamed to 'ls-versions'
-* added command 'ls-cache'
-* added command 'rm-cache'
+* ``activate``/``on`` commands: added env's name into prompt by default
+* ``commands`` renamed to ``ls-commands``
+* ``ls`` renamed to ``ls-envs``
+* ``plugins`` renamed to ``ls-plugins``
+* ``rm`` renamed to ``rm-envs``
+* ``version`` renamed to ``ls-versions``
+* added command ``ls-cache``
+* added command ``rm-cache``
 * added autocompletion
 * added plugin for [go](http://golang.org/)
 
