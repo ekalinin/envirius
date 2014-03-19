@@ -1,0 +1,17 @@
+nv_cmd_default() {
+    for entry in $(find $(get_cache_full_path) -mindepth 1 -maxdepth 1 -iname "*.tar.gz")
+    do
+        filename $entry
+    done
+}
+
+nv_cmd_desc() {
+    echo "List locally cached verions (no need to download & build)"
+}
+
+nv_cmd_help() {
+    show_usage
+    show_desc "$(nv_cmd_desc)"
+}
+
+# /* vim: set filetype=sh : */

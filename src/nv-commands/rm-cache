@@ -1,0 +1,35 @@
+nv_cmd_default() {
+    env_name=""
+
+    # try to find --all option
+    for opt in "$@"
+    do
+    case $opt in
+        --all)
+            local cache_full=$(get_cache_full_path)
+            rm -rf $cache_full/*
+            return
+    esac
+    done
+
+    # try to find cache entry
+    for entry in "$@"
+    do
+        local cache_full=$(get_cache_full_path $entry)
+        rm -rf $cache_full
+    done
+}
+
+nv_cmd_desc() {
+    echo "Delete cache entry"
+}
+
+nv_cmd_help() {
+    show_usage "[options] <entry> [entry, ...]"
+    show_desc "$(nv_cmd_desc)"
+    echo ""
+    echo "Options:"
+    echo "  --all   Delete all entries"
+}
+
+# /* vim: set filetype=sh : */
