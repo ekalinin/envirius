@@ -8,6 +8,7 @@ Changelog
 * 'commands' renamed to 'ls-commands'
 * 'ls' renamed to 'ls-envs'
 * 'plugins' renamed to 'ls-plugins'
+* 'rm' renamed to 'rm-envs'
 * 'version' renamed to 'ls-versions'
 * added command 'ls-cache'
 * added command 'rm-cache'

@@ -2,8 +2,8 @@
 
 load test_helper
 
-@test "rm: all" {
-    run nv rm -all
+@test "rm-envs: all" {
+    run nv rm-envs -all
     [ "$status" -eq 0 ]
     run nv ls-envs
     [ "$status" -eq 0 ]

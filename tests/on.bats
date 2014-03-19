@@ -69,7 +69,7 @@ load test_helper
 
 @test "activate: mk empty env & activate it" {
     # same as in test for 'on' command
-    run nv rm --all
+    run nv rm-envs --all
     [ "$status" -eq 0 ]
     run nv mk empty_env2
     [ "$status" -eq 0 ]
