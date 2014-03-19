@@ -33,7 +33,7 @@ install:
 	@echo ""
 	@echo "# auto env activation"
 	@echo 'if [ -e ".envirius" ] && [ -f ".envirius" ]; then'
-	@echo '    nv on `cat .envirius` --prompt-enable↲'
+	@echo '    nv on `cat .envirius`'
 	@echo "fi"
 
 # save rc file & cache & created environments
@@ -45,6 +45,6 @@ uninstall:
 tests:
 	@time bats tests
 
-release:
+release: tests
 	@git tag `grep -o -E '[0-9]\.[0-9]\.[0-9]{1,2}' src/nv-commands/version`
 	@git push --tags origin master
