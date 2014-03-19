@@ -13,6 +13,7 @@ Changelog
 * added command 'ls-cache'
 * added command 'rm-cache'
 * added autocompletion
+* added plugin for [go](http://golang.org/)
 
 0.3.0 (22-02-2014)
 ------------------
