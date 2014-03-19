@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.4.0 (XX-03-2014)
+0.4.0 (19-03-2014)
 ------------------
 * fixed ``on`` command if env's name is not entered
 * 'activate'/'on' commands: added env's name into prompt by default
@@ -12,6 +12,7 @@ Changelog
 * 'version' renamed to 'ls-versions'
 * added command 'ls-cache'
 * added command 'rm-cache'
+* added autocompletion
 
 0.3.0 (22-02-2014)
 ------------------

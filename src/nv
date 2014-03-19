@@ -64,4 +64,37 @@ nv() {
 }
 
 
+_nv() {
+
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    commands=$(nv ls-commands | cut -d ' ' -f 3)
+
+    if [ $COMP_CWORD == 1 ] ; then
+      COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+      return 0
+    fi
+
+    if [[ ${cur} == -* && ("${prev}" == "ls-versions" || "${prev}" == "mk") ]] ; then
+        local command_opts=$(nv ls-plugins | awk '{print "--"$1}')
+        COMPREPLY=( $(compgen -W "${command_opts}" -- ${cur}) )
+        return 0
+    fi
+    
+    if [[ ${cur} == -* ]] ; then
+        local command_opts=$(nv $prev --help | grep "\-\-" | cut -d ' ' -f 3)
+        COMPREPLY=( $(compgen -W "${command_opts}" -- ${cur}) )
+        return 0
+    fi
+
+    if [[ "${prev}" == "on" || "${prev}" == "activate" ]] ; then
+        local command_opts=$(nv ls-envs | tail -n+2)
+        COMPREPLY=( $(compgen -W "${command_opts}" -- ${cur}) )
+        return 0
+    fi
+}
+
+complete -F _nv nv
+
 # /* vim: set filetype=sh : */
