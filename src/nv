@@ -68,20 +68,21 @@ _nv() {
 
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-
-    commands=$(nv ls-commands | cut -d ' ' -f 3)
+    cmd="${COMP_WORDS[1]}"
 
     if [ $COMP_CWORD == 1 ] ; then
-      COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
-      return 0
-    fi
-
-    if [[ ${cur} == -* && ("${prev}" == "ls-versions" || "${prev}" == "mk") ]] ; then
-        local command_opts=$(nv ls-plugins | awk '{print "--"$1}')
-        COMPREPLY=( $(compgen -W "${command_opts}" -- ${cur}) )
+        cmd_list=$(nv ls-commands | cut -d ' ' -f 3)
+        COMPREPLY=( $(compgen -W "${cmd_list}" -- ${cur}) )
         return 0
     fi
-    
+
+    if [[ ${cur} == -* && ("${cmd}" == "ls-versions" || "${cmd}" == "mk") ]] ; then
+        local opt_plugins=$(nv ls-plugins | awk '{print "--"$1}')
+        local opt_others=$(nv ${cmd} --help | grep "  \-\-" | cut -d ' ' -f 3)
+        COMPREPLY=( $(compgen -W "${opt_plugins} ${opt_others}" -- ${cur}) )
+        return 0
+    fi
+
     if [[ ${cur} == -* ]] ; then
         local command_opts=$(nv $prev --help | grep "\-\-" | cut -d ' ' -f 3)
         COMPREPLY=( $(compgen -W "${command_opts}" -- ${cur}) )
