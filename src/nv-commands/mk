@@ -1,11 +1,14 @@
 nv_cmd_default() {
     local env_name=$(get_first_non_opt_value "$@")
+    local save_meta="yes"
 
     # if env's name is empty try to generate it
     if [ "$env_name" = "" ]; then
     for par in "$@"
     do
     case $par in
+        --no-meta)
+            ;;
         --*)
             local plugin_name=$(get_plugin_name $par)
             local plugin_ver=$(get_plugin_version $par)
@@ -16,6 +19,16 @@ nv_cmd_default() {
     done
     env_name=`echo "$env_name" | sed "s/^-//"`
     fi
+
+    # find --no-meta
+    for par in "$@"
+    do
+    case $par in
+        --no-meta)
+            save_meta="no"
+            ;;
+    esac
+    done
 
     # check that env name is not empty
     if [ "$env_name" = "" ]; then
@@ -41,6 +54,9 @@ nv_cmd_default() {
     for par in "$@"
     do
     case $par in
+        # skip this option
+        --no-meta)
+            ;;
         # handle plugin only
         --*)
             local plugin_name=$(get_plugin_name $par)
@@ -62,6 +78,10 @@ nv_cmd_default() {
             plug_install $plugin_name $plugin_ver $env_name_full
             local inst_diff_time=$(get_time_diff $inst_start_time)
             echo " * done (in $inst_diff_time secs.)"
+            if [ "$save_meta" = "yes" ]; then
+                local info_file_full_path=$(get_env_info_path "$env_name")
+                echo "$plugin_name==$plugin_ver" >> "$info_file_full_path"
+            fi
     esac
     done
 }
@@ -124,13 +144,18 @@ nv_cmd_desc() {
 nv_cmd_help() {
     show_usage "[env-name] [--plugin=version [,--plugin=version]]"
     show_desc "$(nv_cmd_desc)"
+    echo ""
+    echo "Options:"
+    echo "  --no-meta    Do not store meta information in the environment (plugin list)."
+    echo ""
+    echo "Examples:"
     echo "    If environment name is empty then it will be ganerated automatically."
     echo "    For example:"
     echo "      $ $(get_cmd_name) mk --rust=0.9 --erlang=17.0-rc1"
     echo "    Will genarate environment with name 'rust-0.9-erlang-17.0-rc1'."
     echo ""
     echo "    To see all available plugins execute:"
-    echo "      $ $(get_cmd_name) plugins"
+    echo "      $ $(get_cmd_name) ls-plugins"
 }
 
 # /* vim: set filetype=sh : */
