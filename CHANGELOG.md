@@ -5,6 +5,7 @@ Changelog
 ------------------
 * ``mk`` commands can store meta info about used plugins
 * ``ls-envs`` can to read meta info
+* improved autocomplete for ``mk``/``ls-versions``
 
 0.4.0 (19-03-2014)
 ------------------
