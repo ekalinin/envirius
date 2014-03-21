@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.5.0 (XX-03-2014)
+------------------
+* ``mk`` commands can store meta info about used plugins
+* ``ls-envs`` can to read meta info
+
 0.4.0 (19-03-2014)
 ------------------
 * fixed ``on`` command if env's name is not entered
