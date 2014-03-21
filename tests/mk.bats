@@ -31,8 +31,6 @@ load test_helper
     assert_success
     [ "${lines[0]}"  = "Creating environment: test_env ..." ]
     [ "${lines[1]}"  = " * installing erlang==17.0-rc1 ..." ]
-    # this output will be only with cached tar.gz only
-    [ `echo "${lines[2]}" | grep "done"` ]
     [ "${lines[3]}"  = " * installing rust==0.9 ..." ]
 
     run nv ls-envs

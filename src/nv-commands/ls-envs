@@ -2,8 +2,19 @@ nv_cmd_default() {
     echo "Available environment(s):"
     for env in $(find $(get_env_full_path) -mindepth 1 -maxdepth 1 -type d)
     do
-        # display dirname only
-        filename $env
+        local env_name=$(filename "$env")
+        local info_file_full_path=$(get_env_info_path "$env_name")
+        local env_info=""
+        local env_desc=""
+
+        if [ -e "$info_file_full_path" ]; then
+            env_info=$(cat "$info_file_full_path" | tr '\n' '|' \
+                            | sed 's/|$//' | sed 's/|/, /')
+            env_desc="$env_name ($env_info)"
+        else
+            env_desc=$env_name
+        fi
+        echo "$env_desc"
     done
 }
 

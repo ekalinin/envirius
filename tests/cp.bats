@@ -30,7 +30,7 @@ load test_helper
 }
 
 @test "cp: copy env" {
-    run nv mk test_env --rust=0.9
+    run nv mk test_env --rust=0.9 --no-meta
     assert_success
 
     run nv cp test_env test_env_copy
