@@ -27,11 +27,14 @@ plug_install() {
         fi
 
         # copy all bins into new environment
-        cp -r "$src_path/go"/* $env_name_full
+        cp -r "$src_path"/* $env_name_full
+        ln -s "$env_name_full/go/bin" "$env_name_full/bin"
 
         # add activate script
         local activate_path="$env_name_full/bin/activate-go"
-        echo "export GOROOT=$env_name_full" > "$activate_path"
+        echo "export GOROOT=$env_name_full/go" > "$activate_path"
+        echo "export GOPATH=$env_name_full/gocode" >> "$activate_path"
+        echo "export PATH=\$GOPATH/bin:\$PATH" >> "$activate_path"
         chmod a+x "$activate_path"
     )
 }

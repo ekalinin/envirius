@@ -40,7 +40,7 @@ nv_cmd_default() {
     fi
 
     # source activate for each plugin
-    for plug in $(find $env_name_full/bin -type f -iname "activate-*" )
+    for plug in $(find $env_name_full/bin/ -type f -iname "activate-*" )
     do
         . $plug
     done
