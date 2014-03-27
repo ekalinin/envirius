@@ -11,6 +11,7 @@ load test_helper
     assert_equal "go"     "${lines[2]}"
     assert_equal "julia"  "${lines[3]}"
     assert_equal "node"   "${lines[4]}"
-    assert_equal "rust"   "${lines[5]}"
-    assert_equal ""       "${lines[6]}"
+    assert_equal "python" "${lines[5]}"
+    assert_equal "rust"   "${lines[6]}"
+    assert_equal ""       "${lines[7]}"
 }

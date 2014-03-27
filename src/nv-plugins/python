@@ -1,15 +1,20 @@
 #!/bin/sh
 
-plug_state="disabled"
+PY_MIRROR="https://www.python.org"
 
 # Output lists of versions
 plug_list_versions() {
-    PY_MIRROR="http://www.python.org/ftp/python/"
-    versions=$(curl -s $PY_MIRROR | egrep -o '[0-9]+\.[0-9]+\.[0-9]+' | \
-                sort | uniq)
+    versions=$(curl -s "$PY_MIRROR/downloads/" | grep "release-number" | \
+                grep -E -o '\s[0-9]+\.[0-9]+\.[0-9]+')
     echo $versions
 }
 
-plug_install() {
-    echo " * installing $1 ..."
+# Return full url for tarball for download
+# and future installation
+#
+# Input:
+#   $1 — version for installation
+plug_url_for_download() {
+    version=$1
+    echo "$PY_MIRROR/ftp/python/$version/Python-$version.tgz"
 }

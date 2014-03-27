@@ -6,7 +6,8 @@ Changelog
 * ``mk`` commands can store meta info about used plugins
 * ``ls-envs`` can to read meta info
 * improved autocomplete for ``mk``/``ls-versions``
-* fixed ``go`` plugin: added ``GOPATH`` variable into activation script
+* improved ``go`` plugin: added ``GOPATH`` into activation script
+* added plugin for [python](https://www.python.org/)
 
 0.4.0 (19-03-2014)
 ------------------

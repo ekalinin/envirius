@@ -1,0 +1,17 @@
+#!/bin/sh
+
+plug_state="disabled"
+
+# output lists of versions
+plug_list_versions() {
+    echo "None"
+}
+
+# return full url for tarball for download
+# and future installation
+#
+# input:
+#   $1 — version for installation
+plug_url_for_download() {
+    echo "None"
+}

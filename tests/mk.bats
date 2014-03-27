@@ -14,10 +14,10 @@ load test_helper
 
 @test "mk: with disabled plugin" {
     #TODO: add fake disabled plugin after python will be enable
-    run nv mk test_env --python=3.2 --no-meta
+    run nv mk test_env --stub=3.2 --no-meta
     assert_success
     assert_equal "Creating environment: test_env ..." "${lines[0]}"
-    assert_equal " * installing python==3.2 ..." "${lines[1]}"
+    assert_equal " * installing stub==3.2 ..." "${lines[1]}"
     assert_equal " - plugin disabled." "${lines[2]}"
 
     run nv ls-envs

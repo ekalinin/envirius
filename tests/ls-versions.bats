@@ -2,9 +2,9 @@
 
 load test_helper
 
-@test "ls-versions: for disabled plugin [python]" {
-    line_0=$(bold "* python:";)
-    run nv ls-versions --python
+@test "ls-versions: for disabled plugin [stub]" {
+    line_0=$(bold "* stub:";)
+    run nv ls-versions --stub
     assert_success
     assert_equal "${lines[0]}" $line_0
     assert_equal "${lines[1]}" " - plugin disabled."
