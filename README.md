@@ -164,6 +164,7 @@ Optional elements
 
 * ``plug_list_versions_columns_count``
 * ``plug_list_versions_columns_size``
+* ``plug_add_activate_script``
 * ``plug_state`` if == ``disabled`` then plugin is not active and will not
   be account in the commands:
   * mk

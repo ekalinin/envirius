@@ -76,6 +76,7 @@ nv_cmd_default() {
             # install it & timer it
             local inst_start_time=$(get_time)
             plug_install $plugin_name $plugin_ver $env_name_full
+            plug_add_activate_script $env_name_full
             local inst_diff_time=$(get_time_diff $inst_start_time)
             echo " * done (in $inst_diff_time secs.)"
             if [ "$save_meta" = "yes" ]; then
@@ -135,6 +136,10 @@ plug_install() {
         # copy all bins into new environment
         cp -r "$build_path"/* $env_name_full
     )
+}
+
+plug_add_activate_script() {
+    echo "None" > /dev/null
 }
 
 nv_cmd_desc() {

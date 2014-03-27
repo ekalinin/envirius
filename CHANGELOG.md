@@ -8,6 +8,7 @@ Changelog
 * improved autocomplete for ``mk``/``ls-versions``
 * improved ``go`` plugin: added ``GOPATH`` into activation script
 * added plugin for [python](https://www.python.org/)
+* added ``plug_add_activate_script`` function for plugins
 
 0.4.0 (19-03-2014)
 ------------------
