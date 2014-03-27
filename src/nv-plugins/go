@@ -32,9 +32,16 @@ plug_install() {
 
         # add activate script
         local activate_path="$env_name_full/bin/activate-go"
-        echo "export GOROOT=$env_name_full/go" > "$activate_path"
+        echo "export NV_OLD_GOROOT=\$GOROOT" > "$activate_path"
+        echo "export NV_OLD_GOPATH=\$GOPATH" >> "$activate_path"
+        echo "export GOROOT=$env_name_full/go" >> "$activate_path"
         echo "export GOPATH=$env_name_full/gocode" >> "$activate_path"
         echo "export PATH=\$GOPATH/bin:\$PATH" >> "$activate_path"
         chmod a+x "$activate_path"
+
+        local deactivate_path="$env_name_full/bin/deactivate-go"
+        echo "export GOROOT=\$NV_OLD_GOROOT" > "$deactivate_path"
+        echo "export GOPATH=\$NV_OLD_GOPATH" >> "$deactivate_path"
+        chmod a+x "$deactivate_path"
     )
 }
