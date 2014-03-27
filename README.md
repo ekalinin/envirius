@@ -60,6 +60,7 @@ at the moment:
 * [elixir](http://elixir-lang.org/)
 * [julia](http://julialang.org/)
 * [node.js](http://nodejs.org/)
+* [python](https://www.python.org/)
 * [go](http://golang.org/)
 
 Usage
@@ -74,6 +75,7 @@ erlang
 go
 julia
 node
+python
 rust
 ```
 
@@ -167,6 +169,34 @@ Optional elements
   * mk
   * ls-versions
   * ls-plugins
+
+Examples
+--------
+
+* Simple: [erlang](https://github.com/ekalinin/envirius/blob/master/src/nv-plugins/erlang)
+* Own impementation: [go](https://github.com/ekalinin/envirius/blob/master/src/nv-plugins/go)
+
+Example of the usage
+====================
+
+Here is an example of building [hugo](https://github.com/spf13/hugo) static
+site generator under envirius with ``go`` plugin:
+
+```bash
+$ whereis go
+go:
+$ nv mk go-hudo-test --go=1.2.1
+Creating environment: go-hudo-test ...
+ * installing go==1.2.1 ...
+ * done (in 8 secs.)
+$ nv on go-hudo-test
+(go-hudo-test) $ go get github.com/spf13/hugo
+(go-hudo-test) $ cd $GOPATH/src/github.com/spf13/hugo
+(go-hudo-test) $ go build -o hugo main.go
+(go-hudo-test) $ cd -
+(go-hudo-test) $ hugo version
+Hugo Static Site Generator v0.11-dev
+```
 
 Dependencies
 ============
