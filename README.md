@@ -189,6 +189,9 @@ $ nv mk go-hudo-test --go=1.2.1
 Creating environment: go-hudo-test ...
  * installing go==1.2.1 ...
  * done (in 8 secs.)
+$ nv ls-envs 
+Available environment(s):
+go-hudo-test (go==1.2.1)
 $ nv on go-hudo-test
 (go-hudo-test) $ go get github.com/spf13/hugo
 (go-hudo-test) $ cd $GOPATH/src/github.com/spf13/hugo
