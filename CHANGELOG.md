@@ -9,6 +9,7 @@ Changelog
 * improved ``go`` plugin: added ``GOPATH`` into activation script
 * added plugin for [python](https://www.python.org/)
 * added ``plug_add_activate_script`` function for plugins
+* added call for 'deactivate-' scripts during ``off``/``deactivate`` commands
 
 0.4.0 (19-03-2014)
 ------------------

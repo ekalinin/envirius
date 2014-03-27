@@ -1,9 +1,14 @@
 nv_cmd_default() {
-    local current_env=`nv current`
-    if [ "$current_env" = "" ]; then
+    local env_name=`nv current`
+    local env_name_full=$(get_env_full_path $env_name)
+
+    if [ "$env_name" = "" ]; then
         echo "Nothing to deactivate."
     else
-        local env_name=$NV_USED_ENV
+        for plug in $(find $env_name_full/bin/ -type f -iname "deactivate-*" )
+        do
+            . $plug
+        done
 
         export PATH=$NV_OLD_PATH
         unset NV_OLD_PATH
