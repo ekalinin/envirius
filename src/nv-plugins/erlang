@@ -26,6 +26,6 @@ plug_list_versions() {
 # Input:
 #   $1 — version for installation
 plug_url_for_download() {
-    version=$1
+    local version=$1
     echo "$ERL_MIRROR/otp_src_${version}.tar.gz"
 }

@@ -4,7 +4,7 @@ NODE_MIRROR="http://nodejs.org/dist"
 
 # Output lists of versions
 plug_list_versions() {
-    versions=$(curl -s "$NODE_MIRROR/" | \
+    local versions=$(curl -s "$NODE_MIRROR/" | \
                 grep -v "node-" | \
                 egrep -o '[0-9]+\.[0-9]+\.[0-9]+' | \
                 sort -u -k 1,1n -k 2,2n -k 3,3n -t .)
@@ -17,6 +17,6 @@ plug_list_versions() {
 # Input:
 #   $1 — version for installation
 plug_url_for_download() {
-    version=$1
+    local version=$1
     echo "$NODE_MIRROR/v${version}/node-v${version}.tar.gz"
 }

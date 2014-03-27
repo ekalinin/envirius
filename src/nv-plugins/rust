@@ -2,7 +2,7 @@
 
 # Output lists of versions
 plug_list_versions() {
-    versions=$(curl -s https://github.com/mozilla/rust/wiki/Doc-releases | \
+    local versions=$(curl -s https://github.com/mozilla/rust/wiki/Doc-releases | \
         egrep 'static.rust-lang.org\/dist\/rust-[0-9]+\.[0-9]+\.tar\.gz' | \
         egrep -o '[0-9]+\.[0-9]+' | sort | uniq)
     echo $versions
@@ -14,6 +14,6 @@ plug_list_versions() {
 # Input:
 #   $1 — version for installation
 plug_url_for_download() {
-    version=$1
+    local version=$1
     echo "http://static.rust-lang.org/dist/rust-${version}.tar.gz"
 }
