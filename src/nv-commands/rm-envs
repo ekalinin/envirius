@@ -18,6 +18,7 @@ nv_cmd_default() {
         env_name_full=$(get_env_full_path $env_name)
         if [ -d "$env_name_full" ]; then
             rm -rf $env_name_full
+            echo "Environment `bold $env_name` was deleted."
         fi
     done
 }

@@ -12,6 +12,7 @@ Changelog
 * added call for 'deactivate-' scripts during ``off``/``deactivate`` commands
 * fixed ``go`` plugin: restore old values for ``GOROOT``/``GOPATH`` after
   deactivation of an environment
+* ``rm-envs`` output message if environment was successfully deleted
 
 0.4.0 (19-03-2014)
 ------------------
