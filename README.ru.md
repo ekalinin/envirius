@@ -111,7 +111,7 @@ Creating environment: mixed-rust-erlang ...
 Получить список созданных окружений:
 
 ```bash
-➥ nv ls-envs
+➥ nv ls
 Available environment(s):
 mixed-rust-erlang
 rust-0.9

@@ -16,6 +16,7 @@ Changelog
 * ``rm-envs`` output message if environment was successfully deleted
 * ``ls-envs`` added environments sorting
 * ``ls-envs`` renamed to ``ls`` (back)
+* ``rm-envs`` renamed to ``rm`` (back)
 
 0.4.0 (19-03-2014)
 ------------------

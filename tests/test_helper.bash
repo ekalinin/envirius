@@ -3,7 +3,7 @@ setup() {
     export NV_HOME="$HOME/tmp/envirius-tests"
     mkdir -p $NV_HOME
     . $BATS_TEST_DIRNAME/../src/nv
-    nv rm-envs --all
+    nv rm --all
 }
 
 assert_equal() {

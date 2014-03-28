@@ -20,7 +20,7 @@ load test_helper
     assert_equal "  mv              Move (rename) environment"                                   "${lines[11]}"
     assert_equal "  off             Deactivate environment (alias: deactivate)"                  "${lines[12]}"
     assert_equal "  on              Activate environment (alias: activate)"                      "${lines[13]}"
-    assert_equal "  rm-cache        Delete cache entry"                                          "${lines[14]}"
-    assert_equal "  rm-envs         Delete environment"                                          "${lines[15]}"
+    assert_equal "  rm              Delete environment"                                          "${lines[14]}"
+    assert_equal "  rm-cache        Delete cache entry"                                          "${lines[15]}"
     assert_equal "  version         Display the version number"                                  "${lines[16]}"
 }
