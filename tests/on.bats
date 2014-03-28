@@ -7,7 +7,7 @@ load test_helper
     assert_success
     [ "${lines[0]}"  = "Creating environment: empty_env2 ..." ]
 
-    run nv ls-envs
+    run nv ls
     assert_success
     [ "${lines[0]}"  = "Available environment(s):" ]
     [ "${lines[1]}"  = "empty_env2" ]
@@ -55,14 +55,14 @@ load test_helper
 }
 
 @test "on: don't create any envs" {
-    run nv ls-envs
+    run nv ls
     assert_success
     [ "${lines[1]}"  = "" ]
 
     run nv on --helpp
     assert_fail
 
-    run nv ls-envs
+    run nv ls
     assert_success
     assert_equal "" "${lines[1]}"
 }
@@ -74,7 +74,7 @@ load test_helper
     run nv mk empty_env2
     [ "$status" -eq 0 ]
     [ "${lines[0]}"  = "Creating environment: empty_env2 ..." ]
-    run nv ls-envs
+    run nv ls
     [ "$status" -eq 0 ]
     [ "${lines[0]}"  = "Available environment(s):" ]
     [ "${lines[1]}"  = "empty_env2" ]
@@ -123,14 +123,14 @@ load test_helper
 }
 
 @test "activate: don't create any envs" {
-    run nv ls-envs
+    run nv ls
     assert_success
     [ "${lines[1]}"  = "" ]
 
     run nv activate --helpp
     assert_fail
 
-    run nv ls-envs
+    run nv ls
     assert_success
     assert_equal "" "${lines[1]}"
 }

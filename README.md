@@ -112,7 +112,7 @@ Creating environment: mixed-rust-erlang ...
 Get list of the environments:
 
 ```bash
-➥ nv ls-envs
+➥ nv ls
 Available environment(s):
 mixed-rust-erlang
 rust-0.9
@@ -190,7 +190,7 @@ $ nv mk go-hudo-test --go=1.2.1
 Creating environment: go-hudo-test ...
  * installing go==1.2.1 ...
  * done (in 8 secs.)
-$ nv ls-envs 
+$ nv ls 
 Available environment(s):
 go-hudo-test (go==1.2.1)
 $ nv on go-hudo-test
