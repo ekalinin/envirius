@@ -76,6 +76,7 @@ _nv() {
         return 0
     fi
 
+    # ls-versions|mk --<plugin>
     if [[ ${cur} == -* && ("${cmd}" == "ls-versions" || "${cmd}" == "mk") ]] ; then
         local opt_plugins=$(nv ls-plugins | awk '{print "--"$1}')
         local opt_others=$(nv ${cmd} --help | grep "  \-\-" | cut -d ' ' -f 3)
@@ -83,15 +84,24 @@ _nv() {
         return 0
     fi
 
+    # rm <environment-name>
+    if [[ "${cmd}" == "rm" ]] ; then
+        local env_list=$(nv ls | tail -n+2)
+        COMPREPLY=( $(compgen -W "${env_list}" -- ${cur}) )
+        return 0
+    fi
+
+    # any option from command's help output
     if [[ ${cur} == -* ]] ; then
         local command_opts=$(nv $prev --help | grep "\-\-" | cut -d ' ' -f 3)
         COMPREPLY=( $(compgen -W "${command_opts}" -- ${cur}) )
         return 0
     fi
 
+    # on|activate <environment-name>
     if [[ "${prev}" == "on" || "${prev}" == "activate" ]] ; then
-        local command_opts=$(nv ls-envs | tail -n+2)
-        COMPREPLY=( $(compgen -W "${command_opts}" -- ${cur}) )
+        local env_list=$(nv ls | tail -n+2)
+        COMPREPLY=( $(compgen -W "${env_list}" -- ${cur}) )
         return 0
     fi
 }

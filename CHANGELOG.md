@@ -17,6 +17,7 @@ Changelog
 * ``ls-envs`` added environments sorting
 * ``ls-envs`` renamed to ``ls`` (back)
 * ``rm-envs`` renamed to ``rm`` (back)
+* improved autocompletion for ``rm`` command
 
 0.4.0 (19-03-2014)
 ------------------
