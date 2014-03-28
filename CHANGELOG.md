@@ -12,6 +12,7 @@ Changelog
 * added call for 'deactivate-' scripts during ``off``/``deactivate`` commands
 * fixed ``go`` plugin: restore old values for ``GOROOT``/``GOPATH`` after
   deactivation of an environment
+* fixed ``go`` plugin: improved activate-go content to be usabale after copy
 * ``rm-envs`` output message if environment was successfully deleted
 * ``ls-envs`` added environments sorting
 
