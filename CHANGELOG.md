@@ -13,6 +13,7 @@ Changelog
 * fixed ``go`` plugin: restore old values for ``GOROOT``/``GOPATH`` after
   deactivation of an environment
 * ``rm-envs`` output message if environment was successfully deleted
+* ``ls-envs`` added environments sorting
 
 0.4.0 (19-03-2014)
 ------------------
