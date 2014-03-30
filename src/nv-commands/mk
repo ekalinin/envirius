@@ -64,7 +64,7 @@ nv_cmd_default() {
             local plugin_full_path=$(get_plugin_full_path $plugin_name)
             echo " * installing $plugin_name==$plugin_ver ..."
 
-            # activate plugin & call installation part
+            # source plugin code & call installation part
             . $plugin_full_path
 
             # check if plugin disabled
@@ -73,16 +73,24 @@ nv_cmd_default() {
                 continue
             fi
 
-            # install it & timer it
+            # save installation start time
             local inst_start_time=$(get_time)
+
+            # main installation part
             plug_install $plugin_name $plugin_ver $env_name_full
+            # add activate-<plugin> if need
             plug_add_activate_script $env_name_full
-            local inst_diff_time=$(get_time_diff $inst_start_time)
-            echo " * done (in $inst_diff_time secs.)"
+            # call post-install actions
+            plug_post_install_actions $env_name $env_name_full
+            # save meta info (if need)
             if [ "$save_meta" = "yes" ]; then
                 local info_file_full_path=$(get_env_info_path "$env_name")
                 echo "$plugin_name==$plugin_ver" >> "$info_file_full_path"
             fi
+
+            # compute installation time
+            local inst_diff_time=$(get_time_diff $inst_start_time)
+            echo " * done (in $inst_diff_time secs.)"
     esac
     done
 }
@@ -138,6 +146,12 @@ plug_install() {
     )
 }
 
+# stub
+plug_post_install_actions() {
+    echo "None" > /dev/null
+}
+
+# stub
 plug_add_activate_script() {
     echo "None" > /dev/null
 }

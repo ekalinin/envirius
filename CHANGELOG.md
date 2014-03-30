@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.5.1 (XX-04-2014)
+------------------
+* added ``plug_post_install_actions`` function for plugins
+* python-plugin: added ``python`` symlink creation
+* python-plugin: added ``pip`` installation
+
 0.5.0 (28-03-2014)
 ------------------
 * ``mk`` commands can store meta info about used plugins

@@ -18,3 +18,32 @@ plug_url_for_download() {
     local version=$1
     echo "$PY_MIRROR/ftp/python/$version/Python-$version.tgz"
 }
+
+plug_install_python_symlink() {
+    local env_name=$1
+    local env_name_full=$2
+    if [ ! -f "$env_name_full/bin/python" ]; then
+    (
+        cd "$env_name_full/bin"
+        ln -s `find . -iname "python?"` python
+    )
+    fi
+}
+
+plug_install_pip() {
+    local env_name=$1
+    local env_name_full=$2
+    if [ ! -f "$env_name_full/bin/pip" ]; then
+    (
+        nv on $env_name >/dev/null
+        local get_pip_url="https://raw.github.com/pypa/pip/master/contrib/get-pip.py"
+        local get_pip=$(download_file $get_pip_url "get-pip.py")
+        python $get_pip >/dev/null
+    )
+    fi
+}
+
+plug_post_install_actions() {
+    plug_install_python_symlink "$@"
+    plug_install_pip "$@"
+}
