@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5.1 (XX-04-2014)
+0.5.1 (04-04-2014)
 ------------------
 * added ``plug_post_install_actions`` function for plugins
 * removed ``plug_add_activate_script`` (used ``plug_post_install_actions``
