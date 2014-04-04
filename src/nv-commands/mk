@@ -64,6 +64,10 @@ nv_cmd_default() {
             local plugin_full_path=$(get_plugin_full_path $plugin_name)
             echo " * installing $plugin_name==$plugin_ver ..."
 
+            # clear main function body
+            unset plug_install
+            unset plug_post_install_actions
+
             # source plugin code & call installation part
             . $plugin_full_path
 
@@ -77,11 +81,17 @@ nv_cmd_default() {
             local inst_start_time=$(get_time)
 
             # main installation part
-            plug_install $plugin_name $plugin_ver $env_name_full
-            # add activate-<plugin> if need
-            plug_add_activate_script $env_name_full
+            if [ "`type -t plug_install`" = "function" ]; then
+                plug_install $plugin_name $plugin_ver $env_name_full
+            else
+                plug_install_default $plugin_name $plugin_ver $env_name_full
+            fi
+
             # call post-install actions
-            plug_post_install_actions $env_name $env_name_full
+            if [ "`type -t plug_post_install_actions`" = "function" ]; then
+                plug_post_install_actions $env_name $env_name_full
+            fi
+
             # save meta info (if need)
             if [ "$save_meta" = "yes" ]; then
                 local info_file_full_path=$(get_env_info_path "$env_name")
@@ -103,7 +113,7 @@ nv_cmd_default() {
 #   $1 — plugin name (erlang, rust, ...)
 #   $2 — plugin version
 #   $3 — full path to the environment
-plug_install() {
+plug_install_default() {
     local plugin_name=$1
     local version=$2
     local env_name_full=$3
@@ -144,16 +154,6 @@ plug_install() {
         # copy all bins into new environment
         cp -r "$build_path"/* $env_name_full
     )
-}
-
-# stub
-plug_post_install_actions() {
-    echo "None" > /dev/null
-}
-
-# stub
-plug_add_activate_script() {
-    echo "None" > /dev/null
 }
 
 nv_cmd_desc() {

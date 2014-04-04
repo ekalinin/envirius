@@ -162,10 +162,15 @@ instead of ``plug_url_for_download``. Default implementation of the
 Optional elements
 -----------------
 
-* ``plug_list_versions_columns_count``
-* ``plug_list_versions_columns_size``
-* ``plug_add_activate_script``
-* ``plug_state`` if == ``disabled`` then plugin is not active and will not
+* ``plug_list_versions_columns_count`` — variable — number of the columns in the
+  output of the ``nv ls-version`` for each plugin
+* ``plug_list_versions_columns_size`` — variable — each column width in chars in
+  the output of the ``nv ls-version`` for each plugin
+* ``plug_post_install_actions`` — optional function — executes after
+  installation. For example ``pip`` installation in the
+  [python](https://github.com/ekalinin/envirius/blob/master/src/nv-plugins/python)
+  plugin
+* ``plug_state`` — variable — if == ``disabled`` then plugin is not active and will not
   be account in the commands:
   * mk
   * ls-versions

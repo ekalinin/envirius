@@ -4,8 +4,12 @@ Changelog
 0.5.1 (XX-04-2014)
 ------------------
 * added ``plug_post_install_actions`` function for plugins
+* removed ``plug_add_activate_script`` (used ``plug_post_install_actions``
+  instead)
 * python-plugin: added ``python`` symlink creation
 * python-plugin: added ``pip`` installation
+* erlang-plugin: added ``rebar`` installation
+* fixed ``mk``: ``plug_install`` not reset to default state for each plugin
 
 0.5.0 (28-03-2014)
 ------------------
