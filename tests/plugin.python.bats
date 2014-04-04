@@ -2,7 +2,7 @@
 
 load test_helper
 
-@test "plugin: python" {
+@test "plugin: python 3.4.0 simple installation" {
     run nv mk python_test_env --python=3.4.0
     assert_success
 
@@ -13,10 +13,20 @@ load test_helper
     assert_output "Python 3.4.0"
 }
 
-@test "plugin: check pip & python simlink" {
+@test "plugin: python 3.3.5 + check pip & python simlink" {
     run nv mk python_test_env --python=3.3.5
     assert_success
 
     [ -f "$NV_HOME/envs/python_test_env/bin/pip" ]
     [ -f "$NV_HOME/envs/python_test_env/bin/python" ]
+
+    nv on python_test_env
+
+    run python -V
+    assert_success
+    assert_output "Python 3.3.5"
+
+    run pip -V
+    assert_success
+    assert_output "pip 1.5.4 from $NV_HOME/envs/python_test_env/lib/python3.3/site-packages (python 3.3)"
 }

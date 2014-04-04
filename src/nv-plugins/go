@@ -26,9 +26,15 @@ plug_install() {
             tar -xzf "$tarball" -C "$src_path"
         fi
 
-        # copy all bins into new environment
+        # copy /go directory into env
         cp -r "$src_path"/* $env_name_full
-        ln -s "$env_name_full/go/bin" "$env_name_full/bin"
+        # create environments /bin directory
+        mkdir -p "$env_name_full/bin"
+        # create symlinks on each executable file into main /bin
+        (
+            cd "$env_name_full/go/bin"
+            ln -s `find . -executable -type f -printf '../go/bin/%f\n'` "$env_name_full/bin"
+        )
 
         # add activate script
         local activate_path="$env_name_full/bin/activate-go"
