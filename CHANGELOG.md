@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.5.2 (06-04-2014)
+------------------
+* added common function: ``nv_get_build_path``
+* ``mk``: used ``nv_get_build_path``
+* ``mk``: passed plugin version into ``plug_post_install_actions``
+* node-plugin: all installed packages went into build dir, not environment
+
 0.5.1 (04-04-2014)
 ------------------
 * added ``plug_post_install_actions`` function for plugins

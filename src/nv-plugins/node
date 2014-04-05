@@ -20,3 +20,20 @@ plug_url_for_download() {
     local version=$1
     echo "$NODE_MIRROR/v${version}/node-v${version}.tar.gz"
 }
+
+plug_post_install_actions() {
+    local env_name=$1
+    local env_name_full=$2
+    local plugin_ver=$3
+    local build_path=$(nv_get_build_path "node" "$plugin_ver")
+
+    # replace in files build path to the env path
+    # files:
+    # - env/lib/node_modules/npm/bin/npm-cli.js
+    # - env/include/node/config.gypi
+    for f in $(find "$env_name_full" -type f -iname "*.*" -print0 | \
+                    xargs -0 grep -i "$build_path" | \
+                    cut -d ':' -f 1); do
+        sed -i "s|$build_path|$env_name_full|g" $f
+    done
+}
