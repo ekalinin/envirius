@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.6.0 (XX-04-2014)
+------------------
+* added ``use`` command as synonym to ``activate``/``on``
+
+
 0.5.2 (06-04-2014)
 ------------------
 * added common function: ``nv_get_build_path``

@@ -49,7 +49,7 @@ nv_cmd_default() {
 }
 
 nv_cmd_desc() {
-    echo "Activate environment (alias: on)"
+    echo "Activate environment (aliases: on, use)"
 }
 
 nv_cmd_help() {

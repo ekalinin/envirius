@@ -98,8 +98,8 @@ _nv() {
         return 0
     fi
 
-    # on|activate <environment-name>
-    if [[ "${prev}" == "on" || "${prev}" == "activate" ]] ; then
+    # on|activate|use <environment-name>
+    if [[ "${prev}" == "on" || "${prev}" == "activate" || "${prev}" == "use" ]] ; then
         local env_list=$(nv ls | tail -n+2)
         COMPREPLY=( $(compgen -W "${env_list}" -- ${cur}) )
         return 0

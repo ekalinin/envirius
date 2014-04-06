@@ -1,7 +1,7 @@
 . $(get_command_full_path)/activate
 
 nv_cmd_desc() {
-    echo "Activate environment (aliases: activate, use)"
+    echo "Activate environment (aliases: activate, on)"
 }
 
 # /* vim: set filetype=sh : */
