@@ -128,6 +128,10 @@ filename() {
     echo "${1##*/}"
 }
 
+nv_filename_ext() {
+    echo "${1#*.}"
+}
+
 # Returns number of cpu on the server
 get_cpu_count() {
     echo "`grep processor /proc/cpuinfo | wc -l`"
@@ -213,12 +217,15 @@ get_first_non_opt_value() {
     echo "$res"
 }
 
-get_system_arch() {
+nv_get_system_arch() {
+    local x32=$1
+    local x64=$2
+
     local arch=$(uname -m)
     if [ "$arch" = "i686" ]; then
-        echo "386"
+        echo "${x32}"
     else
-        echo "amd64"
+        echo "${x64}"
     fi
 }
 
