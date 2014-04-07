@@ -170,6 +170,9 @@ Optional elements
   installation. For example ``pip`` installation in the
   [python](https://github.com/ekalinin/envirius/blob/master/src/nv-plugins/python)
   plugin
+* ``plug_unpack`` — optional function — overrides default ``tar xzf <source>``
+* ``plug_configure`` — optional function — overrides default ``configure
+  --prefix=<path-to-env>``
 * ``plug_state`` — variable — if == ``disabled`` then plugin is not active and will not
   be account in the commands:
   * mk
