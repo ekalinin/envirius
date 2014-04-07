@@ -64,9 +64,13 @@ nv_cmd_default() {
             local plugin_full_path=$(get_plugin_full_path $plugin_name)
             echo " * installing $plugin_name==$plugin_ver ..."
 
-            # clear main function body
+            # clear main functions
+            unset plug_url_for_download
+            unset plug_list_versions
             unset plug_install
             unset plug_post_install_actions
+            unset plug_unpack
+            unset plug_configure
 
             # source plugin code & call installation part
             . $plugin_full_path
@@ -118,8 +122,11 @@ plug_install_default() {
     local version=$2
     local env_name_full=$3
 
-    local tarball=$(download_file $(plug_url_for_download "$version") \
-                "${plugin_name}-${version}.tar.gz")
+    local tarball_url=$(plug_url_for_download "$version")
+    local tarball_filename=$(filename "$tarball_url")
+    local tarball_ext=$(nv_get_filename_ext "$tarball_filename")
+    local tarball_cache="${plugin_name}-${version}.${tarball_ext}"
+    local tarball=$(download_file "$tarball_url" ${tarball_cache})
     # execute in subshell
     (
         local src_path=$(get_cache_full_path "$plugin_name-$version-src")
@@ -127,7 +134,11 @@ plug_install_default() {
         # unpacking (if need)
         if [ ! -d "$src_path" ]; then
             mkdir -p "$src_path"
-            tar -xzf "$tarball" -C "$src_path"
+            if [ "`type -t plug_unpack`" = "function" ]; then
+                plug_unpack_src $tarball $src_path
+            else
+                tar -xzf "$tarball" -C "$src_path"
+            fi
         fi
 
         local build_path=$(nv_get_build_path "$plugin_name" "$version")
@@ -142,11 +153,15 @@ plug_install_default() {
             cd "$subdir"
 
             # compiling
-            ./configure --prefix="$build_path" || {
-                echo 'envirius: configure failed!' ;
-                rm -rf "$build_path"
-                exit 1;
-            }
+            if [ "`type -t plug_configure`" = "function" ]; then
+                plug_configure "$build_path"
+            else
+                ./configure --prefix="$build_path" || {
+                    echo 'envirius: configure failed!' ;
+                    rm -rf "$build_path"
+                    exit 1;
+                }
+            fi
             make --jobs=$(get_cpu_count)
             make install
         fi

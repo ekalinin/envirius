@@ -4,6 +4,8 @@ Changelog
 0.6.0 (XX-04-2014)
 ------------------
 * added ``use`` command as synonym to ``activate``/``on``
+* added functions for plugin: ``plug_unpack`` & ``plug_configure``
+* fixed ``plug_install_default``: it works with any file ext, not only .tar.gz
 
 
 0.5.2 (06-04-2014)
