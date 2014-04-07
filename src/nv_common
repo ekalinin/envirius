@@ -128,8 +128,8 @@ filename() {
     echo "${1##*/}"
 }
 
-nv_filename_ext() {
-    echo "${1#*.}"
+nv_get_filename_ext() {
+    echo "$1" | egrep -o "[^.]+\.[^.]+$"
 }
 
 # Returns number of cpu on the server

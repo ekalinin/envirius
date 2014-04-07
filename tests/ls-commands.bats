@@ -6,7 +6,7 @@ load test_helper
     run nv ls-commands
     assert_success
 
-    assert_equal "  activate        Activate environment (alias: on)"                            "${lines[0]}" 
+    assert_equal "  activate        Activate environment (aliases: on, use)"                     "${lines[0]}" 
     assert_equal "  autoon          Mark current directory for environment auto activating"      "${lines[1]}" 
     assert_equal "  cp              Copy environment"                                            "${lines[2]}" 
     assert_equal "  current         Output current environment's name"                           "${lines[3]}" 
@@ -19,8 +19,9 @@ load test_helper
     assert_equal "  mk              Create environment"                                          "${lines[10]}" 
     assert_equal "  mv              Move (rename) environment"                                   "${lines[11]}"
     assert_equal "  off             Deactivate environment (alias: deactivate)"                  "${lines[12]}"
-    assert_equal "  on              Activate environment (alias: activate)"                      "${lines[13]}"
+    assert_equal "  on              Activate environment (aliases: activate, use)"               "${lines[13]}"
     assert_equal "  rm              Delete environment"                                          "${lines[14]}"
     assert_equal "  rm-cache        Delete cache entry"                                          "${lines[15]}"
-    assert_equal "  version         Display the version number"                                  "${lines[16]}"
+    assert_equal "  use             Activate environment (aliases: activate, on)"                "${lines[16]}"
+    assert_equal "  version         Display the version number"                                  "${lines[17]}"
 }

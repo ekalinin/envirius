@@ -164,3 +164,31 @@ load test_helper
     assert_success
     assert_output ""
 }
+
+@test "common: filename" {
+    run filename "http://www.haskell.org/ghc/dist/7.6.3/ghc-7.6.3-src.tar.bz2"
+    assert_success
+    assert_output "ghc-7.6.3-src.tar.bz2"
+}
+
+@test "common: nv_get_filename_ext" {
+    run nv_get_filename_ext "ghc-7.6.3-src.tar.bz2"
+    assert_success
+    assert_output "tar.bz2"
+}
+
+@test "common: nv_get_system_arch" {
+    run nv_get_system_arch "32bit" "64bit"
+    assert_success
+    if [ "`uname -m`" = "i686" ]; then
+        assert_output "32bit"
+    else
+        assert_output "64bit"
+    fi
+}
+
+@test "common: nv_get_build_path" {
+    run nv_get_build_path "new-plugin" "version1"
+    assert_success
+    assert_output "`get_cache_full_path "new-plugin-version1-build"`"
+}
