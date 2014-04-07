@@ -122,7 +122,7 @@ erl-17-rc1
 To activate environment:
 
 ```bash
-➥ mem on mixed-rust-erlang
+➥ nv on mixed-rust-erlang
 Environment mixed-rust-erlang activated.
 ```
 

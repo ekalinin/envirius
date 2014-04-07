@@ -121,7 +121,7 @@ erl-17-rc1
 Активировать окружение:
 
 ```bash
-➥ mem on mixed-rust-erlang --prompt-enable
+➥ nv on mixed-rust-erlang --prompt-enable
 Environment mixed-rust-erlang activated.
 ```
 
