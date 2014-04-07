@@ -12,7 +12,7 @@ plug_install() {
     local plugin_name=$1
     local version=$2
     local env_name_full=$3
-    local arch=$(get_system_arch)
+    local arch=$(nv_get_system_arch "386" "amd64")
 
     local remote_tarball="https://go.googlecode.com/files/go${version}.linux-${arch}.tar.gz"
     local tarball=$(download_file "$remote_tarball" "${plugin_name}-${version}.tar.gz")
