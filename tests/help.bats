@@ -3,7 +3,7 @@
 load test_helper
 
 @test "help: main section" {
-    local usage_b=$(bold "Usage")
+    local usage_b=$(nv_bold "Usage")
     run nv
     assert_success
     assert_equal "${lines[0]}" "nv 0.5.2"

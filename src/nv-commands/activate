@@ -45,7 +45,7 @@ nv_cmd_default() {
         . $plug
     done
 
-    echo "Environment `bold $env_name` activated."
+    echo "Environment `nv_bold $env_name` activated."
 }
 
 nv_cmd_desc() {

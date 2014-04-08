@@ -2,14 +2,14 @@
 
 load test_helper
 
-@test "common: get_cmd_name" {
-    run get_cmd_name
+@test "common: nv_cmd_name" {
+    run nv_cmd_name
     assert_success
     assert_output "nv"
 }
 
-@test "common: bold" {
-    run bold "test-string"
+@test "common: nv_bold" {
+    run nv_bold "test-string"
     assert_success
     assert_output "`tput bold`test-string`tput sgr0`"
 }
@@ -17,17 +17,17 @@ load test_helper
 @test "common: show_usage" {
     run show_usage "test_cmd"
     assert_success
-    assert_output "`bold 'Usage'`: `get_cmd_name` test_cmd"
+    assert_output "`nv_bold 'Usage'`: `nv_cmd_name` test_cmd"
 
     SUBCOMMAND="test_cmd" run show_usage "--help"
     assert_success
-    assert_output "`bold 'Usage'`: `get_cmd_name` test_cmd --help"
+    assert_output "`nv_bold 'Usage'`: `nv_cmd_name` test_cmd --help"
 }
 
 @test "common: show_desc" {
     run show_desc "testing with bats"
     assert_success
-    assert_output "`bold 'Description'`: testing with bats"
+    assert_output "`nv_bold 'Description'`: testing with bats"
 }
 
 @test "common: lpad" {

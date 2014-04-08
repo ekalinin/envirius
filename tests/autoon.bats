@@ -24,8 +24,8 @@ load test_helper
 
     # file should not be created
     [ ! -e ./.envirius ]
-    [ "${lines[0]}" = "`bold Usage`: nv autoon [<env-name>]" ]
-    [ "${lines[1]}" = "`bold Description`: Mark current directory for environment auto activating" ]
+    [ "${lines[0]}" = "`nv_bold Usage`: nv autoon [<env-name>]" ]
+    [ "${lines[1]}" = "`nv_bold Description`: Mark current directory for environment auto activating" ]
     [ "${lines[2]}" = "    If environment's name is not entered then used current" ]
     [ "${lines[3]}" = "    (active) environment. If environment is not activated" ]
     [ "${lines[4]}" = "    then environment's name is required." ]

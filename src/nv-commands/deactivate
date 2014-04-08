@@ -19,7 +19,7 @@ nv_cmd_default() {
             unset NV_OLD_PS1
         fi
 
-        echo "Environment `bold $env_name` was deactivated."
+        echo "Environment `nv_bold $env_name` was deactivated."
     fi
 }
 

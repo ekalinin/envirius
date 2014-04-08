@@ -3,7 +3,7 @@
 load test_helper
 
 @test "ls-versions: for disabled plugin [stub]" {
-    line_0=$(bold "* stub:";)
+    line_0=$(nv_bold "* stub:";)
     run nv ls-versions --stub
     assert_success
     assert_equal "${lines[0]}" $line_0
@@ -11,7 +11,7 @@ load test_helper
 }
 
 @test "ls-versions: for enabled plugin [rust]" {
-    line_0=$(bold "* rust:";)
+    line_0=$(nv_bold "* rust:";)
     run nv ls-versions --rust
     assert_success
 

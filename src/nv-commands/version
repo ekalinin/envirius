@@ -1,7 +1,7 @@
 NV_VERSION=0.5.2
 
 nv_cmd_default() {
-    echo "$(get_cmd_name) $NV_VERSION"
+    echo "$(nv_cmd_name) $NV_VERSION"
 }
 
 nv_cmd_desc() {

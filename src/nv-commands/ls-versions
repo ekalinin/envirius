@@ -12,7 +12,7 @@ nv_cmd_default() {
         unset plug_state
 
         . $plugin_full_path
-        bold "* $plugin_name:"; echo
+        nv_bold "* $plugin_name:"; echo
 
         if [ "$plug_state" = "disabled" ]; then
             echo " - plugin disabled."
@@ -53,7 +53,7 @@ nv_cmd_help() {
     show_usage "--erlang --python [--other-plugin]"
     show_desc "$(nv_cmd_desc)"
     echo "    To see all available plugins execute:"
-    echo "    $ $(get_cmd_name) plugins"
+    echo "    $ $(nv_cmd_name) plugins"
 }
 
 # /* vim: set filetype=sh : */

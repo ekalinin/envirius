@@ -203,11 +203,11 @@ nv_cmd_help() {
     echo "Examples:"
     echo "    If environment name is empty then it will be ganerated automatically."
     echo "    For example:"
-    echo "      $ $(get_cmd_name) mk --rust=0.9 --erlang=17.0-rc1"
+    echo "      $ $(nv_cmd_name) mk --rust=0.9 --erlang=17.0-rc1"
     echo "    Will genarate environment with name 'rust-0.9-erlang-17.0-rc1'."
     echo ""
     echo "    To see all available plugins execute:"
-    echo "      $ $(get_cmd_name) ls-plugins"
+    echo "      $ $(nv_cmd_name) ls-plugins"
 }
 
 # /* vim: set filetype=sh : */
