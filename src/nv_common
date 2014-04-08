@@ -138,12 +138,12 @@ nv_get_cpu_count() {
 }
 
 # Get current time in seconds
-get_time() {
+nv_get_time() {
     echo `date +%s`
 }
 
 # Returns diff in secons with enter timestamp
-get_time_diff() {
+nv_get_time_diff() {
     local time_ends=$(date +%s)
     local time_diff=$(( $time_ends - $1 ))
     echo "$time_diff"

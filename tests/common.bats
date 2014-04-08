@@ -84,11 +84,11 @@ load test_helper
     assert_output "`nproc`"
 }
 
-@test "common: get_time_diff" {
-    local start_dt=$(get_time)
+@test "common: nv_get_time_diff" {
+    local start_dt=$(nv_get_time)
     local timeout=2
     sleep $timeout
-    run get_time_diff $start_dt
+    run nv_get_time_diff $start_dt
     assert_success
     assert_output "$timeout"
 }
