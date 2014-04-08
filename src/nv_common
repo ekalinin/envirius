@@ -149,18 +149,6 @@ nv_get_time_diff() {
     echo "$time_diff"
 }
 
-# Returns full path to the `on` script for the environment
-# and plugin in it.
-get_activate_script_path() {
-    local env_name_full=$1
-    local plugin_name=$2
-    if [ "$2" = "" ]; then
-        echo "$env_name_full/bin/activate"
-    else
-        echo "$env_name_full/bin/activate-$plugin_name"
-    fi
-}
-
 # Returns fullpath for the environment directory
 # If environment's name is nto enter then returns
 # full path to the directory where all environments live
