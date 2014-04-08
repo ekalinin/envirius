@@ -37,7 +37,7 @@ plug_install_pip() {
     (
         nv on $env_name >/dev/null
         local get_pip_url="https://raw.github.com/pypa/pip/master/contrib/get-pip.py"
-        local get_pip=$(download_file $get_pip_url "get-pip.py")
+        local get_pip=$(nv_download_file $get_pip_url "get-pip.py")
         python $get_pip >/dev/null
     )
     fi

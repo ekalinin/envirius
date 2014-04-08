@@ -99,12 +99,12 @@ nv_get_plugin_version() {
 }
 
 # Downloads url into cache with certain name
-download_file() {
+nv_download_file() {
     local url="$1"
     local file="$2"
 
     if [ "$file" = "" ]; then
-        file=$(filename $url)
+        file=$(nv_get_filename $url)
     fi
     local file_in_cache=$(get_cache_full_path $file)
     local cache_dir=$(get_cache_full_path)
@@ -124,7 +124,7 @@ download_file() {
 }
 
 # Returns filename only from full path or url
-filename() {
+nv_get_filename() {
     echo "${1##*/}"
 }
 

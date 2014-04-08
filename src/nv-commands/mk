@@ -115,10 +115,10 @@ plug_download_default() {
     local version=$2
 
     local tarball_url=$(plug_url_for_download "$version")
-    local tarball_filename=$(filename "$tarball_url")
+    local tarball_filename=$(nv_get_filename "$tarball_url")
     local tarball_ext=$(nv_get_filename_ext "$tarball_filename")
     local tarball_cache="${plugin_name}-${version}.${tarball_ext}"
-    local tarball=$(download_file "$tarball_url" ${tarball_cache})
+    local tarball=$(nv_download_file "$tarball_url" ${tarball_cache})
 
     echo "$tarball"
 }

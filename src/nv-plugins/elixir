@@ -23,7 +23,7 @@ plug_install() {
     local version=$2
     local env_name_full=$3
 
-    local tarball=$(download_file "$ELX_MIRROR/archive/v${version}.tar.gz" \
+    local tarball=$(nv_download_file "$ELX_MIRROR/archive/v${version}.tar.gz" \
                 "${plugin_name}-${version}.tar.gz")
     # execute in subshell
     (

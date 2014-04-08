@@ -78,12 +78,6 @@ load test_helper
     assert_output "17.0-rc1"
 }
 
-@test "common: filename" {
-    run filename "/some/path/to/file.txt"
-    assert_success
-    assert_output "file.txt"
-}
-
 @test "common: get_cpu_count" {
     run get_cpu_count
     assert_success
@@ -165,8 +159,14 @@ load test_helper
     assert_output ""
 }
 
-@test "common: filename" {
-    run filename "http://www.haskell.org/ghc/dist/7.6.3/ghc-7.6.3-src.tar.bz2"
+@test "common: nv_get_filename (fs path)" {
+    run nv_get_filename "/some/path/to/file.txt"
+    assert_success
+    assert_output "file.txt"
+}
+
+@test "common: nv_get_filename (url)" {
+    run nv_get_filename "http://www.haskell.org/ghc/dist/7.6.3/ghc-7.6.3-src.tar.bz2"
     assert_success
     assert_output "ghc-7.6.3-src.tar.bz2"
 }

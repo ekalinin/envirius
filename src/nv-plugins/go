@@ -15,7 +15,7 @@ plug_install() {
     local arch=$(nv_get_system_arch "386" "amd64")
 
     local remote_tarball="https://go.googlecode.com/files/go${version}.linux-${arch}.tar.gz"
-    local tarball=$(download_file "$remote_tarball" "${plugin_name}-${version}.tar.gz")
+    local tarball=$(nv_download_file "$remote_tarball" "${plugin_name}-${version}.tar.gz")
     # execute in subshell
     (
         local src_path=$(get_cache_full_path "$plugin_name-$version-src")

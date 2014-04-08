@@ -8,7 +8,7 @@ nv_cmd_default() {
         plug_state=""
         . "$plugin"
         if [ "$plug_state" != "disabled" ]; then
-            filename $plugin
+            nv_get_filename $plugin
         fi
     done
 }
