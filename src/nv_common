@@ -10,7 +10,7 @@ nv_bold() {
 }
 
 # Output a usage message
-show_usage() {
+nv_show_usage() {
     nv_bold "Usage";
     if [ "$SUBCOMMAND" = "" ]; then
         echo ": $(nv_cmd_name) $1"
@@ -20,7 +20,7 @@ show_usage() {
 }
 
 # Output a description for command
-show_desc() {
+nv_show_desc() {
     nv_bold "Description"; echo ": $1"
 }
 

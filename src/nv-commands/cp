@@ -40,8 +40,8 @@ nv_cmd_desc() {
 }
 
 nv_cmd_help() {
-    show_usage "<env-name-src> <env-name-dst>"
-    show_desc "$(nv_cmd_desc)"
+    nv_show_usage "<env-name-src> <env-name-dst>"
+    nv_show_desc "$(nv_cmd_desc)"
 }
 
 # /* vim: set filetype=sh : */

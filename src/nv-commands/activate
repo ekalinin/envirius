@@ -53,8 +53,8 @@ nv_cmd_desc() {
 }
 
 nv_cmd_help() {
-    show_usage "[options] <environment-name>"
-    show_desc "$(nv_cmd_desc)"
+    nv_show_usage "[options] <environment-name>"
+    nv_show_desc "$(nv_cmd_desc)"
     echo ""
     echo "Options:"
     echo "  --prompt-enable     Change PS1 varibale: add env name into prompt"

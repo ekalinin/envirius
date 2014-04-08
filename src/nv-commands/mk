@@ -194,8 +194,8 @@ nv_cmd_desc() {
 }
 
 nv_cmd_help() {
-    show_usage "[env-name] [--plugin=version [,--plugin=version]]"
-    show_desc "$(nv_cmd_desc)"
+    nv_show_usage "[env-name] [--plugin=version [,--plugin=version]]"
+    nv_show_desc "$(nv_cmd_desc)"
     echo ""
     echo "Options:"
     echo "  --no-meta    Do not store meta information in the environment (plugin list)."

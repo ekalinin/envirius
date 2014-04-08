@@ -23,8 +23,8 @@ nv_cmd_desc() {
 }
 
 nv_cmd_help() {
-    show_usage
-    show_desc "$(nv_cmd_desc)"
+    nv_show_usage
+    nv_show_desc "$(nv_cmd_desc)"
 }
 
 # /* vim: set filetype=sh : */

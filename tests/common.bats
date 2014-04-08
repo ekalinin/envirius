@@ -14,18 +14,18 @@ load test_helper
     assert_output "`tput bold`test-string`tput sgr0`"
 }
 
-@test "common: show_usage" {
-    run show_usage "test_cmd"
+@test "common: nv_show_usage" {
+    run nv_show_usage "test_cmd"
     assert_success
     assert_output "`nv_bold 'Usage'`: `nv_cmd_name` test_cmd"
 
-    SUBCOMMAND="test_cmd" run show_usage "--help"
+    SUBCOMMAND="test_cmd" run nv_show_usage "--help"
     assert_success
     assert_output "`nv_bold 'Usage'`: `nv_cmd_name` test_cmd --help"
 }
 
-@test "common: show_desc" {
-    run show_desc "testing with bats"
+@test "common: nv_show_desc" {
+    run nv_show_desc "testing with bats"
     assert_success
     assert_output "`nv_bold 'Description'`: testing with bats"
 }

@@ -50,8 +50,8 @@ nv_cmd_desc() {
 }
 
 nv_cmd_help() {
-    show_usage "--erlang --python [--other-plugin]"
-    show_desc "$(nv_cmd_desc)"
+    nv_show_usage "--erlang --python [--other-plugin]"
+    nv_show_desc "$(nv_cmd_desc)"
     echo "    To see all available plugins execute:"
     echo "    $ $(nv_cmd_name) plugins"
 }

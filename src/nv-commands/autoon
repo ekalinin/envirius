@@ -19,8 +19,8 @@ nv_cmd_desc() {
 }
 
 nv_cmd_help() {
-    show_usage "[<env-name>]"
-    show_desc "$(nv_cmd_desc)"
+    nv_show_usage "[<env-name>]"
+    nv_show_desc "$(nv_cmd_desc)"
     echo "    If environment's name is not entered then used current"
     echo "    (active) environment. If environment is not activated"
     echo "    then environment's name is required."

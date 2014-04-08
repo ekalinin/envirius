@@ -28,8 +28,8 @@ nv_cmd_desc() {
 }
 
 nv_cmd_help() {
-    show_usage "[options] <env-name> [env-name, ...]"
-    show_desc "$(nv_cmd_desc)"
+    nv_show_usage "[options] <env-name> [env-name, ...]"
+    nv_show_desc "$(nv_cmd_desc)"
     echo ""
     echo "Options:"
     echo "  --all   Delete all environments"
