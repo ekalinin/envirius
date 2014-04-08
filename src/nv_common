@@ -133,7 +133,7 @@ nv_get_filename_ext() {
 }
 
 # Returns number of cpu on the server
-get_cpu_count() {
+nv_get_cpu_count() {
     echo "`grep processor /proc/cpuinfo | wc -l`"
 }
 

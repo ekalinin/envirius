@@ -78,8 +78,8 @@ load test_helper
     assert_output "17.0-rc1"
 }
 
-@test "common: get_cpu_count" {
-    run get_cpu_count
+@test "common: nv_get_cpu_count" {
+    run nv_get_cpu_count
     assert_success
     assert_output "`nproc`"
 }

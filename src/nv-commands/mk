@@ -180,7 +180,7 @@ plug_install_default() {
                     exit 1;
                 }
             fi
-            make --jobs=$(get_cpu_count)
+            make --jobs=$(nv_get_cpu_count)
             make install
         fi
 

@@ -32,7 +32,7 @@ plug_install() {
             git clone git@github.com:JuliaLang/julia.git "$src_path"
             cd "$src_path"
             git checkout v${version}
-            make --jobs=$(get_cpu_count)
+            make --jobs=$(nv_get_cpu_count)
         fi
 
         # copy bin into new environment
