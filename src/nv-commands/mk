@@ -99,7 +99,7 @@ nv_cmd_default() {
 
             # save meta info (if need)
             if [ "$save_meta" = "yes" ]; then
-                local info_file_full_path=$(get_env_info_path "$env_name")
+                local info_file_full_path=$(nv_get_env_info_path "$env_name")
                 echo "$plugin_name==$plugin_ver" >> "$info_file_full_path"
             fi
 

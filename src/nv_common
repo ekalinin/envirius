@@ -217,7 +217,7 @@ nv_get_system_arch() {
     fi
 }
 
-get_env_info_path() {
+nv_get_env_info_path() {
     local env_name=$1
     local env_full_path=$(get_env_full_path "$env_name")
     echo "$env_full_path/envirius.info"
