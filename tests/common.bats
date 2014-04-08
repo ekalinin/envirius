@@ -50,30 +50,30 @@ load test_helper
     assert_output "cmd++"
 }
 
-@test "common: get_plugin_name" {
-    run get_plugin_name "--rust=0.9"
+@test "common: nv_get_plugin_name" {
+    run nv_get_plugin_name "--rust=0.9"
     assert_success
     assert_output "rust"
 
-    run get_plugin_name "--go=1.2rc4"
+    run nv_get_plugin_name "--go=1.2rc4"
     assert_success
     assert_output "go"
 
-    run get_plugin_name "--erlang=17.0-rc1"
+    run nv_get_plugin_name "--erlang=17.0-rc1"
     assert_success
     assert_output "erlang"
 }
 
-@test "common: get_plugin_version" {
-    run get_plugin_version "--rust=0.9"
+@test "common: nv_get_plugin_version" {
+    run nv_get_plugin_version "--rust=0.9"
     assert_success
     assert_output "0.9"
 
-    run get_plugin_version "--go=1.2rc4"
+    run nv_get_plugin_version "--go=1.2rc4"
     assert_success
     assert_output "1.2rc4"
 
-    run get_plugin_version "--erlang=17.0-rc1"
+    run nv_get_plugin_version "--erlang=17.0-rc1"
     assert_success
     assert_output "17.0-rc1"
 }

@@ -88,13 +88,13 @@ nv_rpad() {
 # Returns a clear plugin name
 #   '--rust'     --> 'rust'
 #   '--rust=0.9' --> 'rust'
-get_plugin_name() {
+nv_get_plugin_name() {
     echo $1 | sed 's/\--//' | sed 's/=.*//'
 }
 
 # Returns plugin version
 #   '--rust=0.9' --> '0.9'
-get_plugin_version() {
+nv_get_plugin_version() {
     echo $1 | sed 's/[-a-zA-Z0-9]*=//'
 }
 
