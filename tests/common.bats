@@ -30,22 +30,22 @@ load test_helper
     assert_output "`nv_bold 'Description'`: testing with bats"
 }
 
-@test "common: lpad" {
-    run lpad "cmd" 5
+@test "common: nv_lpad" {
+    run nv_lpad "cmd" 5
     assert_success
     assert_output "  cmd"
 
-    run lpad "cmd" 5 "+"
+    run nv_lpad "cmd" 5 "+"
     assert_success
     assert_output "++cmd"
 }
 
-@test "common: rpad" {
-    run rpad "cmd" 5
+@test "common: nv_rpad" {
+    run nv_rpad "cmd" 5
     assert_success
     assert_output "cmd  "
 
-    run rpad "cmd" 5 "+"
+    run nv_rpad "cmd" 5 "+"
     assert_success
     assert_output "cmd++"
 }

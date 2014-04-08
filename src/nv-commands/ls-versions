@@ -31,7 +31,7 @@ nv_cmd_default() {
         #echo "$columns_count / $columns_size"
         for v in $versions_list
         do
-            echo -n "`rpad $v $columns_size`"
+            echo -n "`nv_rpad $v $columns_size`"
             if [ $columns_counter -ge $columns_count ]; then
                 echo
                 columns_counter=$init_value;

@@ -9,7 +9,7 @@ nv_cmd_default() {
         # source each command
         . $cmd
         # display it's filename only & description for it
-        echo "  `rpad $(filename $cmd) 15` $(nv_cmd_desc)"
+        echo "  `nv_rpad $(filename $cmd) 15` $(nv_cmd_desc)"
     done
 }
 

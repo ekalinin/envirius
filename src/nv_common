@@ -26,11 +26,11 @@ nv_show_desc() {
 
 # Pads the left-side of a string with a specific set of characters
 #
-# $ lpad 3 5 0
+# $ nv_lpad 3 5 0
 # 00003
 #
 # http://techknack.net/bash-rpad-lpad-and-center-pad/
-lpad() {
+nv_lpad() {
     if [ "$1" ]; then
         local word="$1";
     else
@@ -57,10 +57,10 @@ lpad() {
 
 # Pads the right-side of a string with a specific set of characters
 #
-# $ rpad "w00t" 15 ^
+# $ nv_rpad "w00t" 15 ^
 # w00t^^^^^^^^^^^
 #
-rpad() {
+nv_rpad() {
     if [ "$1" ]; then
         local word="$1";
     else
