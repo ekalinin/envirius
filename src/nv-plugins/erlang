@@ -16,7 +16,8 @@ plug_list_versions() {
         egrep -o 'R1[-0-9A-Za-z]+')
     local versions2=$(curl -s $ERL_MIRROR | \
         egrep -o "otp_src_[0-9]+\.[0-9]+(-rc[0-9]+)*\.tar\.gz" | \
-        egrep -o "[0-9]+\.[0-9]+(-rc[0-9]+)*")
+        egrep -o "[0-9]+\.[0-9]+(-rc[0-9]+)*" | sort | uniq | \
+        sort --version-sort --reverse)
     echo "$versions1 $versions2"
 }
 

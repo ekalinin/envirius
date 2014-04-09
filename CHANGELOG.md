@@ -8,7 +8,7 @@ Changelog
 * fixed ``plug_install_default``: it works with any file ext, not only .tar.gz
 * command ``mk``: improved logic of the creation of the environment
 * added  function for plugin: ``plug_download``
-
+* erlang-plugin: fixed sorting for ``ls-versions``
 
 0.5.2 (06-04-2014)
 ------------------
