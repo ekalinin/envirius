@@ -32,7 +32,7 @@ nv_usage() {
 
 
 nv() {
-    mkdir -p $(get_env_full_path)
+    mkdir -p $(nv_get_env_full_path)
     mkdir -p $(get_cache_full_path)
 
     # get command from first command line arg

@@ -38,7 +38,7 @@ nv_cmd_default() {
         return 1
     fi
 
-    local env_name_full=$(get_env_full_path $env_name)
+    local env_name_full=$(nv_get_env_full_path $env_name)
 
     if [ -d "$env_name_full" ]; then
         echo "Environment with name '$env_name' is already exists."
@@ -61,7 +61,7 @@ nv_cmd_default() {
         --*)
             local plugin_name=$(nv_get_plugin_name $par)
             local plugin_ver=$(nv_get_plugin_version $par)
-            local plugin_full_path=$(get_plugin_full_path $plugin_name)
+            local plugin_full_path=$(nv_get_plugin_full_path $plugin_name)
             echo " * installing $plugin_name==$plugin_ver ..."
 
             # clear main functions

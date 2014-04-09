@@ -149,10 +149,10 @@ nv_get_time_diff() {
     echo "$time_diff"
 }
 
-# Returns fullpath for the environment directory
-# If environment's name is nto enter then returns
-# full path to the directory where all environments live
-get_env_full_path() {
+# Returns full path for the environment directory
+# If environment's name is not enter then returns
+# full path to the directory where live all environments
+nv_get_env_full_path() {
     local NV_ENVS_DIR="$NV_HOME/envs"
     if [ "$1" = "" ]; then
         echo $NV_ENVS_DIR
@@ -162,7 +162,10 @@ get_env_full_path() {
     fi
 }
 
-get_plugin_full_path() {
+# Returns full path for plugins directory
+# If plugin's name is not entered then returns
+# full path to the directory where live all plugins
+nv_get_plugin_full_path() {
     local NV_ENVS_DIR="$NV_PATH/nv-plugins"
     if [ "$1" = "" ]; then
         echo $NV_ENVS_DIR
@@ -219,7 +222,7 @@ nv_get_system_arch() {
 
 nv_get_env_info_path() {
     local env_name=$1
-    local env_full_path=$(get_env_full_path "$env_name")
+    local env_full_path=$(nv_get_env_full_path "$env_name")
     echo "$env_full_path/envirius.info"
 }
 

@@ -17,8 +17,8 @@ nv_cmd_default() {
     fi
 
     # full paths
-    local env_name_src_full=$(get_env_full_path $env_name_src)
-    local env_name_dst_full=$(get_env_full_path $env_name_dst)
+    local env_name_src_full=$(nv_get_env_full_path $env_name_src)
+    local env_name_dst_full=$(nv_get_env_full_path $env_name_dst)
 
     # sourc env should exists
     if [ ! -d "$env_name_src_full" ]; then

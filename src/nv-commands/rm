@@ -6,7 +6,7 @@ nv_cmd_default() {
     do
     case $opt in
         --all)
-            env_name_full=$(get_env_full_path)
+            env_name_full=$(nv_get_env_full_path)
             rm -rf $env_name_full/*
             return
     esac
@@ -15,7 +15,7 @@ nv_cmd_default() {
     # try to find env name
     for env_name in "$@"
     do
-        env_name_full=$(get_env_full_path $env_name)
+        env_name_full=$(nv_get_env_full_path $env_name)
         if [ -d "$env_name_full" ]; then
             rm -rf $env_name_full
             echo "Environment `nv_bold $env_name` was deleted."

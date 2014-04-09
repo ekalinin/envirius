@@ -27,7 +27,7 @@ nv_cmd_default() {
         nv deactivate
     fi
 
-    local env_name_full=$(get_env_full_path $env_name)
+    local env_name_full=$(nv_get_env_full_path $env_name)
     mkdir -p $env_name_full/bin
 
     NV_USED_ENV=$env_name

@@ -39,7 +39,7 @@ plug_install() {
         # add activate script
         local activate_path="$env_name_full/bin/activate-go"
         echo "NV_ENV=\$(nv current)" > "$activate_path"
-        echo "NV_ENV_PATH=\$(get_env_full_path \$NV_ENV)" >> "$activate_path"
+        echo "NV_ENV_PATH=\$(nv_get_env_full_path \$NV_ENV)" >> "$activate_path"
         echo "export NV_OLD_GOROOT=\$GOROOT" >> "$activate_path"
         echo "export NV_OLD_GOPATH=\$GOPATH" >> "$activate_path"
         echo "export GOROOT=\$NV_ENV_PATH/go" >> "$activate_path"

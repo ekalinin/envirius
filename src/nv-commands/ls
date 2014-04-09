@@ -1,6 +1,6 @@
 nv_cmd_default() {
     echo "Available environment(s):"
-    for env in $(find $(get_env_full_path) -mindepth 1 -maxdepth 1 -type d | sort)
+    for env in $(find $(nv_get_env_full_path) -mindepth 1 -maxdepth 1 -type d | sort)
     do
         local env_name=$(nv_get_filename "$env")
         local info_file_full_path=$(nv_get_env_info_path "$env_name")

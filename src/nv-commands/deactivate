@@ -1,6 +1,6 @@
 nv_cmd_default() {
     local env_name=`nv current`
-    local env_name_full=$(get_env_full_path $env_name)
+    local env_name_full=$(nv_get_env_full_path $env_name)
 
     if [ "$env_name" = "" ]; then
         echo "Nothing to deactivate."

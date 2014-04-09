@@ -4,7 +4,7 @@ nv_cmd_default() {
     case $par in
         --*)
         local plugin_name=$(nv_get_plugin_name $par)
-        local plugin_full_path=$(get_plugin_full_path $plugin_name)
+        local plugin_full_path=$(nv_get_plugin_full_path $plugin_name)
 
         unset plug_list_versions_columns_count
         unset plug_list_versions_columns_size

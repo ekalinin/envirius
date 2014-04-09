@@ -93,28 +93,28 @@ load test_helper
     assert_output "$timeout"
 }
 
-@test "common: get_env_full_path" {
+@test "common: nv_get_env_full_path" {
     # see setup in "test_helper.bash"
     local TEST_HOME="$HOME/tmp/envirius-tests/envs"
 
-    run get_env_full_path
+    run nv_get_env_full_path
     assert_success
     assert_output "$TEST_HOME"
 
-    run get_env_full_path "test-env"
+    run nv_get_env_full_path "test-env"
     assert_success
     assert_output "$TEST_HOME/test-env"
 }
 
-@test "common: get_plugin_full_path" {
+@test "common: nv_get_plugin_full_path" {
     # see setup in "test_helper.bash"
     local TEST_PATH="$BATS_TEST_DIRNAME/../src/nv-plugins"
 
-    run get_plugin_full_path
+    run nv_get_plugin_full_path
     assert_success
     assert_output "$TEST_PATH"
 
-    run get_plugin_full_path "test-plugin"
+    run nv_get_plugin_full_path "test-plugin"
     assert_success
     assert_output "$TEST_PATH/test-plugin"
 }

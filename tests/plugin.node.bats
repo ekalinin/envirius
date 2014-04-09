@@ -20,7 +20,7 @@ load test_helper
     assert_success
 
     nv on node_test_env
-    local env_full_path=$(get_env_full_path "node_test_env")
+    local env_full_path=$(nv_get_env_full_path "node_test_env")
     local wrong_path_cnt=$(find "$env_full_path" -type f \
                             -iname "*.*" -print0 | \
                             xargs -0 grep -i "node-0.10.26" | \
