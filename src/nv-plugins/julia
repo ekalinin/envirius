@@ -25,7 +25,7 @@ plug_install() {
 
     # execute in subshell
     (
-        local src_path=$(get_cache_full_path "$plugin_name-$version-src")
+        local src_path=$(nv_get_cache_full_path "$plugin_name-$version-src")
 
         # clone & compiling (if need)
         if [ ! -d "$src_path" ]; then

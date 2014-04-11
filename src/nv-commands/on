@@ -1,4 +1,4 @@
-. $(get_command_full_path)/activate
+. $(nv_get_command_full_path)/activate
 
 nv_cmd_desc() {
     echo "Activate environment (aliases: activate, use)"

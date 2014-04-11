@@ -106,8 +106,8 @@ nv_download_file() {
     if [ "$file" = "" ]; then
         file=$(nv_get_filename $url)
     fi
-    local file_in_cache=$(get_cache_full_path $file)
-    local cache_dir=$(get_cache_full_path)
+    local file_in_cache=$(nv_get_cache_full_path $file)
+    local cache_dir=$(nv_get_cache_full_path)
 
     if [ ! -f $file_in_cache ]; then
         if type curl &>/dev/null; then
@@ -174,7 +174,7 @@ nv_get_plugin_full_path() {
     fi
 }
 
-get_command_full_path() {
+nv_get_command_full_path() {
     local NV_COMMANDS_DIR="$NV_PATH/nv-commands"
     if [ "$1" = "" ]; then
         echo $NV_COMMANDS_DIR
@@ -183,7 +183,7 @@ get_command_full_path() {
     fi
 }
 
-get_cache_full_path() {
+nv_get_cache_full_path() {
     local NV_CACHE_DIR="$NV_HOME/cache"
     if [ "$1" = "" ]; then
         echo $NV_CACHE_DIR
@@ -192,7 +192,7 @@ get_cache_full_path() {
     fi
 }
 
-get_first_non_opt_value() {
+nv_get_first_non_opt_value() {
     local res=""
 
     for par in "$@"
@@ -229,7 +229,7 @@ nv_get_env_info_path() {
 nv_get_build_path() {
     local plugin_name=$1
     local plugin_ver=$2
-    local build_path=$(get_cache_full_path "${plugin_name}-${plugin_ver}-build")
+    local build_path=$(nv_get_cache_full_path "${plugin_name}-${plugin_ver}-build")
     echo "$build_path"
 }
 

@@ -1,4 +1,4 @@
-. $(get_command_full_path)/deactivate
+. $(nv_get_command_full_path)/deactivate
 
 nv_cmd_desc() {
     echo "Deactivate environment (alias: deactivate)"

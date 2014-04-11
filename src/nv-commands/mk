@@ -1,5 +1,5 @@
 nv_cmd_default() {
-    local env_name=$(get_first_non_opt_value "$@")
+    local env_name=$(nv_get_first_non_opt_value "$@")
     local save_meta="yes"
 
     # if env's name is empty try to generate it
@@ -138,7 +138,7 @@ plug_install_default() {
 
     # execute in subshell
     (
-        local src_path=$(get_cache_full_path "$plugin_name-$version-src")
+        local src_path=$(nv_get_cache_full_path "$plugin_name-$version-src")
         local build_path=$(nv_get_build_path "$plugin_name" "$version")
 
         # if not buid yet then do it

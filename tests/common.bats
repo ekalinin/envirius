@@ -119,42 +119,42 @@ load test_helper
     assert_output "$TEST_PATH/test-plugin"
 }
 
-@test "common: get_command_full_path" {
+@test "common: nv_get_command_full_path" {
     # see setup in "test_helper.bash"
     local TEST_PATH="$BATS_TEST_DIRNAME/../src/nv-commands"
 
-    run get_command_full_path
+    run nv_get_command_full_path
     assert_success
     assert_output "$TEST_PATH"
 
-    run get_command_full_path "test-command"
+    run nv_get_command_full_path "test-command"
     assert_success
     assert_output "$TEST_PATH/test-command"
 }
 
-@test "common: get_cache_full_path" {
+@test "common: nv_get_cache_full_path" {
     # see setup in "test_helper.bash"
     local TEST_HOME="$HOME/tmp/envirius-tests/cache"
 
-    run get_cache_full_path
+    run nv_get_cache_full_path
     assert_success
     assert_output "$TEST_HOME"
 
-    run get_cache_full_path "test-cache-entry"
+    run nv_get_cache_full_path "test-cache-entry"
     assert_success
     assert_output "$TEST_HOME/test-cache-entry"
 }
 
-@test "common: get_first_non_opt_value" {
-    run get_first_non_opt_value "--opt1=v1" "name" "--opt2=v3"
+@test "common: nv_get_first_non_opt_value" {
+    run nv_get_first_non_opt_value "--opt1=v1" "name" "--opt2=v3"
     assert_success
     assert_output "name"
 
-    run get_first_non_opt_value "name" "name2"
+    run nv_get_first_non_opt_value "name" "name2"
     assert_success
     assert_output "name"
 
-    run get_first_non_opt_value "--opt1=v1"
+    run nv_get_first_non_opt_value "--opt1=v1"
     assert_success
     assert_output ""
 }
@@ -190,7 +190,7 @@ load test_helper
 @test "common: nv_get_build_path" {
     run nv_get_build_path "new-plugin" "version1"
     assert_success
-    assert_output "`get_cache_full_path "new-plugin-version1-build"`"
+    assert_output "`nv_get_cache_full_path "new-plugin-version1-build"`"
 }
 
 @test "common: nv_get_env_info_path" {

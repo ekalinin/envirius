@@ -18,7 +18,7 @@ plug_install() {
     local tarball=$(nv_download_file "$remote_tarball" "${plugin_name}-${version}.tar.gz")
     # execute in subshell
     (
-        local src_path=$(get_cache_full_path "$plugin_name-$version-src")
+        local src_path=$(nv_get_cache_full_path "$plugin_name-$version-src")
 
         # unpacking (if need)
         if [ ! -d "$src_path" ]; then

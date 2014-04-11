@@ -6,7 +6,7 @@ nv_cmd_default() {
     do
     case $opt in
         --all)
-            local cache_full=$(get_cache_full_path)
+            local cache_full=$(nv_get_cache_full_path)
             rm -rf $cache_full/*
             return
     esac
@@ -15,7 +15,7 @@ nv_cmd_default() {
     # try to find cache entry
     for entry in "$@"
     do
-        local cache_full=$(get_cache_full_path $entry)
+        local cache_full=$(nv_get_cache_full_path $entry)
         rm -rf $cache_full
     done
 }

@@ -36,9 +36,9 @@ plug_post_install_actions() {
     local env_name_full=$2
     if [ ! -f "$env_name_full/bin/rebar" ]; then
     (
-        local rebar_path=$(get_cache_full_path "rebar")
+        local rebar_path=$(nv_get_cache_full_path "rebar")
         if [ ! -d "$rebar_path" ]; then
-            cd $(get_cache_full_path)
+            cd $(nv_get_cache_full_path)
             git clone git://github.com/rebar/rebar.git >/dev/null
         fi
         nv on $env_name >/dev/null
