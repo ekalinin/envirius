@@ -203,7 +203,7 @@ plug_url_for_download() {
 ```
 
 Typical language installation listed in
-[plug_install_default](https://github.com/ekalinin/envirius/blob/master/src/nv-commands/mk#L116)
+[plug_install_default](https://github.com/ekalinin/envirius/blob/master/src/nv-commands/mk#L155)
 function in ``mk`` command.
 
 If installation is not typical then you should implement ``plug_install``
