@@ -66,6 +66,7 @@ nv_cmd_default() {
             local plugin_name=$(nv_get_plugin_name $par)
             local plugin_ver=$(nv_get_plugin_version $par)
             local plugin_full_path=$(nv_get_plugin_full_path $plugin_name)
+
             echo " * installing $plugin_name==$plugin_ver ..."
 
             # clear main functions
@@ -86,18 +87,30 @@ nv_cmd_default() {
                 continue
             fi
 
+            # check prerequisites for building
+            if [ "`nv_is_function 'plug_check_deps'`" = "yes" ]; then
+                local check_result=$(plug_check_deps)
+                if [ ! "$check_result" = "" ]; then
+                    echo ""
+                    echo "Check dependencies failed:"
+                    echo ""
+                    echo "$check_result"
+                    return;
+                fi
+            fi
+
             # save installation start time
             local inst_start_time=$(nv_get_time)
 
             # main installation part
-            if [ "`type -t plug_install`" = "function" ]; then
+            if [ "`nv_is_function 'plug_install'`" = "yes" ]; then
                 plug_install $plugin_name $plugin_ver $env_name_full
             else
                 plug_install_default $plugin_name $plugin_ver $env_name_full
             fi
 
             # call post-install actions
-            if [ "`type -t plug_post_install_actions`" = "function" ]; then
+            if [ "`nv_is_function 'plug_post_install_actions'`" = "yes" ]; then
                 plug_post_install_actions $env_name $env_name_full $plugin_ver
             fi
 
@@ -156,7 +169,7 @@ plug_install_default() {
             if [ ! -d "$src_path" ]; then
 
                 # downloading source file
-                if [ "`type -t plug_download`" = "function" ]; then
+                if [ "`nv_is_function 'plug_download'`" = "yes" ]; then
                     local tarball=$(plug_download $plugin_name $version)
                 else
                     local tarball=$(plug_download_default $plugin_name $version)
@@ -164,8 +177,8 @@ plug_install_default() {
 
                 # unpacking source file
                 mkdir -p "$src_path"
-                if [ "`type -t plug_unpack`" = "function" ]; then
-                    plug_unpack_src $tarball $src_path
+                if [ "`nv_is_function 'plug_unpack'`" = "yes" ]; then
+                    plug_unpack $tarball $src_path
                 else
                     tar -xzf "$tarball" -C "$src_path"
                 fi

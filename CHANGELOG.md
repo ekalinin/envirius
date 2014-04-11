@@ -17,6 +17,8 @@ Changelog
   * used options for continue downloading if it was interrupted
 * added option ``--no-meta`` for ``ls`` command
 * improved environment's name autocompletion for ``rm``/``on``/``activate``/``use``
+* added function ``plug_check_deps`` for checking dependencies before plugin
+  building
 
 0.5.2 (06-04-2014)
 ------------------
