@@ -234,4 +234,12 @@ nv_get_build_path() {
     echo "$build_path"
 }
 
+nv_is_function() {
+    if [ "`type -t $1`" = "function" ]; then
+        echo "yes"
+    else
+        echo "no"
+    fi
+}
+
 # /* vim: set filetype=sh : */
