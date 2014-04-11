@@ -76,7 +76,7 @@ _nv() {
         return 0
     fi
 
-    # ls-versions|mk --<plugin>
+    # ls-versions|mk --<plugin>[ --<plugin>]
     if [[ ${cur} == -* && ("${cmd}" == "ls-versions" || "${cmd}" == "mk") ]] ; then
         local opt_plugins=$(nv ls-plugins | awk '{print "--"$1}')
         local opt_others=$(nv ${cmd} --help | grep "  \-\-" | cut -d ' ' -f 3)
@@ -84,9 +84,9 @@ _nv() {
         return 0
     fi
 
-    # rm <environment-name>
+    # rm <environment-name>[ <environment-name>]
     if [[ "${cmd}" == "rm" ]] ; then
-        local env_list=$(nv ls | tail -n+2)
+        local env_list=$(nv ls --no-meta | tail -n+2)
         COMPREPLY=( $(compgen -W "${env_list}" -- ${cur}) )
         return 0
     fi
@@ -98,9 +98,9 @@ _nv() {
         return 0
     fi
 
-    # on|activate|use <environment-name>
-    if [[ "${prev}" == "on" || "${prev}" == "activate" || "${prev}" == "use" ]] ; then
-        local env_list=$(nv ls | tail -n+2)
+    # on|activate|use|do <environment-name>
+    if [[ "${prev}" == "on" || "${prev}" == "activate" || "${prev}" == "use" || "${prev}" == "do" ]] ; then
+        local env_list=$(nv ls --no-meta | tail -n+2)
         COMPREPLY=( $(compgen -W "${env_list}" -- ${cur}) )
         return 0
     fi

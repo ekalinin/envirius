@@ -16,6 +16,7 @@ Changelog
   * used custom user-agent
   * used options for continue downloading if it was interrupted
 * added option ``--no-meta`` for ``ls`` command
+* improved environment's name autocompletion for ``rm``/``on``/``activate``/``use``
 
 0.5.2 (06-04-2014)
 ------------------
