@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6.0 (XX-04-2014)
+0.6.0 (11-04-2014)
 ------------------
 * added ``use`` command as synonym to ``activate``/``on``
 * added functions for plugin: ``plug_unpack`` & ``plug_configure``
