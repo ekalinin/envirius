@@ -34,8 +34,8 @@ nv_cmd_help() {
     nv_show_desc "$(nv_cmd_desc)"
     echo ""
     echo "Exampple:"
-    echo "  $ nv mk --node=0.10.26"
-    echo "  $ nv do node-0.10.26 'npm install -g hexo'"
+    echo "  $ $(nv_cmd_name) mk --node=0.10.26"
+    echo "  $ $(nv_cmd_name) do node-0.10.26 'npm install -g hexo'"
 }
 
 # /* vim: set filetype=sh : */
