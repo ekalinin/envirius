@@ -61,6 +61,7 @@ You can create environments for the following programming languages:
 * [node.js](http://nodejs.org/)
 * [python](https://www.python.org/)
 * [go](http://golang.org/)
+* [haskell](http://haskell.org/)
 
 New languages can be added as plugins (see below).
 
@@ -74,6 +75,7 @@ To check available plugins:
 elixir
 erlang
 go
+haskell
 julia
 node
 python
@@ -223,6 +225,10 @@ Optional elements
 * ``plug_configure`` — optional function — overrides default ``configure
   --prefix=<path-to-env>``
 * ``plug_download`` — optional function — overrides default downloading sources
+* ``plug_unpack`` — optional function — overrides default unpacking archive with
+  sources
+* ``plug_check_deps`` — optional function — check dependencies before plugin
+  building
 * ``plug_state`` — variable — if == ``disabled`` then plugin is not active and will not
   be account in the commands:
   * mk
