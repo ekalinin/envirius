@@ -1,4 +1,15 @@
 nv_cmd_default() {
+    local show_meta="yes"
+
+    for par in "$@"
+    do
+    case $par in
+        --no-meta)
+            show_meta="no"
+            ;;
+    esac
+    done
+
     echo "Available environment(s):"
     for env in $(find $(nv_get_env_full_path) -mindepth 1 -maxdepth 1 -type d | sort)
     do
@@ -7,7 +18,7 @@ nv_cmd_default() {
         local env_info=""
         local env_desc=""
 
-        if [ -e "$info_file_full_path" ]; then
+        if [ -e "$info_file_full_path" ] && [ "$show_meta" = "yes" ]; then
             env_info=$(cat "$info_file_full_path" | tr '\n' '|' \
                             | sed 's/|$//' | sed 's/|/, /')
             env_desc="$env_name ($env_info)"
@@ -25,6 +36,9 @@ nv_cmd_desc() {
 nv_cmd_help() {
     nv_show_usage
     nv_show_desc "$(nv_cmd_desc)"
+    echo ""
+    echo "Options:"
+    echo "  --no-meta    Do not show meta information of the environment"
 }
 
 # /* vim: set filetype=sh : */

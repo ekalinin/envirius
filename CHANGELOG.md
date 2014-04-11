@@ -11,10 +11,11 @@ Changelog
 * erlang-plugin: fixed sorting for ``ls-versions``
 * added to all functions from ``nv_common`` module prefix ``nv_``
 * added ``do`` command
-* added option ``--on`` into ``mk`` command to active env after installation
+* added option ``--on`` for ``mk`` command to active env after installation
 * improved files downloading (``nv_download_file``):
   * used custom user-agent
   * used options for continue downloading if it was interrupted
+* added option ``--no-meta`` for ``ls`` command
 
 0.5.2 (06-04-2014)
 ------------------
