@@ -77,3 +77,14 @@ load test_helper
     assert_equal "Available environment(s):" "${lines[0]}"
     assert_equal "test_env (erlang==17.0-rc1, rust==0.9)" "${lines[1]}"
 }
+
+@test "mk: with --on option" {
+    run nv mk test_env
+    assert_success
+
+    [ "$NV_USED_ENV" = "" ]
+
+    nv mk test_env1 --on
+
+    [ "$NV_USED_ENV" = "test_env1" ]
+}

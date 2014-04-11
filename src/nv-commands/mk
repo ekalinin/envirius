@@ -1,6 +1,7 @@
 nv_cmd_default() {
     local env_name=$(nv_get_first_non_opt_value "$@")
     local save_meta="yes"
+    local on_after_install="no"
 
     # if env's name is empty try to generate it
     if [ "$env_name" = "" ]; then
@@ -19,16 +20,6 @@ nv_cmd_default() {
     done
     env_name=`echo "$env_name" | sed "s/^-//"`
     fi
-
-    # find --no-meta
-    for par in "$@"
-    do
-    case $par in
-        --no-meta)
-            save_meta="no"
-            ;;
-    esac
-    done
 
     # check that env name is not empty
     if [ "$env_name" = "" ]; then
@@ -50,12 +41,25 @@ nv_cmd_default() {
     echo "Creating environment: $env_name ..."
     mkdir -p $env_name_full
 
+    # find --no-meta before installation plugins
+    for par in "$@"
+    do
+    case $par in
+        --no-meta)
+            save_meta="no"
+            ;;
+    esac
+    done
+
     # call each plugin for installation into new env
     for par in "$@"
     do
     case $par in
         # skip this option
         --no-meta)
+            ;;
+        --on)
+            on_after_install="yes"
             ;;
         # handle plugin only
         --*)
@@ -108,6 +112,10 @@ nv_cmd_default() {
             echo " * done (in $inst_diff_time secs.)"
     esac
     done
+
+    if [ "$on_after_install" = "yes" ]; then
+        nv on $env_name
+    fi
 }
 
 plug_download_default() {
@@ -198,6 +206,7 @@ nv_cmd_help() {
     nv_show_desc "$(nv_cmd_desc)"
     echo ""
     echo "Options:"
+    echo "  --on         Activate environment after installation"
     echo "  --no-meta    Do not store meta information in the environment (plugin list)."
     echo ""
     echo "Examples:"
