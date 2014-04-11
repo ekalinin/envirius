@@ -1,0 +1,39 @@
+#!/bin/sh
+
+GHC_MIRROR=http://www.haskell.org/ghc
+
+# Output lists of versions
+plug_list_versions() {
+    local versions=$(curl -s "${GHC_MIRROR}/download" | \
+                        egrep -o '[0-9]+\.[0-9]+\.[0-9]+' | \
+                        uniq | sort --version-sort)
+    echo $versions
+}
+
+# Return full url for tarball for download
+# and future installation
+plug_url_for_download() {
+    local version=$1
+    echo "${GHC_MIRROR}/dist/${version}/ghc-${version}-src.tar.bz2"
+}
+
+# Checks before compilation
+plug_check_deps() {
+    if [ "`which ghc`" = "" ]; then
+        echo "  To compile GHC from source you need pre-installed GHC version."
+        echo "  Please, install system-wide GHC."
+        echo "  For example, in ubuntu:"
+        echo ""
+        echo "    $ sudo aptitude install ghc"
+    fi
+}
+
+# Overload Unpacking function
+# Default way: "tar -xzf ..."
+# And we need to "tar -xjf ..."
+plug_unpack() {
+    local tarball=$1
+    local src_path=$2
+
+    tar -xjf "$tarball" -C "$src_path"
+}

@@ -19,6 +19,7 @@ Changelog
 * improved environment's name autocompletion for ``rm``/``on``/``activate``/``use``
 * added function ``plug_check_deps`` for checking dependencies before plugin
   building
+* added plugin for [haskell](www.haskell.org)
 
 0.5.2 (06-04-2014)
 ------------------
