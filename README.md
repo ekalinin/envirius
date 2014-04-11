@@ -3,10 +3,10 @@ envirius
 
 ``envirius`` — universal virtual environments manager.
 
-Features
-========
+Idea
+====
 
-Usually this kind of tools narrowly specialized for a  particular
+Usually this kind of tools narrowly specialized for a particular
 programming language. For example:
 
   * [virtualenv](https://github.com/pypa/virtualenv/) for python
@@ -15,11 +15,11 @@ programming language. For example:
   * [nvm](https://github.com/creationix/nvm)/[nodeenv](https://github.com/ekalinin/nodeenv/) for node.js
   * and so on
 
-But there are many cases when in one and the same environment you must have more
+But there are many cases when in the same environment you must have more
 than one programming language. For example, to create an environment with
 ``python2.6`` and ``node.js 0.10.24``. This idea underlies ``envirius``.
 
-Support for new programming languages are implemented as plug-ins.
+Support for new programming languages are implemented as plug-ins (see below).
 
 Installation
 ============
@@ -52,8 +52,7 @@ fi
 Available plugins
 =================
 
-You can create environments for the following programming languages
-at the moment:
+You can create environments for the following programming languages:
 
 * [erlang](http://erlang.org/)
 * [rust](http://rust-lang.org/)
@@ -62,6 +61,8 @@ at the moment:
 * [node.js](http://nodejs.org/)
 * [python](https://www.python.org/)
 * [go](http://golang.org/)
+
+New languages can be added as plugins (see below).
 
 Usage
 =====
@@ -140,11 +141,31 @@ To deactivate environment:
 Environment mixed-rust-erlang was deactivated.
 ```
 
+To do something in environment without enabling it:
+
+```bash
+➥ nv do node-0.10.26 'npm -g ls'
+```
+
+To get help:
+
+```bash
+➥ nv --help
+```
+
+To get help for a command (``do`` for example):
+
+```bash
+➥ nv do --help
+```
+
 How to add a plugin?
 ====================
 
-All plugins are in the directory ``nv-plugins``. If you need a new one
-you should add it inside this directory.
+All plugins are in the directory
+[nv-plugins](https://github.com/ekalinin/envirius/tree/master/src/nv-plugins).
+If you need to add support for a new language you should add it as plugin
+inside this directory.
 
 Mandatory elements
 -------------------
@@ -152,12 +173,40 @@ Mandatory elements
 In the simplest case you need to implement 2 functions in the plugin's
 body:
 
-* ``plug_list_versions`` which returns list of available versions of the plugin
-* ``plug_url_for_download`` which returns full url for downloading tarball
+### plug_list_versions
+
+This function should return list of available versions of the plugin.
+For example:
+
+```bash
+plug_list_versions() {
+    local versions=$(curl -s "http://nodejs.org/dist" | \
+                grep -v "node-" | \
+                egrep -o '[0-9]+\.[0-9]+\.[0-9]+' | \
+                sort -u -k 1,1n -k 2,2n -k 3,3n -t .)
+    echo $versions
+}
+```
+
+### plug_url_for_download
+
+This function should return full url for downloading tarball.
+For example:
+
+```bash
+plug_url_for_download() {
+    local version=$1
+    echo "http://nodejs.org/dist/v${version}/node-v${version}.tar.gz"
+}
+```
+
+Typical language installation listed in
+[plug_install_default](https://github.com/ekalinin/envirius/blob/master/src/nv-commands/mk#L116)
+function in ``mk`` command.
 
 If installation is not typical then you should implement ``plug_install``
-instead of ``plug_url_for_download``. Default implementation of the
-``plug_install`` function is in the ``src/nv-commands/mk`` file.
+function with yourself. For example: 
+[julia](https://github.com/ekalinin/envirius/blob/master/src/nv-plugins/julia).
 
 Optional elements
 -----------------

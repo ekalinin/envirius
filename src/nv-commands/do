@@ -1,0 +1,41 @@
+nv_cmd_default() {
+    local env_name=$(nv_get_first_non_opt_value "$@")
+    local env_name_full=$(nv_get_env_full_path $env_name)
+
+    # sourc env should exists
+    if [ ! -d "$env_name_full" ]; then
+        echo "Environment does not exist ($env_name)."
+        return
+    fi
+
+    # evaluate other options inside environment
+    for action in "$@"
+    do
+    case $action in
+        # skip env name
+        "$env_name")
+            ;;
+        *)
+            # execute in subshell
+            (
+                nv on $env_name && $action
+            )
+            ;;
+    esac
+    done
+}
+
+nv_cmd_desc() {
+    echo "Execute something inside environment"
+}
+
+nv_cmd_help() {
+    nv_show_usage "<env-name> 'command'"
+    nv_show_desc "$(nv_cmd_desc)"
+    echo ""
+    echo "Exampple:"
+    echo "  $ nv mk --node=0.10.26"
+    echo "  $ nv do node-0.10.26 'npm install -g hexo'"
+}
+
+# /* vim: set filetype=sh : */

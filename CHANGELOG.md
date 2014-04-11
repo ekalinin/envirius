@@ -10,6 +10,7 @@ Changelog
 * added  function for plugin: ``plug_download``
 * erlang-plugin: fixed sorting for ``ls-versions``
 * added to all functions from ``nv_common`` module prefix ``nv_``
+* added ``do`` command
 
 0.5.2 (06-04-2014)
 ------------------

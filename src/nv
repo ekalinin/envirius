@@ -33,11 +33,11 @@ nv_usage() {
 
 nv() {
     mkdir -p $(nv_get_env_full_path)
-    mkdir -p $(get_cache_full_path)
+    mkdir -p $(nv_get_cache_full_path)
 
     # get command from first command line arg
     SUBCOMMAND="$1"; shift
-    local command_full_path=$(get_command_full_path $SUBCOMMAND)
+    local command_full_path=$(nv_get_command_full_path $SUBCOMMAND)
 
     # show help if command is empty
     if [ "$SUBCOMMAND" = "" ]; then
