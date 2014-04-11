@@ -110,10 +110,11 @@ nv_download_file() {
     local cache_dir=$(nv_get_cache_full_path)
 
     if [ ! -f $file_in_cache ]; then
+        local user_agent="envirius: $(nv version)"
         if type curl &>/dev/null; then
-            curl --location --output "$file_in_cache" "$url"
+            curl -A "$user_agent" -C - -L -o "$file_in_cache" "$url"
         elif type wget &>/dev/null; then
-            wget -P $cache_dir "$url"
+            wget -U "$user_agent" -c -P $cache_dir "$url"
         else
           echo "Please, install 'curl' or 'wget' and try again."
           exit 1
