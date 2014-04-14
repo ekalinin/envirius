@@ -7,7 +7,7 @@ Changelog
   * ``mk`` command used ``unset -f`` for reset plugin's functions
   * added functions ``nv_is_zsh``/``nv_is_bash`` into common
   * basic autocompletion used for ``bash`` only
-  * more uninstall importamt of the ``nv_is_function``
+  * more universal implemetation of the ``nv_is_function``
   * more universal implemetation of the ``plug_list_versions`` in all plugins
 
 0.6.1 (14-04-2014)
