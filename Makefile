@@ -48,3 +48,9 @@ tests:
 release: tests
 	@git tag `grep -o -E '[0-9]\.[0-9]\.[0-9]{1,2}' src/nv-commands/version`
 	@git push --tags origin master
+contributors:
+	@git log --raw | grep "^Author: " | \
+		sort | uniq -c | sort -n -r | \
+		cut -d ':' -f 2 | sed 's/^/- /' | \
+		cut -d '<' -f1 | uniq > CONTRIBUTORS.md
+
