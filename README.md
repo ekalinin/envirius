@@ -112,6 +112,13 @@ Creating environment: mixed-rust-erlang ...
  * done (in 11 secs.)
 ```
 
+If you want to activate new environment just right after it creation, then do
+the following:
+
+```bash
+➥ nv mk mixed-rust-erlang --rust=0.9 --erlang=17.0-rc1 --on
+```
+
 Get list of the environments:
 
 ```bash
@@ -225,8 +232,6 @@ Optional elements
 * ``plug_configure`` — optional function — overrides default ``configure
   --prefix=<path-to-env>``
 * ``plug_download`` — optional function — overrides default downloading sources
-* ``plug_unpack`` — optional function — overrides default unpacking archive with
-  sources
 * ``plug_check_deps`` — optional function — check dependencies before plugin
   building
 * ``plug_state`` — variable — if == ``disabled`` then plugin is not active and will not
@@ -250,19 +255,18 @@ site generator under envirius with ``go`` plugin:
 ```bash
 $ whereis go
 go:
-$ nv mk go-hudo-test --go=1.2.1
-Creating environment: go-hudo-test ...
+$ nv mk go-hugo-test --go=1.2.1
+Creating environment: go-hugo-test ...
  * installing go==1.2.1 ...
  * done (in 8 secs.)
 $ nv ls 
 Available environment(s):
-go-hudo-test (go==1.2.1)
-$ nv on go-hudo-test
-(go-hudo-test) $ go get github.com/spf13/hugo
-(go-hudo-test) $ cd $GOPATH/src/github.com/spf13/hugo
-(go-hudo-test) $ go build -o hugo main.go
-(go-hudo-test) $ cd -
-(go-hudo-test) $ hugo version
+go-hugo-test (go==1.2.1)
+$ nv on go-hugo-test
+(go-hugo-test) $ go get github.com/spf13/hugo
+(go-hugo-test) $ cd $GOPATH/src/github.com/spf13/hugo
+(go-hugo-test) $ go build -o hugo main.go
+(go-hugo-test) $ hugo version
 Hugo Static Site Generator v0.11-dev
 ```
 
