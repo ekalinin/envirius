@@ -5,6 +5,7 @@ Changelog
 ------------------
 * ``nv_get_cpu_count``: added support for OSX
 * ``mk`` command: added reset for ``plug_check_deps``
+* fixed ``make uninstall`` & added it into README
 
 0.6.0 (11-04-2014)
 ------------------

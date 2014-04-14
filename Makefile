@@ -38,7 +38,8 @@ install:
 
 # save rc file & cache & created environments
 uninstall:
-	@rm -rf $(DST_HOME)/env
+	@rm -rf $(DST_HOME)/nv
+	@rm -rf $(DST_HOME)/nv_common
 	@rm -rf $(DST_HOME_CMD)
 	@rm -rf $(DST_HOME_PLG)
 

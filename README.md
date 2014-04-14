@@ -49,6 +49,18 @@ if [ -e ".envirius" ] && [ -f ".envirius" ]; then
 fi
 ```
 
+Uninstallation
+==============
+
+Just do the following:
+
+```bash
+$ cd envirius
+$ make uninstall
+```
+
+Cache and previously created environments will not be deleted.
+
 Available plugins
 =================
 
