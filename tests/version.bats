@@ -5,5 +5,5 @@ load test_helper
 @test "version: output version" {
     run nv version
     assert_success
-    assert_output "nv 0.6.1"
+    assert_output "nv 0.6.2"
 }
