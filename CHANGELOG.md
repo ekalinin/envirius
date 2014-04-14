@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.6.1 (14-04-2014)
+------------------
+* ``nv_get_cpu_count``: added support for OSX
+* ``mk`` command: added reset for ``plug_check_deps``
+
 0.6.0 (11-04-2014)
 ------------------
 * added ``use`` command as synonym to ``activate``/``on``

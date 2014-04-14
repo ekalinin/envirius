@@ -77,6 +77,7 @@ nv_cmd_default() {
             unset plug_download
             unset plug_unpack
             unset plug_configure
+            unset plug_check_deps
 
             # source plugin code & call installation part
             . $plugin_full_path
