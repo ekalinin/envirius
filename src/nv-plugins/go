@@ -2,10 +2,9 @@
 
 # Output lists of versions
 plug_list_versions() {
-    local versions=$(curl -s "https://code.google.com/p/go/downloads/list?can=1&q=Linux+386" | \
+    echo $(curl -s "https://code.google.com/p/go/downloads/list?can=1&q=Linux+386" | \
         egrep -o "\/go[0-9]+\.[0-9]+(\.[0-9]+|rc[0-9]{1})\.linux-386.tar.gz" | \
         sort | uniq | egrep -o "[0-9]+\.[0-9]+(\.[0-9]+|rc[0-9]{1})")
-    echo $versions
 }
 
 plug_install() {

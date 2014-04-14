@@ -4,9 +4,8 @@ PY_MIRROR="https://www.python.org"
 
 # Output lists of versions
 plug_list_versions() {
-    local versions=$(curl -s "$PY_MIRROR/downloads/" | grep "release-number" | \
+    echo $(curl -s "$PY_MIRROR/downloads/" | grep "release-number" | \
                 grep -E -o '\s[0-9]+\.[0-9]+\.[0-9]+')
-    echo $versions
 }
 
 # Return full url for tarball for download

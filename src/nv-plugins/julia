@@ -5,11 +5,10 @@ JUL_MIRROR="https://github.com/JuliaLang/julia"
 
 # Output lists of versions
 plug_list_versions() {
-    local versions=$(curl -s "$JUL_MIRROR/releases/" | \
+    echo $(curl -s "$JUL_MIRROR/releases/" | \
         grep "releases/tag" | \
         grep -E -o '\/v[0-9]+\.[0-9]+\.[0-9]+(-rc[0-9]+)*' | \
         sed 's/\/v//g')
-    echo $versions
 }
 
 # Plugin installation logic.

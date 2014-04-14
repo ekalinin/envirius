@@ -13,6 +13,7 @@ nv_cmd_default() {
 
         . $plugin_full_path
         nv_bold "* $plugin_name:"; echo
+        #echo " * loaded: $plugin_full_path"
 
         if [ "$plug_state" = "disabled" ]; then
             echo " - plugin disabled."
@@ -21,14 +22,15 @@ nv_cmd_default() {
 
         # get versions list by
         # calling `list` command from plugin
-        local versions_list=$(plug_list_versions)
+        local versions_list="$(plug_list_versions)"
+        #echo " * versions: $versions_list"
 
         # make a grid of versions
         local init_value=1
         local columns_count=${plug_list_versions_columns_count:-5}
         local columns_size=${plug_list_versions_columns_size:-12}
         local columns_counter=$init_value
-        #echo "$columns_count / $columns_size"
+        #echo " * params: $columns_count / $columns_size"
         for v in $versions_list
         do
             echo -n "`nv_rpad $v $columns_size`"

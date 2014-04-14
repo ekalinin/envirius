@@ -64,48 +64,51 @@ nv() {
 }
 
 
-_nv() {
+if [ "$(nv_is_bash)" = "yes" ]; then
 
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    prev="${COMP_WORDS[COMP_CWORD-1]}"
-    cmd="${COMP_WORDS[1]}"
+    _nv() {
+        cur="${COMP_WORDS[COMP_CWORD]}"
+        prev="${COMP_WORDS[COMP_CWORD-1]}"
+        cmd="${COMP_WORDS[1]}"
 
-    if [ $COMP_CWORD == 1 ] ; then
-        cmd_list=$(nv ls-commands | cut -d ' ' -f 3)
-        COMPREPLY=( $(compgen -W "${cmd_list}" -- ${cur}) )
-        return 0
-    fi
+        if [ $COMP_CWORD == 1 ] ; then
+            cmd_list=$(nv ls-commands | cut -d ' ' -f 3)
+            COMPREPLY=( $(compgen -W "${cmd_list}" -- ${cur}) )
+            return 0
+        fi
 
-    # ls-versions|mk --<plugin>[ --<plugin>]
-    if [[ ${cur} == -* && ("${cmd}" == "ls-versions" || "${cmd}" == "mk") ]] ; then
-        local opt_plugins=$(nv ls-plugins | awk '{print "--"$1}')
-        local opt_others=$(nv ${cmd} --help | grep "  \-\-" | cut -d ' ' -f 3)
-        COMPREPLY=( $(compgen -W "${opt_plugins} ${opt_others}" -- ${cur}) )
-        return 0
-    fi
+        # ls-versions|mk --<plugin>[ --<plugin>]
+        if [[ ${cur} == -* && ("${cmd}" == "ls-versions" || "${cmd}" == "mk") ]] ; then
+            local opt_plugins=$(nv ls-plugins | awk '{print "--"$1}')
+            local opt_others=$(nv ${cmd} --help | grep "  \-\-" | cut -d ' ' -f 3)
+            COMPREPLY=( $(compgen -W "${opt_plugins} ${opt_others}" -- ${cur}) )
+            return 0
+        fi
 
-    # rm <environment-name>[ <environment-name>]
-    if [[ "${cmd}" == "rm" ]] ; then
-        local env_list=$(nv ls --no-meta | tail -n+2)
-        COMPREPLY=( $(compgen -W "${env_list}" -- ${cur}) )
-        return 0
-    fi
+        # rm <environment-name>[ <environment-name>]
+        if [[ "${cmd}" == "rm" ]] ; then
+            local env_list=$(nv ls --no-meta | tail -n+2)
+            COMPREPLY=( $(compgen -W "${env_list}" -- ${cur}) )
+            return 0
+        fi
 
-    # any option from command's help output
-    if [[ ${cur} == -* ]] ; then
-        local command_opts=$(nv $prev --help | grep "\-\-" | cut -d ' ' -f 3)
-        COMPREPLY=( $(compgen -W "${command_opts}" -- ${cur}) )
-        return 0
-    fi
+        # any option from command's help output
+        if [[ ${cur} == -* ]] ; then
+            local command_opts=$(nv $prev --help | grep "\-\-" | cut -d ' ' -f 3)
+            COMPREPLY=( $(compgen -W "${command_opts}" -- ${cur}) )
+            return 0
+        fi
 
-    # on|activate|use|do <environment-name>
-    if [[ "${prev}" == "on" || "${prev}" == "activate" || "${prev}" == "use" || "${prev}" == "do" ]] ; then
-        local env_list=$(nv ls --no-meta | tail -n+2)
-        COMPREPLY=( $(compgen -W "${env_list}" -- ${cur}) )
-        return 0
-    fi
-}
+        # on|activate|use|do <environment-name>
+        if [[ "${prev}" == "on" || "${prev}" == "activate" || "${prev}" == "use" || "${prev}" == "do" ]] ; then
+            local env_list=$(nv ls --no-meta | tail -n+2)
+            COMPREPLY=( $(compgen -W "${env_list}" -- ${cur}) )
+            return 0
+        fi
+    }
 
-complete -F _nv nv
+    complete -F _nv nv
+
+fi
 
 # /* vim: set filetype=sh : */
