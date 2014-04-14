@@ -81,7 +81,7 @@ load test_helper
 @test "common: nv_get_cpu_count" {
     run nv_get_cpu_count
     assert_success
-    assert_output "`nproc`"
+    assert_range "${output}" 1 1024
 }
 
 @test "common: nv_get_time_diff" {
