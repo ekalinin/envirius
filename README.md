@@ -285,7 +285,7 @@ Hugo Static Site Generator v0.11-dev
 Dependencies
 ============
 
-* bash
+* bash / zsh (very basic support)
 * curl / wget
 * tar
 * git
