@@ -244,15 +244,25 @@ nv_get_build_path() {
 }
 
 nv_is_function() {
-    if [ "`type -t $1`" = "function" ]; then
+    local res=$(type $1 &> /dev/null; echo "$?")
+    if [ "$res" = "0" ]; then
         echo "yes"
     else
         echo "no"
     fi
 }
 
+# http://stackoverflow.com/a/9911082/716726
 nv_is_bash() {
     if [ -n "$BASH_VERSION" ]; then
+        echo "yes"
+    else
+        echo "no"
+    fi
+}
+
+nv_is_zsh() {
+    if [ -n "$ZSH_VERSION" ]; then
         echo "yes"
     else
         echo "no"

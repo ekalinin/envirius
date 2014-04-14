@@ -70,14 +70,15 @@ nv_cmd_default() {
             echo " * installing $plugin_name==$plugin_ver ..."
 
             # clear main functions
-            unset plug_url_for_download
-            unset plug_list_versions
-            unset plug_install
-            unset plug_post_install_actions
-            unset plug_download
-            unset plug_unpack
-            unset plug_configure
-            unset plug_check_deps
+            # http://hyperpolyglot.org/unix-shells
+            unset -f plug_url_for_download
+            unset -f plug_list_versions
+            unset -f plug_install
+            unset -f plug_post_install_actions
+            unset -f plug_download
+            unset -f plug_unpack
+            unset -f plug_configure
+            unset -f plug_check_deps
 
             # source plugin code & call installation part
             . $plugin_full_path
