@@ -4,7 +4,7 @@ envirius
 ``envirius`` — universal virtual environments manager.
 
 Idea
-====
+----
 
 Usually this kind of tools narrowly specialized for a particular
 programming language. For example:
@@ -21,6 +21,13 @@ than one programming language. For example, to create an environment with
 
 Support for new programming languages are implemented as plug-ins (see below).
 
+Features
+--------
+
+* clean design
+* easy extensible
+* test coverage
+
 Installation
 ============
 
@@ -35,17 +42,8 @@ $ make install
 Then youd need to add into your ``.bashrc`` the following:
 
 ```bash
-# activate envirius itself
-# (mandatory part)
 if [ -e "$HOME/.envirius/nv" ] ; then
     . ~/.envirius/nv
-fi
-
-# auto environment activation
-# when navigate to folder with '.envirius' file
-# (optional part)
-if [ -e ".envirius" ] && [ -f ".envirius" ]; then
-    nv on `cat .envirius`
 fi
 ```
 
@@ -80,7 +78,8 @@ New languages can be added as plugins (see below).
 Usage
 =====
 
-To check available plugins:
+Check available plugins
+-----------------------
 
 ```bash
 ➥ nv ls-plugins
@@ -94,7 +93,8 @@ python
 rust
 ```
 
-To check available versions for each plugin:
+Check available versions for each plugin
+----------------------------------------
 
 ```bash
 ➥ nv ls-versions --rust --erlang
@@ -113,7 +113,8 @@ R16A      R16B      R16B01    R16B02    R16B03-1  R16B03
 17.0-rc1
 ```
 
-To create an environment:
+Create an environment
+---------------------
 
 ```bash
 ➥ nv mk mixed-rust-erlang --rust=0.9 --erlang=17.0-rc1
@@ -129,9 +130,13 @@ the following:
 
 ```bash
 ➥ nv mk mixed-rust-erlang --rust=0.9 --erlang=17.0-rc1 --on
+Creating environment: mixed-rust-erlang ...
+....
+(mixed-rust-erlang) ➥ 
 ```
 
-Get list of the environments:
+Get list of the environments
+----------------------------
 
 ```bash
 ➥ nv ls
@@ -141,40 +146,48 @@ rust-0.9
 erl-17-rc1
 ```
 
-To activate environment:
+Activate environment
+--------------------
 
 ```bash
 ➥ nv on mixed-rust-erlang
 Environment mixed-rust-erlang activated.
 ```
 
-To check if environment activated:
+Get current activated environment
+---------------------------------
 
 ```bash
 (mixed-rust-erlang) ➥ nv current
 mixed-rust-erlang
 ```
 
-To deactivate environment:
+Deactivate environment
+----------------------
 
 ```bash
 (mixed-rust-erlang) ➥ nv off
 Environment mixed-rust-erlang was deactivated.
 ```
 
-To do something in environment without enabling it:
+Do something in environment without enabling it
+-----------------------------------------------
 
 ```bash
 ➥ nv do node-0.10.26 'npm -g ls'
 ```
 
-To get help:
+Get help
+--------
 
 ```bash
 ➥ nv --help
 ```
 
-To get help for a command (``do`` for example):
+Get help for a command
+----------------------
+
+For example, for ``do`` command:
 
 ```bash
 ➥ nv do --help
