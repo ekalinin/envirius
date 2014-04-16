@@ -27,14 +27,7 @@ install:
 	@echo "Please, add into your ~/.bashrc:"
 	@echo ""
 	@echo "# activate envirius"
-	@echo 'if [ -e "$(DST_HOME)/nv" ] ; then'
-	@echo '    . $(DST_HOME)/nv'
-	@echo "fi"
-	@echo ""
-	@echo "# auto env activation"
-	@echo 'if [ -e ".envirius" ] && [ -f ".envirius" ]; then'
-	@echo '    nv on `cat .envirius`'
-	@echo "fi"
+	@echo '[ -f "$(DST_HOME)/nv" ] && . $(DST_HOME)/nv'
 
 # save rc file & cache & created environments
 uninstall:

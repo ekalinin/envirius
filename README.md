@@ -42,9 +42,7 @@ $ make install
 Then youd need to add into your ``.bashrc`` the following:
 
 ```bash
-if [ -e "$HOME/.envirius/nv" ] ; then
-    . ~/.envirius/nv
-fi
+[ -f "$HOME/.envirius/nv" ] && . ~/.envirius/nv
 ```
 
 Uninstallation
