@@ -132,11 +132,12 @@ the following:
 ➥ nv mk mixed-rust-erlang --rust=0.9 --erlang=17.0-rc1 --on
 Creating environment: mixed-rust-erlang ...
 ....
+Environment mixed-rust-erlang activated.
 (mixed-rust-erlang) ➥ 
 ```
 
-Get list of the environments
-----------------------------
+Get list of environments
+------------------------
 
 ```bash
 ➥ nv ls
@@ -152,6 +153,7 @@ Activate environment
 ```bash
 ➥ nv on mixed-rust-erlang
 Environment mixed-rust-erlang activated.
+(mixed-rust-erlang) ➥ 
 ```
 
 Get current activated environment
@@ -162,12 +164,20 @@ Get current activated environment
 mixed-rust-erlang
 ```
 
+It will return empty, if environment is not activated:
+
+```bash
+➥ nv current
+➥ 
+```
+
 Deactivate environment
 ----------------------
 
 ```bash
 (mixed-rust-erlang) ➥ nv off
 Environment mixed-rust-erlang was deactivated.
+➥ 
 ```
 
 Do something in environment without enabling it
