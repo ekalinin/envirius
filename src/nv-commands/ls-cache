@@ -1,5 +1,5 @@
 nv_cmd_default() {
-    for entry in $(find $(nv_get_cache_full_path) -mindepth 1 -maxdepth 1 -iname "*.tar.gz")
+    for entry in $(find $(nv_get_arc_path) -mindepth 1 -maxdepth 1)
     do
         nv_get_filename $entry
     done
