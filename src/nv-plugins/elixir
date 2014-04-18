@@ -26,7 +26,7 @@ plug_install() {
                 "${plugin_name}-${version}.tar.gz")
     # execute in subshell
     (
-        local src_path=$(nv_get_cache_full_path "$plugin_name-$version-src")
+        local src_path=$(nv_get_src_path "$plugin_name" "$version")
 
         # unpacking (if need)
         if [ ! -d "$src_path" ]; then
