@@ -32,8 +32,26 @@ nv_usage() {
 
 
 nv() {
+    local cache=$(nv_get_cache_full_path)
+    local src=$(nv_get_src_path)
+    local build=$(nv_get_build_path)
+    local arc=$(nv_get_arc_path)
+
     mkdir -p $(nv_get_env_full_path)
-    mkdir -p $(nv_get_cache_full_path)
+    mkdir -p "$cache"
+    mkdir -p "$build"
+    mkdir -p "$src"
+    mkdir -p "$arc"
+
+    # some migrations
+    local migrated_sign=$(nv_get_cache_full_path 'migrated_on_0.7.0')
+    if [ ! -f $migrated_sign ]; then
+        local cmn_args="-mindepth 1 -maxdepth 1"
+        find "$cache" $cmn_args -type d -iname "*-build" -exec mv {} "$build" \;
+        find "$cache" $cmn_args -type d -iname "*-src" -exec mv {} "$src" \;
+        find "$cache" $cmn_args -type f -iname "*tar*" -exec mv {} "$arc" \;
+        touch $migrated_sign
+    fi;
 
     # get command from first command line arg
     SUBCOMMAND="$1"; shift
