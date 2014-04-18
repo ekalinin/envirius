@@ -24,11 +24,11 @@ plug_install() {
 
     # execute in subshell
     (
-        local src_path=$(nv_get_cache_full_path "$plugin_name-$version-src")
+        local src_path=$(nv_get_src_path "$plugin_name" "$version")
 
         # clone & compiling (if need)
         if [ ! -d "$src_path" ]; then
-            git clone git@github.com:JuliaLang/julia.git "$src_path"
+            git clone "${JUL_MIRROR}.git" "$src_path"
             cd "$src_path"
             git checkout v${version}
             make --jobs=$(nv_get_cpu_count)
