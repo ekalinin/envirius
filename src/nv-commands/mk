@@ -91,7 +91,9 @@ nv_cmd_default() {
             unset -f plug_unpack
             unset -f plug_configure
             unset -f plug_build
+            unset -f plug_fill_env
             unset -f plug_post_install_actions
+            unset -v plug_state
 
             # source plugin code & call installation part
             . $plugin_full_path
@@ -154,7 +156,7 @@ plug_download_default() {
     local tarball_filename=$(nv_get_filename "$tarball_url")
     local tarball_ext=$(nv_get_filename_ext "$tarball_filename")
     local tarball_cache="${plugin_name}-${version}.${tarball_ext}"
-    local tarball=$(nv_download_file "$tarball_url" ${tarball_cache})
+    local tarball=$(nv_download_file "$tarball_url" "$tarball_cache")
 
     echo "$tarball"
 }
@@ -225,7 +227,11 @@ plug_install_default() {
         fi
 
         # copy all bins into new environment
-        cp -r "$build_path"/* $env_name_full
+        if [ "`type -t plug_fill_env`" = "function" ]; then
+            plug_fill_env "$build_path" "$env_name_full"
+        else
+            cp -r "$build_path"/* $env_name_full
+        fi
     )
 }
 
