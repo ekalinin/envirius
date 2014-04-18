@@ -190,7 +190,7 @@ load test_helper
 @test "common: nv_get_build_path" {
     run nv_get_build_path "new-plugin" "version1"
     assert_success
-    assert_output "`nv_get_cache_full_path "build/new-plugin-version1"`"
+    assert_output "`nv_get_cache_full_path "build/new-plugin-version1-build"`"
 
     run nv_get_build_path
     assert_success
@@ -200,7 +200,7 @@ load test_helper
 @test "common: nv_get_src_path" {
     run nv_get_src_path "new-plugin" "version1"
     assert_success
-    assert_output "`nv_get_cache_full_path "src/new-plugin-version1"`"
+    assert_output "`nv_get_cache_full_path "src/new-plugin-version1-src"`"
 
     run nv_get_src_path
     assert_success

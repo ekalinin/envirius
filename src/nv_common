@@ -230,6 +230,20 @@ nv_get_system_arch() {
     fi
 }
 
+nv_get_system() {
+    local linux=$1
+    local osx=$2
+    local uname=$(uname)
+
+    if [ "$uname" = "Linux" ]; then
+        echo "$linux"
+    elif [ "$uname" = "Darwin" ]; then
+        echo "$osx"
+    else
+        echo "Not supported"
+    fi
+}
+
 nv_get_env_info_path() {
     local env_name=$1
     local env_full_path=$(nv_get_env_full_path "$env_name")
@@ -245,7 +259,7 @@ nv_get_target_full_path() {
     elif [ ! "$name" = "" ] && [ "$ver" = "" ]; then
         local build_path="${target}/${name}"
     else
-        local build_path="${target}/${name}-${ver}"
+        local build_path="${target}/${name}-${ver}-${target}"
     fi
     echo "$(nv_get_cache_full_path $build_path)"
 }
