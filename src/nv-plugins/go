@@ -1,54 +1,56 @@
 #!/bin/sh
 
+GO_MIRROR="https://code.google.com"
+
 # Output lists of versions
 plug_list_versions() {
-    echo $(curl -s "https://code.google.com/p/go/downloads/list?can=1&q=Linux+386" | \
+    echo $(curl -s "${GO_MIRROR}/p/go/downloads/list?can=1&q=Linux+386" | \
         egrep -o "\/go[0-9]+\.[0-9]+(\.[0-9]+|rc[0-9]{1})\.linux-386.tar.gz" | \
         sort | uniq | egrep -o "[0-9]+\.[0-9]+(\.[0-9]+|rc[0-9]{1})")
 }
 
-plug_install() {
-    local plugin_name=$1
-    local version=$2
-    local env_name_full=$3
-    local arch=$(nv_get_system_arch "386" "amd64")
+plug_url_for_download() {
+    local version=$1
+    local arch=$(nv_get_system_arch "x86" "x64")
+    local system=$(nv_get_system "linux" "darwin")
+    if [ "system" = "darwin" ]; then
+        echo "${GO_MIRROR}/files/go${version}.${system}-${arch}-osx10.8.tar.gz"
+    else
+        echo "${GO_MIRROR}/files/go${version}.${system}-${arch}.tar.gz"
+    fi
+}
 
-    local remote_tarball="https://go.googlecode.com/files/go${version}.linux-${arch}.tar.gz"
-    local tarball=$(nv_download_file "$remote_tarball" "${plugin_name}-${version}.tar.gz")
-    # execute in subshell
+plug_build() {
+    local src_path=$1
+    local build_path=$2
+    cp -r "$src_path"/*/* "$build_path"
+}
+
+plug_post_install_actions() {
+    local env_name=$1
+    local env_name_full=$2
+
+    mkdir -p "$env_name_full/bin"
+
+    # create symlinks on each executable file into main /bin
     (
-        local src_path=$(nv_get_cache_full_path "$plugin_name-$version-src")
-
-        # unpacking (if need)
-        if [ ! -d "$src_path" ]; then
-            mkdir -p "$src_path"
-            tar -xzf "$tarball" -C "$src_path"
-        fi
-
-        # copy /go directory into env
-        cp -r "$src_path"/* $env_name_full
-        # create environments /bin directory
-        mkdir -p "$env_name_full/bin"
-        # create symlinks on each executable file into main /bin
-        (
-            cd "$env_name_full/go/bin"
-            ln -s `find . -executable -type f -printf '../go/bin/%f\n'` "$env_name_full/bin"
-        )
-
-        # add activate script
-        local activate_path="$env_name_full/bin/activate-go"
-        echo "NV_ENV=\$(nv current)" > "$activate_path"
-        echo "NV_ENV_PATH=\$(nv_get_env_full_path \$NV_ENV)" >> "$activate_path"
-        echo "export NV_OLD_GOROOT=\$GOROOT" >> "$activate_path"
-        echo "export NV_OLD_GOPATH=\$GOPATH" >> "$activate_path"
-        echo "export GOROOT=\$NV_ENV_PATH/go" >> "$activate_path"
-        echo "export GOPATH=\$NV_ENV_PATH/gocode" >> "$activate_path"
-        echo "export PATH=\$GOPATH/bin:\$PATH" >> "$activate_path"
-        chmod a+x "$activate_path"
-
-        local deactivate_path="$env_name_full/bin/deactivate-go"
-        echo "export GOROOT=\$NV_OLD_GOROOT" > "$deactivate_path"
-        echo "export GOPATH=\$NV_OLD_GOPATH" >> "$deactivate_path"
-        chmod a+x "$deactivate_path"
+        cd "$env_name_full/go/bin"
+        ln -s `find . -executable -type f -printf '../go/bin/%f\n'` "$env_name_full/bin"
     )
+
+    # add activate script
+    local activate_path="$env_name_full/bin/activate-go"
+    echo "NV_ENV=\$(nv current)" > "$activate_path"
+    echo "NV_ENV_PATH=\$(nv_get_env_full_path \$NV_ENV)" >> "$activate_path"
+    echo "export NV_OLD_GOROOT=\$GOROOT" >> "$activate_path"
+    echo "export NV_OLD_GOPATH=\$GOPATH" >> "$activate_path"
+    echo "export GOROOT=\$NV_ENV_PATH/go" >> "$activate_path"
+    echo "export GOPATH=\$NV_ENV_PATH/gocode" >> "$activate_path"
+    echo "export PATH=\$GOPATH/bin:\$PATH" >> "$activate_path"
+    chmod a+x "$activate_path"
+
+    local deactivate_path="$env_name_full/bin/deactivate-go"
+    echo "export GOROOT=\$NV_OLD_GOROOT" > "$deactivate_path"
+    echo "export GOPATH=\$NV_OLD_GOPATH" >> "$deactivate_path"
+    chmod a+x "$deactivate_path"
 }
