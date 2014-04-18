@@ -106,19 +106,19 @@ nv_download_file() {
     if [ "$file" = "" ]; then
         file=$(nv_get_filename $url)
     fi
-    local file_in_cache=$(nv_get_cache_full_path $file)
-    local cache_dir=$(nv_get_cache_full_path)
+    local file_in_cache=$(nv_get_arc_path $file)
+    local cache_dir=$(nv_get_arc_path)
 
-    if [ ! -f $file_in_cache ]; then
-        local user_agent="envirius: $(nv version)"
-        if type curl &>/dev/null; then
-            curl -A "$user_agent" -C - -L -o "$file_in_cache" "$url"
-        elif type wget &>/dev/null; then
-            wget -U "$user_agent" -c -P $cache_dir "$url"
-        else
-          echo "Please, install 'curl' or 'wget' and try again."
-          exit 1
-        fi
+    local user_agent="envirius: $(nv version)"
+
+    # if file exists we just check it content equel the source
+    if type curl &>/dev/null; then
+        curl -A "$user_agent" -C - -L -o "$file_in_cache" "$url"
+    elif type wget &>/dev/null; then
+        wget -U "$user_agent" -c -P $cache_dir "$url"
+    else
+      echo "Please, install 'curl' or 'wget' and try again."
+      exit 1
     fi
 
     echo "$file_in_cache"
@@ -236,18 +236,30 @@ nv_get_env_info_path() {
     echo "$env_full_path/envirius.info"
 }
 
+nv_get_target_full_path() {
+    local target=$1
+    local name=$2
+    local ver=$3
+    if [ "$name" = "" ] && [ "$ver" = "" ]; then
+        local build_path="${target}/"
+    elif [ ! "$name" = "" ] && [ "$ver" = "" ]; then
+        local build_path="${target}/${name}"
+    else
+        local build_path="${target}/${name}-${ver}"
+    fi
+    echo "$(nv_get_cache_full_path $build_path)"
+}
+
 nv_get_build_path() {
-    local plugin_name=$1
-    local plugin_ver=$2
-    local build_path=$(nv_get_cache_full_path "${plugin_name}-${plugin_ver}-build")
-    echo "$build_path"
+    echo "$(nv_get_target_full_path 'build' $@)"
 }
 
 nv_get_src_path() {
-    local plugin_name=$1
-    local plugin_ver=$2
-    local build_path=$(nv_get_cache_full_path "${plugin_name}-${plugin_ver}-src")
-    echo "$build_path"
+    echo "$(nv_get_target_full_path 'src' $@)"
+}
+
+nv_get_arc_path() {
+    echo "$(nv_get_target_full_path 'arc' $@)"
 }
 
 nv_is_function() {

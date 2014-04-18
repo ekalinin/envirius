@@ -190,13 +190,31 @@ load test_helper
 @test "common: nv_get_build_path" {
     run nv_get_build_path "new-plugin" "version1"
     assert_success
-    assert_output "`nv_get_cache_full_path "new-plugin-version1-build"`"
+    assert_output "`nv_get_cache_full_path "build/new-plugin-version1"`"
+
+    run nv_get_build_path
+    assert_success
+    assert_output "`nv_get_cache_full_path "build/"`"
 }
 
 @test "common: nv_get_src_path" {
     run nv_get_src_path "new-plugin" "version1"
     assert_success
-    assert_output "`nv_get_cache_full_path "new-plugin-version1-src"`"
+    assert_output "`nv_get_cache_full_path "src/new-plugin-version1"`"
+
+    run nv_get_src_path
+    assert_success
+    assert_output "`nv_get_cache_full_path "src/"`"
+}
+
+@test "common: nv_get_arc_path" {
+    run nv_get_arc_path "new-plugin-source.tar.gz"
+    assert_success
+    assert_output "`nv_get_cache_full_path "arc/new-plugin-source.tar.gz"`"
+
+    run nv_get_arc_path
+    assert_success
+    assert_output "`nv_get_cache_full_path "arc/"`"
 }
 
 @test "common: nv_get_env_info_path" {
