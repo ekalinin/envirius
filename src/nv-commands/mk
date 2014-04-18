@@ -2,6 +2,7 @@ nv_cmd_default() {
     local env_name=$(nv_get_first_non_opt_value "$@")
     local save_meta="yes"
     local on_after_install="no"
+    local reinstall_env="no"
 
     # if env's name is empty try to generate it
     if [ "$env_name" = "" ]; then
@@ -9,6 +10,8 @@ nv_cmd_default() {
     do
     case $par in
         --no-meta)
+            ;;
+        --force)
             ;;
         --*)
             local plugin_name=$(nv_get_plugin_name $par)
@@ -31,16 +34,6 @@ nv_cmd_default() {
 
     local env_name_full=$(nv_get_env_full_path $env_name)
 
-    if [ -d "$env_name_full" ]; then
-        echo "Environment with name '$env_name' is already exists."
-        echo "Please, choose another name and try again."
-        echo ""
-        return 1
-    fi
-
-    echo "Creating environment: $env_name ..."
-    mkdir -p $env_name_full
-
     # find --no-meta before installation plugins
     for par in "$@"
     do
@@ -48,8 +41,25 @@ nv_cmd_default() {
         --no-meta)
             save_meta="no"
             ;;
+        --force)
+            reinstall_env="yes"
     esac
     done
+
+    if [ -d "$env_name_full" ]; then
+        if [ "$reinstall_env" = "yes" ]; then
+            (nv rm "$env_name")
+        else
+            echo "Environment with name '$env_name' is already exists."
+            echo "Please, choose another name and try again."
+            echo ""
+            return 1
+        fi
+    fi
+
+    echo "Creating environment: $env_name ..."
+    mkdir -p $env_name_full
+
 
     # call each plugin for installation into new env
     for par in "$@"
@@ -57,6 +67,8 @@ nv_cmd_default() {
     case $par in
         # skip this option
         --no-meta)
+            ;;
+        --force)
             ;;
         --on)
             on_after_install="yes"
@@ -71,14 +83,15 @@ nv_cmd_default() {
 
             # clear main functions
             # http://hyperpolyglot.org/unix-shells
-            unset -f plug_url_for_download
             unset -f plug_list_versions
+            unset -f plug_url_for_download
+            unset -f plug_check_deps
             unset -f plug_install
-            unset -f plug_post_install_actions
             unset -f plug_download
             unset -f plug_unpack
             unset -f plug_configure
-            unset -f plug_check_deps
+            unset -f plug_build
+            unset -f plug_post_install_actions
 
             # source plugin code & call installation part
             . $plugin_full_path
@@ -188,23 +201,27 @@ plug_install_default() {
 
             mkdir -p "$build_path"
 
-            # change directory
-            cd "$src_path"
-            local subdir=$(find . -mindepth 1 -maxdepth 1 -type d)
-            cd "$subdir"
-
-            # compiling
-            if [ "`type -t plug_configure`" = "function" ]; then
-                plug_configure "$build_path"
+            if [ "`nv_is_function 'plug_build'`" = "yes" ]; then
+                plug_build "$src_path" "$build_path"
             else
-                ./configure --prefix="$build_path" || {
-                    echo 'envirius: configure failed!' ;
-                    rm -rf "$build_path"
-                    exit 1;
-                }
+                # change directory
+                cd "$src_path"
+                local subdir=$(find . -mindepth 1 -maxdepth 1 -type d)
+                cd "$subdir"
+
+                # compiling
+                if [ "`type -t plug_configure`" = "function" ]; then
+                    plug_configure "$build_path"
+                else
+                    ./configure --prefix="$build_path" || {
+                        echo 'envirius: configure failed!' ;
+                        rm -rf "$build_path"
+                        exit 1;
+                    }
+                fi
+                make --jobs=$(nv_get_cpu_count)
+                make install
             fi
-            make --jobs=$(nv_get_cpu_count)
-            make install
         fi
 
         # copy all bins into new environment
@@ -223,6 +240,7 @@ nv_cmd_help() {
     echo "Options:"
     echo "  --on         Activate environment after installation"
     echo "  --no-meta    Do not store meta information in the environment (plugin list)."
+    echo "  --force      Re-create environment if it already exists"
     echo ""
     echo "Examples:"
     echo "    If environment name is empty then it will be ganerated automatically."
