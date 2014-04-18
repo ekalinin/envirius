@@ -161,7 +161,7 @@ plug_install_default() {
 
     # execute in subshell
     (
-        local src_path=$(nv_get_cache_full_path "$plugin_name-$version-src")
+        local src_path=$(nv_get_src_path "$plugin_name" "$version")
         local build_path=$(nv_get_build_path "$plugin_name" "$version")
 
         # if not buid yet then do it

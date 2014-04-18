@@ -193,6 +193,12 @@ load test_helper
     assert_output "`nv_get_cache_full_path "new-plugin-version1-build"`"
 }
 
+@test "common: nv_get_src_path" {
+    run nv_get_src_path "new-plugin" "version1"
+    assert_success
+    assert_output "`nv_get_cache_full_path "new-plugin-version1-src"`"
+}
+
 @test "common: nv_get_env_info_path" {
     local target="$NV_HOME/envs/test_env/envirius.info"
     local actual=$(nv_get_env_info_path "test_env")

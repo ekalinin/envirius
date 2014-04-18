@@ -243,6 +243,13 @@ nv_get_build_path() {
     echo "$build_path"
 }
 
+nv_get_src_path() {
+    local plugin_name=$1
+    local plugin_ver=$2
+    local build_path=$(nv_get_cache_full_path "${plugin_name}-${plugin_ver}-src")
+    echo "$build_path"
+}
+
 nv_is_function() {
     local res=$(type $1 &> /dev/null; echo "$?")
     if [ "$res" = "0" ]; then
