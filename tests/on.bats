@@ -22,7 +22,7 @@ load test_helper
     assert_fail "Please, specify the name of the environment that will be activated."
 }
 
-@test "on: off previusly activated environment" {
+@test "on: off previously activated environment" {
     run nv mk empty_env1
     assert_success
     run nv mk empty_env2
@@ -54,7 +54,7 @@ load test_helper
     assert_equal "" "$NV_OLD_PS1"
 }
 
-@test "on: don't create any envs" {
+@test "on: wrong args don't create any envs" {
     run nv ls
     assert_success
     [ "${lines[1]}"  = "" ]
@@ -88,7 +88,7 @@ load test_helper
     assert_fail
 }
 
-@test "activate: off previusly activated environment" {
+@test "activate: off previously activated environment" {
     run nv mk empty_env1
     assert_success
     run nv mk empty_env2
@@ -120,7 +120,7 @@ load test_helper
     assert_equal "" "$NV_OLD_PS1"
 }
 
-@test "activate: don't create any envs" {
+@test "activate: wrong args don't create any envs" {
     run nv ls
     assert_success
     [ "${lines[1]}"  = "" ]
@@ -154,7 +154,7 @@ load test_helper
     assert_fail
 }
 
-@test "use: off previusly activated environment" {
+@test "use: off previously activated environment" {
     run nv mk empty_env1
     assert_success
     run nv mk empty_env2
@@ -186,7 +186,7 @@ load test_helper
     assert_equal "" "$NV_OLD_PS1"
 }
 
-@test "use: don't create any envs" {
+@test "use: wrong args don't create any envs" {
     run nv ls
     assert_success
     [ "${lines[1]}"  = "" ]
