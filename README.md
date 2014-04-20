@@ -82,13 +82,16 @@ Check available plugins
 ```bash
 ➥ nv ls-plugins
 elixir
+elixir-prebuilt
 erlang
-go
+go-prebuilt
 haskell
 julia
 node
+node-prebuilt
 python
 rust
+rust-prebuilt
 ```
 
 Check available versions for each plugin
@@ -134,6 +137,51 @@ Environment mixed-rust-erlang activated.
 (mixed-rust-erlang) ➥ 
 ```
 
+Activate/deactivate environment
+-------------------------------
+
+By default activating environment executes in a new shell:
+
+```bash
+➥ echo $$
+112
+➥ nv on mixed-rust-erlang
+Environment mixed-rust-erlang activated.
+(mixed-rust-erlang) ➥  echo $$
+3437
+```
+
+So for exit just do ``exit``:
+```bash
+(mixed-rust-erlang) ➥  echo $$
+3437
+(mixed-rust-erlang) ➥  exit`
+➥ echo $$
+112
+```
+
+If you want to activate environment in the same shell do the following:
+
+```bash
+➥ echo $$
+5099
+➥ nv on --same-shell mixed-rust-erlang
+Environment mixed-rust-erlang activated.
+(mixed-rust-erlang) ➥  echo $$
+5099
+```
+
+To deactivate this shell don't use ``exit``, use ``nv off``:
+
+```bash
+(mixed-rust-erlang) ➥  echo $$
+5099
+(mixed-rust-erlang) ➥ nv off
+Environment mixed-rust-erlang was deactivated.
+➥  echo $$
+5099
+```
+
 Get list of environments
 ------------------------
 
@@ -143,15 +191,6 @@ Available environment(s):
 mixed-rust-erlang
 rust-0.9
 erl-17-rc1
-```
-
-Activate environment
---------------------
-
-```bash
-➥ nv on mixed-rust-erlang
-Environment mixed-rust-erlang activated.
-(mixed-rust-erlang) ➥ 
 ```
 
 Get current activated environment
@@ -166,15 +205,6 @@ It will return empty, if environment is not activated:
 
 ```bash
 ➥ nv current
-➥ 
-```
-
-Deactivate environment
-----------------------
-
-```bash
-(mixed-rust-erlang) ➥ nv off
-Environment mixed-rust-erlang was deactivated.
 ➥ 
 ```
 
@@ -327,9 +357,20 @@ To run tests:
 
 ```bash
 ➥ make tests
+```
+
+With hot cache on ``Intel(R) Core(TM) i7-3517U CPU @ 1.90GHz`` with 4 GB of RAM
+on Ubuntu 13.10 (32-bits) tests takes:
+
+```bash
+➥ times make tests
 ...
 
-88 tests, 0 failures
+100 tests, 0 failure
+
+real    8m26.572s
+user    1m17.428s
+sys     2m25.352s
 ```
 
 Version History
