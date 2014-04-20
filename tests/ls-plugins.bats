@@ -16,5 +16,6 @@ load test_helper
     assert_equal "node-prebuilt"    "${lines[7]}"
     assert_equal "python"           "${lines[8]}"
     assert_equal "rust"             "${lines[9]}"
-    assert_equal ""                 "${lines[10]}"
+    assert_equal "rust-prebuilt"    "${lines[10]}"
+    assert_equal ""                 "${lines[11]}"
 }
