@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# source parent plagin
+. "$(nv_get_plugin_full_path 'elixir')"
+
+# disable this function from parent plugin
+unset -f plug_install
+
+# Return full url for archive
+plug_url_for_download() {
+    local version=$1
+    echo "${ELX_MIRROR}/releases/download/v${version}/Precompiled.zip"
+}
+
+# Custom unpacking
+plug_unpack() {
+    local tarball=$1
+    local src_path=$2
+
+    unzip "$tarball" -d "$src_path"
+}
+
+# Like we build
+plug_build() {
+    local src_path=$1
+    local build_path=$2
+    cp -r "$src_path"/* "$build_path"
+}
