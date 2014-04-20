@@ -187,6 +187,16 @@ load test_helper
     fi
 }
 
+@test "common: nv_get_system" {
+    run nv_get_system "linux" "osx"
+    assert_success
+    if [ "`uname`" = "Linux" ]; then
+        assert_output "linux"
+    else
+        assert_output "osx"
+    fi
+}
+
 @test "common: nv_get_build_path" {
     run nv_get_build_path "new-plugin" "version1"
     assert_success
