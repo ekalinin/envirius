@@ -224,6 +224,9 @@ plug_install_default() {
                 make --jobs=$(nv_get_cpu_count)
                 make install
             fi
+
+            # remove unpacked stuff
+            rm -rf "$src_path"
         fi
 
         # copy all bins into new environment
