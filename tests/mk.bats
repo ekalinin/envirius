@@ -13,7 +13,6 @@ load test_helper
 }
 
 @test "mk: with disabled plugin" {
-    #TODO: add fake disabled plugin after python will be enable
     run nv mk test_env --stub=3.2 --no-meta
     assert_success
     assert_equal "Creating environment: test_env ..." "${lines[0]}"
@@ -87,4 +86,24 @@ load test_helper
     nv mk test_env1 --on
 
     [ "$NV_USED_ENV" = "test_env1" ]
+}
+
+@test "mk: with --force option" {
+    run nv mk test_env
+    assert_success "Creating environment: test_env ..."
+
+    run nv mk test_env
+    assert_success
+    assert_equal "Environment with name 'test_env' is already exists." "${lines[0]}"
+    assert_equal "Please, choose another name and try again." "${lines[1]}"
+
+    run nv mk test_env
+    assert_success
+    assert_equal "Environment with name 'test_env' is already exists." "${lines[0]}"
+    assert_equal "Please, choose another name and try again." "${lines[1]}"
+
+    run nv mk test_env --force
+    assert_success
+    assert_equal "Environment $(nv_bold 'test_env') was deleted." "${lines[0]}"
+    assert_equal "Creating environment: test_env ..." "${lines[1]}"
 }
