@@ -1,4 +1,4 @@
-NV_VERSION=0.6.2
+NV_VERSION=0.7.0
 
 nv_cmd_default() {
     echo "$(nv_cmd_name) $NV_VERSION"

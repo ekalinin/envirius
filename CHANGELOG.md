@@ -1,6 +1,28 @@
 Changelog
 =========
 
+0.7.0 (21-04-2014)
+------------------
+* ``on``/``activate``/``use`` now works in a new shell by default
+* ``on``/``activate``/``use``/``mk`` added option ``--same-shell``
+* cache redesign: splited into sub-dirs {arc,src,build}
+  * added migration script for the new cache
+  * ``common``: added ``get_(build|arc|src)_path`` functions
+  * fixed commands ``rm-cache``/``ls-cache``
+  * fixed plugin: ``elixir``
+  * fixed plugin: ``julia``
+* added ``nv_get_system`` into ``common``
+* ``mk`` added ``--force`` option
+* ``mk`` added reset for ``plug_state``
+* ``mk`` added clean ``src`` folder after build (for saving disk space)
+* added ``plug_build`` function for usage in plugins
+* added ``plug_build_env`` function for usage in plugins
+* renamed plugin ``go`` into ``go-prebuilt``
+* added plugin ``node-prebuild``
+* added plugin ``rust-prebuilt``
+* added plugin ``elixir-prebuilt``
+* improved bash autocompletion for commands ``on``/``activate``/``use``/``do``
+
 0.6.2 (14-04-2014)
 ------------------
 * ``zsh`` init support:
