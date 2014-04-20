@@ -24,19 +24,28 @@ plug_install() {
 
     # execute in subshell
     (
-        local src_path=$(nv_get_src_path "$plugin_name" "$version")
+        local arc_path=$(nv_get_arc_path "$plugin_name" "$version")
 
-        # clone & compiling (if need)
-        if [ ! -d "$src_path" ]; then
-            git clone "${JUL_MIRROR}.git" "$src_path"
-            cd "$src_path"
+        # clone
+        if [ ! -d "$arc_path" ]; then
+            git clone "${JUL_MIRROR}.git" "$arc_path"
+        fi
+
+        # compiling (if need)
+        if [ ! -e "$arc_path/usr/bin/julia" ]; then
+            cd "$arc_path"
             git checkout v${version}
-            make --jobs=$(nv_get_cpu_count)
+            make clean
+            make -j $(nv_get_cpu_count) && {
+                echo 'envirius: configure failed!' ;
+                rm -rf "$arc_path/usr"/*;
+                exit 1;
+            }
         fi
 
         # copy bin into new environment
         mkdir -p "$env_name_full/bin"
-        cp -r "$src_path/usr"/* "$env_name_full"
+        cp -r "$arc_path/usr"/* "$env_name_full"
         ln -s "$env_name_full/bin/julia-readline" "$env_name_full/bin/julia"
     )
 }
