@@ -3,7 +3,7 @@
 load test_helper
 
 @test "plugin: python + go" {
-    run nv mk mixed_py_go --python=3.3.5 --go=1.2.1
+    run nv mk mixed_py_go --python=3.3.5 --go-prebuilt=1.2.1
     assert_success
 
     nv on mixed_py_go
@@ -22,7 +22,7 @@ load test_helper
 }
 
 @test "plugin: go + python" {
-    run nv mk mixed_py_go --go=1.2.1 --python=3.3.5 
+    run nv mk mixed_py_go --go-prebuilt=1.2.1 --python=3.3.5 
     assert_success
 
     nv on mixed_py_go

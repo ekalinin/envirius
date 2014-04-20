@@ -2,8 +2,8 @@
 
 load test_helper
 
-@test "plugin: go" {
-    run nv mk go_test_env --go=1.2.1
+@test "plugin: go-prebuilt" {
+    run nv mk go_test_env --go-prebuilt=1.2.1
     assert_success
 
     nv on go_test_env
@@ -13,7 +13,7 @@ load test_helper
 }
 
 @test "plugin: go, restore old values for the GOROOT/GOPATH" {
-    run nv mk go_test_env --go=1.2.1
+    run nv mk go_test_env --go-prebuilt=1.2.1
     assert_success
 
     GOROOT="test_GOROOT"
@@ -27,7 +27,7 @@ load test_helper
 }
 
 @test "plugin: go, GOROOT/GOPATH after copy" {
-    run nv mk go_test_env --go=1.2.1
+    run nv mk go_test_env --go-prebuilt=1.2.1
     assert_success
 
     run nv cp go_test_env go_test_env_copy
