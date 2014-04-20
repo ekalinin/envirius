@@ -30,6 +30,7 @@ plug_url_for_download() {
     echo "$ERL_MIRROR/otp_src_${version}.tar.gz"
 }
 
+# Install rebar
 plug_post_install_actions() {
     local env_name=$1
     local env_name_full=$2

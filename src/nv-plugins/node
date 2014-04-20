@@ -20,6 +20,7 @@ plug_url_for_download() {
     echo "$NODE_MIRROR/v${version}/node-v${version}.tar.gz"
 }
 
+# Fix paths in shabangs
 plug_post_install_actions() {
     local env_name=$1
     local env_name_full=$2

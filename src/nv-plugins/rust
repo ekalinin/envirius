@@ -8,10 +8,6 @@ plug_list_versions() {
 }
 
 # Return full url for tarball for download
-# and future installation
-#
-# Input:
-#   $1 — version for installation
 plug_url_for_download() {
     local version=$1
     echo "http://static.rust-lang.org/dist/rust-${version}.tar.gz"
