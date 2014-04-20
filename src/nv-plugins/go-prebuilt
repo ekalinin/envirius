@@ -12,12 +12,8 @@ plug_list_versions() {
 plug_url_for_download() {
     local version=$1
     local arch=$(nv_get_system_arch "386" "amd64")
-    local system=$(nv_get_system "linux" "darwin")
-    if [ "$system" = "darwin" ]; then
-        echo "https://go.googlecode.com/files/go${version}.${system}-${arch}-osx10.8.tar.gz"
-    else
-        echo "https://go.googlecode.com/files/go${version}.${system}-${arch}.tar.gz"
-    fi
+    local system=$(nv_get_system "linux-${arch}" "darwin-${arch}-osx10.8")
+    echo "https://go.googlecode.com/files/go${version}.${system}.tar.gz"
 }
 
 # Like we build
