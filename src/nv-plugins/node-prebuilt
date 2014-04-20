@@ -25,6 +25,7 @@ plug_url_for_download() {
     echo "$NODE_MIRROR/v${version}/node-v${version}-${system}-${arch}.tar.gz"
 }
 
+# Like we build
 plug_build() {
     local src_path=$1
     local build_path=$2
