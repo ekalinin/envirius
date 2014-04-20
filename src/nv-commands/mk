@@ -91,7 +91,7 @@ nv_cmd_default() {
             unset -f plug_unpack
             unset -f plug_configure
             unset -f plug_build
-            unset -f plug_fill_env
+            unset -f plug_build_env
             unset -f plug_post_install_actions
             unset -v plug_state
 
@@ -230,8 +230,8 @@ plug_install_default() {
         fi
 
         # copy all bins into new environment
-        if [ "`type -t plug_fill_env`" = "function" ]; then
-            plug_fill_env "$build_path" "$env_name_full"
+        if [ "`type -t plug_build_env`" = "function" ]; then
+            plug_build_env "$build_path" "$env_name_full"
         else
             cp -r "$build_path"/* $env_name_full
         fi
