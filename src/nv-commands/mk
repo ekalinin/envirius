@@ -3,6 +3,7 @@ nv_cmd_default() {
     local save_meta="yes"
     local on_after_install="no"
     local reinstall_env="no"
+    local start_new_shell="yes"
 
     # if env's name is empty try to generate it
     if [ "$env_name" = "" ]; then
@@ -69,6 +70,9 @@ nv_cmd_default() {
         --no-meta)
             ;;
         --force)
+            ;;
+        --same-shell)
+            start_new_shell="no"
             ;;
         --on)
             on_after_install="yes"
@@ -144,7 +148,11 @@ nv_cmd_default() {
     done
 
     if [ "$on_after_install" = "yes" ]; then
-        nv on $env_name
+        if [ "$start_new_shell" = "yes" ]; then
+            nv on $env_name
+        else
+            nv on $env_name --same-shell
+        fi
     fi
 }
 
@@ -248,6 +256,7 @@ nv_cmd_help() {
     echo ""
     echo "Options:"
     echo "  --on         Activate environment after installation"
+    echo "  --same-shell Enable environment in the same shell (only if --on entered)"
     echo "  --no-meta    Do not store meta information in the environment (plugin list)."
     echo "  --force      Re-create environment if it already exists"
     echo ""

@@ -6,7 +6,7 @@ load test_helper
     run nv mk python_test_env --python=3.4.0
     assert_success
 
-    nv on python_test_env
+    nv on --same-shell python_test_env
 
     run python3.4 -V
     assert_success
@@ -20,7 +20,7 @@ load test_helper
     [ -f "$NV_HOME/envs/python_test_env/bin/pip" ]
     [ -f "$NV_HOME/envs/python_test_env/bin/python" ]
 
-    nv on python_test_env
+    nv on --same-shell python_test_env
 
     run python -V
     assert_success

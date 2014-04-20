@@ -12,13 +12,13 @@ load test_helper
     [ "${lines[0]}"  = "Available environment(s):" ]
     [ "${lines[1]}"  = "empty_env2" ]
 
-    nv on test_empty_env2
+    nv on --same-shell test_empty_env2
     assert_equal "test_empty_env2" "$NV_USED_ENV"
     [ "`echo $NV_OLD_PATH`" != "" ]
 }
 
 @test "on: empty env name" {
-    run nv on
+    run nv on --same-shell
     assert_fail "Please, specify the name of the environment that will be activated."
 }
 
@@ -28,11 +28,11 @@ load test_helper
     run nv mk empty_env2
     assert_success
 
-    nv on test_empty_env1
+    nv on --same-shell test_empty_env1
     run nv current
     assert_success "test_empty_env1"
 
-    nv on test_empty_env2
+    nv on --same-shell test_empty_env2
     run nv current
     assert_success "test_empty_env2"
 }
@@ -41,7 +41,7 @@ load test_helper
     run nv mk empty_env1
     assert_success
 
-    nv on test_empty_env1 --prompt-enable
+    nv on --same-shell test_empty_env1 --prompt-enable
     [ `echo "$PS1" | grep "(test_empty_env1)"` ]
 }
 
@@ -49,7 +49,7 @@ load test_helper
     run nv mk empty_env1
     assert_success
 
-    nv on test_empty_env1 --prompt-disable
+    nv on --same-shell test_empty_env1 --prompt-disable
     assert_equal "" `echo "$PS1" | grep "(test_empty_env1)"`
     assert_equal "" "$NV_OLD_PS1"
 }
@@ -59,7 +59,7 @@ load test_helper
     assert_success
     [ "${lines[1]}"  = "" ]
 
-    run nv on --helpp
+    run nv on --same-shell --helpp
     assert_fail
 
     run nv ls
@@ -77,14 +77,14 @@ load test_helper
     [ "${lines[0]}"  = "Available environment(s):" ]
     [ "${lines[1]}"  = "empty_env2" ]
     # end of copy from test for 'on' command
-    nv activate test_empty_env2
+    nv activate --same-shell test_empty_env2
     [ "$status" -eq 0 ]
     [ "`echo $NV_USED_ENV`" = "test_empty_env2" ]
     [ "`echo $NV_OLD_PATH`" != "" ]
 }
 
 @test "activate: empty env name" {
-    run nv activate
+    run nv activate --same-shell
     assert_fail
 }
 
@@ -94,11 +94,11 @@ load test_helper
     run nv mk empty_env2
     assert_success
 
-    nv activate test_empty_env1
+    nv activate --same-shell test_empty_env1
     run nv current
     assert_success "test_empty_env1"
 
-    nv activate test_empty_env2
+    nv activate --same-shell test_empty_env2
     run nv current
     assert_success "test_empty_env2"
 }
@@ -107,7 +107,7 @@ load test_helper
     run nv mk empty_env1
     assert_success
 
-    nv activate test_empty_env1 --prompt-enable
+    nv activate --same-shell test_empty_env1 --prompt-enable
     [ `echo "$PS1" | grep "(test_empty_env1)"` ]
 }
 
@@ -115,7 +115,7 @@ load test_helper
     run nv mk empty_env1
     assert_success
 
-    nv activate test_empty_env1 --prompt-disable
+    nv activate --same-shell test_empty_env1 --prompt-disable
     assert_equal "" `echo "$PS1" | grep "(test_empty_env1)"`
     assert_equal "" "$NV_OLD_PS1"
 }
@@ -125,7 +125,7 @@ load test_helper
     assert_success
     [ "${lines[1]}"  = "" ]
 
-    run nv activate --helpp
+    run nv activate --same-shell --helpp
     assert_fail
 
     run nv ls
@@ -143,14 +143,14 @@ load test_helper
     [ "${lines[0]}"  = "Available environment(s):" ]
     [ "${lines[1]}"  = "empty_env2" ]
     # end of copy from test for 'on' command
-    nv use test_empty_env2
+    nv use --same-shell test_empty_env2
     [ "$status" -eq 0 ]
     [ "`echo $NV_USED_ENV`" = "test_empty_env2" ]
     [ "`echo $NV_OLD_PATH`" != "" ]
 }
 
 @test "use: empty env name" {
-    run nv use
+    run nv use --same-shell
     assert_fail
 }
 
@@ -160,11 +160,11 @@ load test_helper
     run nv mk empty_env2
     assert_success
 
-    nv use test_empty_env1
+    nv use --same-shell test_empty_env1
     run nv current
     assert_success "test_empty_env1"
 
-    nv use test_empty_env2
+    nv use --same-shell test_empty_env2
     run nv current
     assert_success "test_empty_env2"
 }
@@ -173,7 +173,7 @@ load test_helper
     run nv mk empty_env1
     assert_success
 
-    nv use test_empty_env1 --prompt-enable
+    nv use --same-shell test_empty_env1 --prompt-enable
     [ `echo "$PS1" | grep "(test_empty_env1)"` ]
 }
 
@@ -181,7 +181,7 @@ load test_helper
     run nv mk empty_env1
     assert_success
 
-    nv use test_empty_env1 --prompt-disable
+    nv use --same-shell test_empty_env1 --prompt-disable
     assert_equal "" `echo "$PS1" | grep "(test_empty_env1)"`
     assert_equal "" "$NV_OLD_PS1"
 }
@@ -191,7 +191,7 @@ load test_helper
     assert_success
     [ "${lines[1]}"  = "" ]
 
-    run nv use --helpp
+    run nv use --same-shell --helpp
     assert_fail
 
     run nv ls

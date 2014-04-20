@@ -42,14 +42,14 @@ load test_helper
     assert_equal "test_env" "${lines[1]}"
     assert_equal "test_env_copy" "${lines[2]}"
 
-    nv on test_env
+    nv on --same-shell test_env
 
     run rustc -v
     assert_success
     assert_equal "${lines[0]}" "rustc 0.9"
 
     nv off
-    nv on test_env_copy
+    nv on --same-shell test_env_copy
 
     run rustc -v
     assert_success

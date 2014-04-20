@@ -7,7 +7,7 @@ load test_helper
     assert_success
     [ "${lines[0]}"  = "Creating environment: empty_env2 ..." ]
 
-    nv activate test_empty_env2
+    nv on --same-shell test_empty_env2
     assert_success
     [ "`echo $NV_USED_ENV`" = "test_empty_env2" ]
 

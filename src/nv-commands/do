@@ -18,7 +18,7 @@ nv_cmd_default() {
         *)
             # execute in subshell
             (
-                nv on $env_name && $action
+                nv on --same-shell $env_name && $action
             )
             ;;
     esac

@@ -6,7 +6,7 @@ load test_helper
     run nv mk rust_test_env --rust=0.9
     assert_success
 
-    nv on rust_test_env
+    nv on --same-shell rust_test_env
 
     run rustc -v
     assert_success

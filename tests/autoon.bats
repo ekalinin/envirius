@@ -37,7 +37,7 @@ load test_helper
     rm -f ./.envirius
 
     nv mk empty_env
-    nv on empty_env
+    nv on empty_env --same-shell
     nv autoon
 
     # file should be created

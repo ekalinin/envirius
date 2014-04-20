@@ -12,7 +12,7 @@ load test_helper
     [ "${lines[0]}"  = "Available environment(s):" ]
     [ "${lines[1]}"  = "empty_env2" ]
 
-    nv on test_empty_env2
+    nv on --same-shell test_empty_env2
     assert_equal "test_empty_env2" "$NV_USED_ENV"
 
     nv off
@@ -24,7 +24,7 @@ load test_helper
     run nv mk empty_env2
     assert_success
 
-    nv on test_empty_env2 --prompt-enable
+    nv on --same-shell test_empty_env2 --prompt-enable
     assert_equal "test_empty_env2" "$NV_USED_ENV"
 
     nv off
@@ -42,7 +42,7 @@ load test_helper
     [ "${lines[0]}"  = "Available environment(s):" ]
     [ "${lines[1]}"  = "empty_env2" ]
 
-    nv activate test_empty_env2
+    nv on --same-shell test_empty_env2
     [ "`echo $NV_USED_ENV`" = "test_empty_env2" ]
 
     nv deactivate
@@ -54,7 +54,7 @@ load test_helper
     run nv mk empty_env2
     assert_success
 
-    nv activate test_empty_env2 --prompt-enable
+    nv on --same-shell test_empty_env2 --prompt-enable
     assert_equal "test_empty_env2" "$NV_USED_ENV"
 
     nv deactivate

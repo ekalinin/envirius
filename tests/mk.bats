@@ -83,7 +83,7 @@ load test_helper
 
     [ "$NV_USED_ENV" = "" ]
 
-    nv mk test_env1 --on
+    nv mk test_env1 --on --same-shell
 
     [ "$NV_USED_ENV" = "test_env1" ]
 }

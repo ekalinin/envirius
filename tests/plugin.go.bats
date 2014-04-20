@@ -6,7 +6,7 @@ load test_helper
     run nv mk go_test_env --go-prebuilt=1.2.1
     assert_success
 
-    nv on go_test_env
+    nv on --same-shell go_test_env
 
     run go version
     assert_success "go version go1.2.1 linux/386"
@@ -19,7 +19,7 @@ load test_helper
     GOROOT="test_GOROOT"
     GOPATH="test_GOPATH"
 
-    nv on go_test_env
+    nv on --same-shell go_test_env
     nv off
 
     [ "$GOROOT" = "test_GOROOT" ]
@@ -33,7 +33,7 @@ load test_helper
     run nv cp go_test_env go_test_env_copy
     assert_success
 
-    nv on go_test_env_copy
+    nv on --same-shell go_test_env_copy
 
     [ "$GOROOT" = "$NV_HOME/envs/go_test_env_copy/go" ]
     [ "$GOPATH" = "$NV_HOME/envs/go_test_env_copy/gocode" ]

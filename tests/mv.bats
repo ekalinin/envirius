@@ -39,7 +39,7 @@ load test_helper
     assert_equal "Available environment(s):" "${lines[0]}"
     assert_equal "test_env_copy" "${lines[1]}"
 
-    nv on test_env_copy
+    nv on --same-shell test_env_copy
 
     run rustc -v
     assert_success

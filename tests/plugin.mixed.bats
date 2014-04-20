@@ -6,7 +6,7 @@ load test_helper
     run nv mk mixed_py_go --python=3.3.5 --go-prebuilt=1.2.1
     assert_success
 
-    nv on mixed_py_go
+    nv on --same-shell mixed_py_go
 
     run python -V
     assert_success
@@ -25,7 +25,7 @@ load test_helper
     run nv mk mixed_py_go --go-prebuilt=1.2.1 --python=3.3.5 
     assert_success
 
-    nv on mixed_py_go
+    nv on --same-shell mixed_py_go
 
     run python -V
     assert_success

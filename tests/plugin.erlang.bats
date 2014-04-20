@@ -6,7 +6,7 @@ load test_helper
     run nv mk erlang_test_env --erlang=17.0-rc1
     assert_success
 
-    nv on erlang_test_env
+    nv on --same-shell erlang_test_env
 
     # http://stackoverflow.com/a/9561362
     run erl -noshell -eval \
@@ -20,7 +20,7 @@ load test_helper
     run nv mk erlang_test_env --erlang=17.0-rc1
     assert_success
 
-    nv on erlang_test_env
+    nv on --same-shell erlang_test_env
 
     run rebar --version
     assert_success

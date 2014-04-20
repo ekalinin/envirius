@@ -1,11 +1,48 @@
 nv_cmd_default() {
     local env_name=$(nv_get_first_non_opt_value "$@")
     local prompt_enable="yes"
+    local start_new_shell="yes"
 
     # check that env name is not empty
     if [ "$env_name" = "" ]; then
         echo "Please, specify the name of the environment that will be activated."
         exit 1
+    fi
+
+    # try to find --same-shell options
+    for opt in "$@"
+    do
+    case $opt in
+        --same-shell)
+            start_new_shell="no"
+            ;;
+    esac
+    done
+
+    # start new shell (if need)
+    if [ "$start_new_shell" = "yes" ]; then
+        local curr_shell=$(echo "${SHELL##*/}")
+        local TMPFILE=$(mktemp)
+
+        echo ". ~/.${curr_shell}rc" > $TMPFILE
+        echo ". ~/.envirius/nv" >> $TMPFILE
+        echo "nv activate $@ --same-shell" >> $TMPFILE
+        echo "rm -f $TMPFILE" >> $TMPFILE
+
+        case $curr_shell in
+            bash)
+                # http://stackoverflow.com/a/18756584/716726
+                bash --rcfile $TMPFILE
+            ;;
+            zsh)
+                # http://stackoverflow.com/a/22693120/716726
+                zsh --rcs $TMPFILE
+            ;;
+            *)
+                echo "This shell doesn't support."
+                echo "Please, try again with option '--same-shell'"
+        esac
+        return
     fi
 
     # try to find --prompt-* options
@@ -59,6 +96,7 @@ nv_cmd_help() {
     echo "Options:"
     echo "  --prompt-enable     Change PS1 varibale: add env name into prompt"
     echo "  --prompt-disable    Do not change PS1 varibale (default)"
+    echo "  --same-shell        Enable environment in the same shell (otherwise in a new shell)"
 }
 
 # /* vim: set filetype=sh : */
