@@ -70,6 +70,7 @@ You can create environments for the following programming languages:
 * [python](https://www.python.org/)
 * [go](http://golang.org/)
 * [haskell](http://haskell.org/)
+* [scala](http://scala-lang.org/)
 
 New languages can be added as plugins (see below).
 
@@ -92,6 +93,7 @@ node-prebuilt
 python
 rust
 rust-prebuilt
+scala
 ```
 
 Check available versions for each plugin
@@ -283,25 +285,33 @@ function with yourself. For example:
 Optional elements
 -----------------
 
-* ``plug_list_versions_columns_count`` — variable — number of the columns in the
+### Variables
+
+* ``plug_list_versions_columns_count`` — number of the columns in the
   output of the ``nv ls-version`` for each plugin
-* ``plug_list_versions_columns_size`` — variable — each column width in chars in
+* ``plug_list_versions_columns_size`` — each column width in chars in
   the output of the ``nv ls-version`` for each plugin
-* ``plug_post_install_actions`` — optional function — executes after
-  installation. For example ``pip`` installation in the
-  [python](https://github.com/ekalinin/envirius/blob/master/src/nv-plugins/python)
-  plugin
-* ``plug_unpack`` — optional function — overrides default ``tar xzf <source>``
-* ``plug_configure`` — optional function — overrides default ``configure
-  --prefix=<path-to-env>``
-* ``plug_download`` — optional function — overrides default downloading sources
-* ``plug_check_deps`` — optional function — check dependencies before plugin
-  building
-* ``plug_state`` — variable — if == ``disabled`` then plugin is not active and will not
+* ``plug_state`` — if == ``disabled`` then plugin is not active and will not
   be account in the commands:
   * mk
   * ls-versions
   * ls-plugins
+
+### Functions
+
+In execute order:
+
+* ``plug_check_deps`` — check dependencies before plugin building
+* ``plug_install``  — overrides the whole installation process
+* ``plug_download`` — overrides default downloading sources (archive)
+* ``plug_unpack`` — overrides default ``tar xzf <archive-with-source>``
+* ``plug_configure`` — overrides default ``configure --prefix=<path-to-env>``
+* ``plug_build`` — overrides default ``make && make install
+* ``plug_build_env`` — overrides copying binaries into new environment
+* ``plug_post_install_actions`` — executes after installation. For example
+  ``pip`` installation in the
+  [python](https://github.com/ekalinin/envirius/blob/master/src/nv-plugins/python)
+  plugin
 
 Examples
 --------

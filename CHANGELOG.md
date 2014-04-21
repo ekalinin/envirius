@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.7.1 (22-04-2014)
+------------------
+* improved ``ls-cache``/``rm-cache`` commands (added options for each section of
+  the cache)
+* ``julia`` plugin: fixed building
+* added plugin for [scala](http://scala-lang.org/)
+
 0.7.0 (21-04-2014)
 ------------------
 * ``on``/``activate``/``use`` now works in a new shell by default
