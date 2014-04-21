@@ -317,7 +317,7 @@ Examples
 --------
 
 * Simple: [erlang](https://github.com/ekalinin/envirius/blob/master/src/nv-plugins/erlang)
-* Own impementation: [go](https://github.com/ekalinin/envirius/blob/master/src/nv-plugins/go)
+* Own impementation: [julia](https://github.com/ekalinin/envirius/blob/master/src/nv-plugins/julia)
 
 Example of the usage
 ====================
