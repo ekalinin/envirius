@@ -1,22 +1,48 @@
 nv_cmd_default() {
-    env_name=""
+    declare delete_entries=""
+    declare delete_all="no"
+    declare -A delete_types=([arc]="no" [src]="no" [build]="no")
 
-    # try to find --all option
+    # parse command line
     for opt in "$@"
     do
     case $opt in
         --all)
-            local cache_full=$(nv_get_arc_path)
-            rm -rf $cache_full/*
-            return
+            delete_all="yes"
+            ;;
+        --arc | --src | --build)
+            local cache_type=$(echo "$opt" | sed 's/--//')
+            delete_types[$cache_type]="yes"
+            ;;
+        --*)
+            ;;
+        *)
+            delete_entries="$delete_entries $opt"
     esac
     done
 
-    # try to find cache entry
-    for entry in "$@"
+    if [ "$delete_entries" = "" ] && [ "$delete_all" = "no" ]; then
+        echo "Please, enter entry's name to delete or use --all option."
+        exit 1
+    fi
+
+    for cache_type in arc src build
     do
-        local cache_full=$(nv_get_arc_path $entry)
-        rm -rf $cache_full
+        if [ "${delete_types[$cache_type]}" = "yes" ]; then
+            if [ "$delete_all" = "yes" ]; then
+                echo "* Removing all entries in cache /$(nv_bold ${cache_type}) ..."
+                local cache_full_path=$(nv_get_${cache_type}_path)
+                rm -rf $cache_full_path/*
+                continue
+            fi
+
+            for entry in $delete_entries
+            do
+                echo "* Removing $(nv_bold ${entry}) in cache /$(nv_bold ${cache_type}) ..."
+                local cache_full=$(nv_get_${cache_type}_path $entry)
+                rm -rf $cache_full
+            done
+        fi
     done
 }
 
@@ -30,6 +56,9 @@ nv_cmd_help() {
     echo ""
     echo "Options:"
     echo "  --all   Delete all entries"
+    echo "  --arc   Show archives in cache"
+    echo "  --src   Show unpacked archives in cache"
+    echo "  --build Show builds in cache"
 }
 
 # /* vim: set filetype=sh : */

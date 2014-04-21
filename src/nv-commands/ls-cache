@@ -1,7 +1,15 @@
 nv_cmd_default() {
-    for entry in $(find $(nv_get_arc_path) -mindepth 1 -maxdepth 1)
+    for opt in "$@"
     do
-        nv_get_filename $entry
+    case $opt in
+        --arc | --src | --build)
+            local cache_type=$(echo "$opt" | sed 's/--//')
+            echo "* /$(nv_bold ${cache_type}):"
+            for entry in $(find $(nv_get_${cache_type}_path) -mindepth 1 -maxdepth 1)
+            do
+                nv_get_filename $entry
+            done
+    esac
     done
 }
 
@@ -12,6 +20,11 @@ nv_cmd_desc() {
 nv_cmd_help() {
     nv_show_usage
     nv_show_desc "$(nv_cmd_desc)"
+    echo ""
+    echo "Options:"
+    echo "  --arc   Show archives in cache"
+    echo "  --src   Show unpacked archives in cache"
+    echo "  --build Show builds in cache"
 }
 
 # /* vim: set filetype=sh : */
