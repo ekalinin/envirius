@@ -306,7 +306,7 @@ In execute order:
 * ``plug_download`` — overrides default downloading sources (archive)
 * ``plug_unpack`` — overrides default ``tar xzf <archive-with-source>``
 * ``plug_configure`` — overrides default ``configure --prefix=<path-to-env>``
-* ``plug_build`` — overrides default ``make && make install
+* ``plug_build`` — overrides default ``make && make install``
 * ``plug_build_env`` — overrides copying binaries into new environment
 * ``plug_post_install_actions`` — executes after installation. For example
   ``pip`` installation in the
