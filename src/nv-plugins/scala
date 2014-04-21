@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Output lists of versions
+plug_list_versions() {
+    echo $(curl -s http://scala-lang.org/download/all.html | \
+            grep "download" | \
+            egrep -o 'Scala [0-9]+\.[0-9]+\.[0-9]+(\.final|[^\<]*)' | \
+            sed 's/Scala\s//' | tail -n+2 | tac)
+}
+
+# Return full url for tarball for download
+plug_url_for_download() {
+    local version=$1
+    local arch=$(nv_get_system_arch "x86" "x64")
+    local system=$(nv_get_system "linux" "darwin")
+    echo "http://scala-lang.org/files/archive/scala-${version}.tgz"
+}
+
+# Like we build
+plug_build() {
+    local src_path=$1
+    local build_path=$2
+    cp -r "$src_path"/*/* "$build_path"
+}
