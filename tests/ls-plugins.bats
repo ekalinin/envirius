@@ -17,5 +17,6 @@ load test_helper
     assert_equal "python"           "${lines[8]}"
     assert_equal "rust"             "${lines[9]}"
     assert_equal "rust-prebuilt"    "${lines[10]}"
-    assert_equal ""                 "${lines[11]}"
+    assert_equal "scala"            "${lines[11]}"
+    assert_equal ""                 "${lines[12]}"
 }
