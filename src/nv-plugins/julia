@@ -22,14 +22,15 @@ plug_install() {
         local arc_path=$(nv_get_arc_path "$plugin_name" "$version")
 
         # clone
-        #if [ ! -d "$arc_path" ]; then
+        if [ ! -d "$arc_path" ]; then
             git clone "${JUL_MIRROR}.git" "$arc_path"
-        #fi
+        fi
 
         # compiling (if need)
-        if [ ! -e "$arc_path/usr/bin/julia" ]; then
+        if [ ! -e "$arc_path/usr/bin/julia-readline" ]; then
             cd "$arc_path"
             git checkout v${version}
+            git pull
             make clean
             make -j $(nv_get_cpu_count) && {
                 echo 'envirius: configure failed!' ;
