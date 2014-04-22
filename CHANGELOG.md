@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.7.1 (23-04-2014)
+------------------
+* ``nv off`` works in both cases: ``nv on <env-name>`` and
+  ``nv on --same-shell <env-name>``
+
 0.7.1 (22-04-2014)
 ------------------
 * improved ``ls-cache``/``rm-cache`` commands (added options for each section of

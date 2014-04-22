@@ -4,6 +4,8 @@ nv_cmd_default() {
 
     if [ "$env_name" = "" ]; then
         echo "Nothing to deactivate."
+    elif [ "$NV_IN_NEW_SHELL" = "yes" ]; then
+        exit
     else
         for plug in $(find $env_name_full/bin/ -type f -iname "deactivate-*" )
         do
