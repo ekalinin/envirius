@@ -326,7 +326,7 @@ plug_url_for_download() {
 * ``plug_build_env`` — переопределить копирование собранных бинарников в
   директрию окружения
 * ``plug_post_install_actions`` — дополнительные действия после установки
-  бинарников в окружение. Например, установка ``pip`` в пдагине для
+  бинарников в окружение. Например, установка ``pip`` в плагине для
   [python](https://github.com/ekalinin/envirius/blob/master/src/nv-plugins/python).
 
 Зависимости
