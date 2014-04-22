@@ -376,7 +376,7 @@ plug_build() {
 of RAM в Ubuntu 13.10 (32-bits) тесты занимают:
 
 ```bash
-➥ times make tests
+➥ time make tests
 ...
 
 100 tests, 0 failure

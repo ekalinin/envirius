@@ -403,7 +403,7 @@ With hot cache on ``Intel(R) Core(TM) i7-3517U CPU @ 1.90GHz`` with 4 GB of RAM
 on Ubuntu 13.10 (32-bits) tests takes:
 
 ```bash
-➥ times make tests
+➥ time make tests
 ...
 
 100 tests, 0 failure
