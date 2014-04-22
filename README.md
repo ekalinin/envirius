@@ -257,8 +257,8 @@ inside this directory.
 Mandatory elements
 -------------------
 
-In the simplest case you need to implement 2 functions in the plugin's
-body:
+If you create a plugin which builds all stuff from source then In a simplest
+case you need to implement 2 functions in the plugin's body:
 
 ### plug_list_versions
 
@@ -284,6 +284,20 @@ For example:
 plug_url_for_download() {
     local version=$1
     echo "http://nodejs.org/dist/v${version}/node-v${version}.tar.gz"
+}
+```
+
+### plug_build
+
+This function is only need for ``*-prebuilt``-like plugins. It overrides default
+building proccess. All we need in case of ``*-prebuilt``-like plugin is only
+copy binaries. For example:
+
+```bash
+plug_build() {
+    local src_path=$1
+    local build_path=$2
+    cp -r "$src_path"/*/* "$build_path"
 }
 ```
 
