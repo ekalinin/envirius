@@ -96,6 +96,15 @@ rust-prebuilt
 scala
 ```
 
+Here you can see two types of plugins:
+* which downloads & builds from source (``elixir``, ``erlang``, …)
+* which just downloads prebuilt packages (``elixir-prebuilt``, ``node-prebuilt``, …)
+
+It's obviously that work with the second option will be much faster because
+compiling may takes huge amount of time.
+
+Unfortunately, not all languages is available in prebuilt binaries.
+
 Check available versions for each plugin
 ----------------------------------------
 
@@ -142,6 +151,8 @@ Environment mixed-rust-erlang activated.
 Activate/deactivate environment
 -------------------------------
 
+### Activating in a new shell
+
 By default activating environment executes in a new shell:
 
 ```bash
@@ -157,10 +168,12 @@ So for exit just do ``exit``:
 ```bash
 (mixed-rust-erlang) ➥  echo $$
 3437
-(mixed-rust-erlang) ➥  exit`
+(mixed-rust-erlang) ➥  exit
 ➥ echo $$
 112
 ```
+
+### Activating in the same shell
 
 If you want to activate environment in the same shell do the following:
 
@@ -301,7 +314,10 @@ Optional elements
 
 In execute order:
 
-* ``plug_check_deps`` — check dependencies before plugin building
+* ``plug_check_deps`` — check dependencies before plugin building. If it returns
+  not empty string then environment creation stops. Example is in
+  [haskell](https://github.com/ekalinin/envirius/blob/master/src/nv-plugins/haskell#L20)
+  plugin
 * ``plug_install``  — overrides the whole installation process
 * ``plug_download`` — overrides default downloading sources (archive)
 * ``plug_unpack`` — overrides default ``tar xzf <archive-with-source>``
@@ -392,3 +408,8 @@ License
 =======
 
 See [LICENSE](https://github.com/ekalinin/envirius/blob/master/LICENSE).
+
+README in another language
+==========================
+
+[RU](https://github.com/ekalinin/envirius/blob/master/README.ru.md)
