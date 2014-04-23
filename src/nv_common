@@ -302,4 +302,29 @@ nv_is_zsh() {
     fi
 }
 
+# https://github.com/cloudflare/semver_bash/blob/master/semver.sh
+nv_semver_get_re() {
+    echo '[^0-9]*\([0-9]*\)[.]\([0-9]*\)[.]\([0-9]*\)\([0-9A-Za-z-]*\)'
+}
+
+nv_semver_get_major() {
+    local RE=$(nv_semver_get_re)
+    echo $1 | sed -e "s#$RE#\1#"
+}
+
+nv_semver_get_minor() {
+    local RE=$(nv_semver_get_re)
+    echo $1 | sed -e "s#$RE#\2#"
+}
+
+nv_semver_get_patch() {
+    local RE=$(nv_semver_get_re)
+    echo $1 | sed -e "s#$RE#\3#"
+}
+
+nv_semver_get_special() {
+    local RE=$(nv_semver_get_re)
+    echo $1 | sed -e "s#$RE#\4#"
+}
+
 # /* vim: set filetype=sh : */

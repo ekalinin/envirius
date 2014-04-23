@@ -232,3 +232,19 @@ load test_helper
     local actual=$(nv_get_env_info_path "test_env")
     assert_equal "$target" "$actual"
 }
+
+@test "common: nv_semver_get_major" {
+    assert_equal "$(nv_semver_get_major '2.1.0')" "2"
+}
+
+@test "common: nv_semver_get_minor" {
+    assert_equal "$(nv_semver_get_minor '2.1.0')" "1"
+}
+
+@test "common: nv_semver_get_patch" {
+    assert_equal "$(nv_semver_get_patch '2.1.0')" "0"
+}
+
+@test "common: nv_semver_get_special" {
+    assert_equal "$(nv_semver_get_special '2.1.0-RC1')" "-RC1"
+}
