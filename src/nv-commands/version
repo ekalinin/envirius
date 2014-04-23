@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 NV_VERSION=0.7.1
 
 nv_cmd_default() {

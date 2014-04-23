@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 ELX_MIRROR="https://github.com/elixir-lang/elixir"
 

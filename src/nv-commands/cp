@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 nv_cmd_default() {
     local env_name_src=$1
     local env_name_dst=$2

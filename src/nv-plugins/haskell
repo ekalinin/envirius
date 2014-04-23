@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 GHC_MIRROR=http://www.haskell.org/ghc
 
