@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 JUL_MIRROR="https://github.com/JuliaLang/julia"
 
