@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Returns main command name
 nv_cmd_name() {
     echo "nv"

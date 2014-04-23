@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 nv_cmd_default() {
     declare delete_entries=""
     declare delete_all="no"

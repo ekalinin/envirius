@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 NODE_MIRROR="http://nodejs.org/dist"
 

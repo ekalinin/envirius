@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # enable debug mode
 if [ "$DEBUG" = "yes" ]; then

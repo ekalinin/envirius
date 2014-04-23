@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # source parent plagin
 . "$(nv_get_plugin_full_path 'elixir')"

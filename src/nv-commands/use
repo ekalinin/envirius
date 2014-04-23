@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 . $(nv_get_command_full_path)/activate
 
 nv_cmd_desc() {

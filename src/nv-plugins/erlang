@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Columns count in the version's grid
 plug_list_versions_columns_count=6
