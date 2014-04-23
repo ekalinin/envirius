@@ -327,4 +327,6 @@ nv_semver_get_special() {
     echo $1 | sed -e "s#$RE#\4#"
 }
 
+nv_echo_err() { echo "$@" 1>&2; }
+
 # /* vim: set filetype=sh : */
