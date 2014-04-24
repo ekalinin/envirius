@@ -5,6 +5,7 @@ Changelog
 ------------------
 * ``nv off`` works in both cases: ``nv on <env-name>`` and
   ``nv on --same-shell <env-name>``
+* added plugin for [php](http://www.php.net/)
 
 0.7.1 (22-04-2014)
 ------------------
