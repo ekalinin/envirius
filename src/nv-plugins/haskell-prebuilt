@@ -1,0 +1,47 @@
+#!/bin/sh
+
+# Source parent plagin
+. "$(nv_get_plugin_full_path 'haskell')"
+
+# this we don't need
+unset -f plug_check_deps
+
+# Return full url for tarball for download
+# and future installation
+plug_url_for_download() {
+    declare version=$1
+    declare v_major=$(nv_semver_get_major "$version")
+    declare v_minor=$(nv_semver_get_minor "$version")
+    declare arch=$(nv_get_system_arch "i386" "x86_64")
+    declare system=""
+
+    # if >= 7.8.1 then need to append "deb7" for linux
+    if [ "$v_major" -ge 7 ]; then
+        if [ "$v_minor" -ge 8 ]; then
+            system=$(nv_get_system "unknown-linux-deb7" "apple-darwin")
+        else
+            system=$(nv_get_system "unknown-linux" "apple-darwin")
+        fi
+    else
+        system=$(nv_get_system "unknown-linux" "apple-darwin")
+    fi
+    echo "${GHC_MIRROR}/dist/${version}/ghc-${version}-${arch}-${system}.tar.bz2"
+}
+
+# Custom build
+plug_build() {
+    declare src_path=$1
+    declare build_path=$2
+    (
+        local subdir=$(find "$src_path" -mindepth 1 -maxdepth 1 -type d)
+        cd "$subdir"
+
+        ./configure --prefix="$build_path" || {
+            echo 'envirius: configure failed!' ;
+            rm -rf "$src_path";
+            rm -rf "$build_path";
+            exit 1;
+        }
+        make install
+    )
+}
