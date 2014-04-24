@@ -87,6 +87,7 @@ elixir-prebuilt
 erlang
 go-prebuilt
 haskell
+haskell-prebuilt
 julia
 node
 node-prebuilt
