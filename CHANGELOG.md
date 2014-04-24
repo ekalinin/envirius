@@ -6,6 +6,10 @@ Changelog
 * ``nv off`` works in both cases: ``nv on <env-name>`` and
   ``nv on --same-shell <env-name>``
 * added plugin for [php](http://www.php.net/)
+* added functions in common: ``nv_semver_get_(major|minor|patch|special)``
+* added functions in common: ``nv_echo_err``
+* added plugin for prebuilt haskell
+* improved shebangs
 
 0.7.1 (22-04-2014)
 ------------------
