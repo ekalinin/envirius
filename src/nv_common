@@ -97,7 +97,11 @@ nv_get_plugin_name() {
 # Returns plugin version
 #   '--rust=0.9' --> '0.9'
 nv_get_plugin_version() {
-    echo $1 | sed 's/[-a-zA-Z0-9]*=//'
+    if [ "$(echo $1 | grep -o '=' | wc -l)" = "0" ]; then
+        echo ""
+    else
+        echo $1 | sed 's/[-a-zA-Z0-9]*=//'
+    fi
 }
 
 # Downloads url into cache with certain name

@@ -66,16 +66,16 @@ load test_helper
 
 @test "common: nv_get_plugin_version" {
     run nv_get_plugin_version "--rust=0.9"
-    assert_success
-    assert_output "0.9"
+    assert_success "0.9"
 
     run nv_get_plugin_version "--go=1.2rc4"
-    assert_success
-    assert_output "1.2rc4"
+    assert_success "1.2rc4"
 
     run nv_get_plugin_version "--erlang=17.0-rc1"
-    assert_success
-    assert_output "17.0-rc1"
+    assert_success "17.0-rc1"
+
+    run nv_get_plugin_version "--erlang"
+    assert_success ""
 }
 
 @test "common: nv_get_cpu_count" {
