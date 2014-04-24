@@ -10,6 +10,8 @@ Changelog
 * added functions in common: ``nv_echo_err``
 * added plugin for prebuilt haskell
 * improved shebangs
+* improved ``nv_get_plugin_version`` from ``common``: handle empty version
+* improved command ``mk``: handle not existance plugins
 
 0.7.1 (22-04-2014)
 ------------------

@@ -107,3 +107,11 @@ load test_helper
     assert_equal "Environment $(nv_bold 'test_env') was deleted." "${lines[0]}"
     assert_equal "Creating environment: test_env ..." "${lines[1]}"
 }
+
+@test "mk: with not supported plugin" {
+    run nv mk test_env --not-supported
+    assert_success
+    assert_equal "Creating environment: test_env ..." "${lines[0]}"
+    assert_equal " * installing not-supported== ..." "${lines[1]}"
+    assert_equal " - plugin not exists: not-supported" "${lines[2]}"
+}

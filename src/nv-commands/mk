@@ -102,7 +102,12 @@ nv_cmd_default() {
             unset -v plug_state
 
             # source plugin code & call installation part
-            . $plugin_full_path
+            if [ ! -f "$plugin_full_path" ]; then
+                echo " - plugin not exists: $plugin_name"
+                continue
+            else
+                . $plugin_full_path
+            fi
 
             # check if plugin disabled
             if [ "$plug_state" = "disabled" ]; then
@@ -217,8 +222,7 @@ plug_install_default() {
                 plug_build "$src_path" "$build_path"
             else
                 # change directory
-                cd "$src_path"
-                local subdir=$(find . -mindepth 1 -maxdepth 1 -type d)
+                local subdir=$(find "$src_path" -mindepth 1 -maxdepth 1 -type d)
                 cd "$subdir"
 
                 # compiling
