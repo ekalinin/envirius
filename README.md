@@ -166,6 +166,7 @@ Environment mixed-rust-erlang activated.
 ```
 
 So for exit just do ``exit``:
+
 ```bash
 (mixed-rust-erlang) ➥  echo $$
 3437
@@ -173,6 +174,9 @@ So for exit just do ``exit``:
 ➥ echo $$
 112
 ```
+
+Since version [0.7.2](https://github.com/ekalinin/envirius/releases/tag/0.7.2)
+you can use ``nv off`` in all cases to exit from environment.
 
 ### Activating in the same shell
 

@@ -10,8 +10,8 @@ Changelog
 * added plugin for [php](http://www.php.net/)
 * added plugin for prebuilt haskell
 * improved shebangs (thanks to [Maciej Żok](https://github.com/macie))
-* improved ``nv_get_plugin_version`` from ``common``: handle empty version
-* improved command ``mk``: handle not existance plugins
+* improved ``nv_get_plugin_version`` from ``common``: handles empty version
+* improved command ``mk``: handles not existence plugins
 
 0.7.1 (22-04-2014)
 ------------------
