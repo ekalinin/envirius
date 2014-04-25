@@ -16,6 +16,17 @@ plug_url_for_download() {
     echo "http://scala-lang.org/files/archive/scala-${version}.tgz"
 }
 
+# Checks before compilation
+plug_check_deps() {
+    if [ "`which java`" = "" ]; then
+        echo "  To use scala you need some Java version."
+        echo "  Please, install system-wide Java."
+        echo "  For example, in ubuntu:"
+        echo ""
+        echo "    $ sudo aptitude install openjdk-7-jdk"
+    fi
+}
+
 # Like we build
 plug_build() {
     local src_path=$1
