@@ -1,15 +1,15 @@
 Changelog
 =========
 
-0.7.1 (23-04-2014)
+0.7.2 (25-04-2014)
 ------------------
 * ``nv off`` works in both cases: ``nv on <env-name>`` and
   ``nv on --same-shell <env-name>``
-* added plugin for [php](http://www.php.net/)
 * added functions in common: ``nv_semver_get_(major|minor|patch|special)``
 * added functions in common: ``nv_echo_err``
+* added plugin for [php](http://www.php.net/)
 * added plugin for prebuilt haskell
-* improved shebangs
+* improved shebangs (thanks to [Maciej Żok](https://github.com/macie))
 * improved ``nv_get_plugin_version`` from ``common``: handle empty version
 * improved command ``mk``: handle not existance plugins
 
