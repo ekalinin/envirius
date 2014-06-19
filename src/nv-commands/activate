@@ -26,10 +26,10 @@ nv_cmd_default() {
         local curr_shell=$(echo "${SHELL##*/}")
         local TMPFILE=$(mktemp)
 
-        echo ". ~/.${curr_shell}rc" > $TMPFILE
-        echo ". ~/.envirius/nv" >> $TMPFILE
+        echo ". ~/.envirius/nv" > $TMPFILE
         echo "export NV_IN_NEW_SHELL=yes" >> $TMPFILE
         echo "nv activate $@ --same-shell" >> $TMPFILE
+        echo ". ~/.${curr_shell}rc" >> $TMPFILE
         echo "rm -f $TMPFILE" >> $TMPFILE
 
         case $curr_shell in
