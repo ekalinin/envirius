@@ -119,11 +119,13 @@ nv_cmd_default() {
             if [ "`nv_is_function 'plug_check_deps'`" = "yes" ]; then
                 local check_result=$(plug_check_deps)
                 if [ ! "$check_result" = "" ]; then
-                    echo ""
-                    echo "Check dependencies failed:"
-                    echo ""
-                    echo "$check_result"
-                    return;
+                    echo '!! ------------------------------------------'
+                    echo "!! envirius: Check dependencies failed:"
+                    echo "!!"
+                    echo "!! $check_result"
+                    echo '!! ------------------------------------------'
+                    (nv rm "$env_name")
+                    return 1;
                 fi
             fi
 
@@ -135,6 +137,18 @@ nv_cmd_default() {
                 plug_install $plugin_name $plugin_ver $env_name_full
             else
                 plug_install_default $plugin_name $plugin_ver $env_name_full
+            fi
+
+            # if continue failed then removing all
+            # created data and exit
+            local last_command_res=$?
+            if [ "$last_command_res" != "0" ]; then
+                echo '!! ------------------------------------------'
+                echo '!! envirius: "configure" failed!'
+                echo '!! envirius: Please, fix problem & try again!'
+                echo '!! ------------------------------------------'
+                (nv rm "$env_name")
+                return $last_command_res
             fi
 
             # call post-install actions
@@ -230,7 +244,6 @@ plug_install_default() {
                     plug_configure "$build_path"
                 else
                     ./configure --prefix="$build_path" || {
-                        echo 'envirius: configure failed!' ;
                         rm -rf "$build_path"
                         exit 1;
                     }
