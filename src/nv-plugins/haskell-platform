@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+GHC_MIRROR=http://www.haskell.org/platform
+
+plug_list_versions_columns_size=20
+
+# Output lists of versions
+plug_list_versions() {
+    echo $(curl -s "${GHC_MIRROR}/download/" | \
+            egrep -o '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | \
+            uniq | sort --version-sort)
+}
+
+# Return full url for tarball for download
+# and future installation
+plug_url_for_download() {
+    local version=$1
+    echo "${GHC_MIRROR}/download/${version}/haskell-platform-${version}.tar.gz"
+}
+
+# Checks before compilation
+plug_check_deps() {
+    if [ "`which ghc`" = "" ]; then
+        echo "  To compile GHC from source you need pre-installed GHC version."
+        echo "  Please, install system-wide GHC."
+        echo "  For example, in ubuntu:"
+        echo ""
+        echo "    $ sudo aptitude install ghc ghc-prof freeglut3-dev -y"
+    fi
+}
+
+plug_configure() {
+    build_path=$1
+    ./configure --enable-unsupported-ghc-version \
+                --prefix="$build_path" || {
+        rm -rf "$build_path"
+        exit 1;
+    }
+}
