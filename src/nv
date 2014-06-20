@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-# enable debug mode
-if [ "$DEBUG" = "yes" ]; then
-    set -x
-fi
-
 # path to then soure code
 if [ "$NV_PATH" = "" ]; then
     export NV_PATH=$HOME/.envirius
@@ -32,6 +27,13 @@ nv_usage() {
 
 
 nv() {
+    # enable debug mode
+    if [ "$DEBUG" = "yes" ]; then
+        set -x
+    else
+        set +x
+    fi
+
     local cache=$(nv_get_cache_full_path)
     local src=$(nv_get_src_path)
     local build=$(nv_get_build_path)
