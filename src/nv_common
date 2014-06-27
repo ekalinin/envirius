@@ -119,7 +119,7 @@ nv_download_file() {
 
     # if file exists we just check it content equel the source
     if type curl &>/dev/null; then
-        curl -A "$user_agent" -C - -L -o "$file_in_cache" "$url"
+        curl --fail -A "$user_agent" -C - -L -o "$file_in_cache" "$url"
     elif type wget &>/dev/null; then
         wget -U "$user_agent" -c -P $cache_dir "$url"
     else
