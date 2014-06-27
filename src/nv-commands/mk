@@ -115,6 +115,11 @@ nv_cmd_default() {
                 continue
             fi
 
+            if [ -z "$plugin_ver" ]; then
+                echo " - please choose a version (eg. --$plugin_name=\$VERSION, see \`nv ls-versions --$plugin_name\`)."
+                continue
+            fi
+
             # check prerequisites for building
             if [ "`nv_is_function 'plug_check_deps'`" = "yes" ]; then
                 local check_result=$(plug_check_deps)
