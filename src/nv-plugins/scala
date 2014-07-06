@@ -33,3 +33,20 @@ plug_build() {
     local build_path=$2
     cp -r "$src_path"/*/* "$build_path"
 }
+
+plug_post_install_actions() {
+    plug_install_sbt "$@"
+}
+
+plug_install_sbt() {
+    local env_name=$1
+    local env_name_full=$2
+    if [ ! -f "$env_name_full/bin/sbt" ]; then
+    (
+        local tarball_url="http://dl.bintray.com/sbt/native-packages/sbt/0.13.2/sbt-0.13.2.zip"
+        local tarball=$(nv_download_file $tarball_url)
+        unzip "$tarball" -d "$env_name_full"
+        ln -s `find "${env_name_full}/sbt/bin" -executable -type f` "$env_name_full/bin"
+    )
+    fi
+}
