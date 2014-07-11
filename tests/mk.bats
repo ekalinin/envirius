@@ -51,6 +51,15 @@ load test_helper
     assert_equal "erlang-17.0-rc1-rust-0.9" "${lines[1]}"
 }
 
+@test "mk: without name & without version" {
+    run nv mk --rust-prebuilt
+    assert_success
+    [ "${lines[0]}"  = "Creating environment: rust-prebuilt- ..." ]
+    [ "${lines[1]}"  = " * installing rust-prebuilt== ..." ]
+    [ "${lines[2]}"  = " - please choose a version (eg. --rust-prebuilt=\$VERSION, see \`nv ls-versions --rust-prebuilt\`)." ]
+}
+
+
 @test "mk: without name & meta" {
     run nv mk --erlang=17.0-rc1 --rust=0.9
     assert_success
