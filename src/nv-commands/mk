@@ -115,6 +115,11 @@ nv_cmd_default() {
                 continue
             fi
 
+            if [ -z "$plugin_ver" ]; then
+                echo " - please choose a version (eg. --$plugin_name=\$VERSION, see \`nv ls-versions --$plugin_name\`)."
+                continue
+            fi
+
             # check prerequisites for building
             if [ "`nv_is_function 'plug_check_deps'`" = "yes" ]; then
                 local check_result=$(plug_check_deps)
@@ -134,9 +139,15 @@ nv_cmd_default() {
 
             # main installation part
             if [ "`nv_is_function 'plug_install'`" = "yes" ]; then
-                plug_install $plugin_name $plugin_ver $env_name_full
+                plug_install $plugin_name $plugin_ver $env_name_full || {
+                    echo "envirius: unable to fetch source file for $plugin_name==$plugin_ver" >&2
+                    exit 1
+                }
             else
-                plug_install_default $plugin_name $plugin_ver $env_name_full
+                plug_install_default $plugin_name $plugin_ver $env_name_full || {
+                    echo "envirius: unable to fetch source file for $plugin_name==$plugin_ver" >&2
+                    exit 1
+                }
             fi
 
             # if continue failed then removing all
@@ -187,6 +198,11 @@ plug_download_default() {
     local tarball_cache="${plugin_name}-${version}.${tarball_ext}"
     local tarball=$(nv_download_file "$tarball_url" "$tarball_cache")
 
+    if [ ! -f "$tarball" ]; then
+        echo "envirius: failed to download '$tarball_url'" >&2
+        return 1
+    fi
+
     echo "$tarball"
 }
 
@@ -219,6 +235,10 @@ plug_install_default() {
                     local tarball=$(plug_download $plugin_name $version)
                 else
                     local tarball=$(plug_download_default $plugin_name $version)
+                fi
+
+                if [ -z "$tarball" ]; then
+                    return 1
                 fi
 
                 # unpacking source file
