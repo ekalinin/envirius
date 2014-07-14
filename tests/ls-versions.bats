@@ -16,6 +16,7 @@ load test_helper
     assert_success
 
     assert_equal "${lines[0]}" $line_0
-    assert_equal "${lines[1]}" "0.1         0.2         0.3         0.4         0.5         "
-    assert_equal "${lines[2]}" "0.6         0.7         0.8         0.9         0.10        "
+    assert_equal "${lines[1]}" "0.1         0.2         0.3         0.3.1       0.4         "
+    assert_equal "${lines[2]}" "0.5         0.6         0.7         0.8         0.9         "
+    assert_equal "${lines[3]}" "0.10        0.11.0      "
 }
