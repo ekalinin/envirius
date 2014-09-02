@@ -3,6 +3,36 @@ envirius
 
 ``envirius`` — universal virtual environments manager.
 
+Table of Contents
+-----------------
+
+* [envirius](#envirius)
+  * [Idea](#idea)
+  * [Features](#Features)
+* [Installation](#Installation)
+* [Uninstallation](#Uninstallation)
+* [Available plugins](#Available-plugins)
+* [Usage](#Usage)
+  * [Check available plugins](#Check-available-plugins)
+  * [Check available versions for each plugin](#Check-available-versions-for-each-plugin)
+  * [Create an environment](#Create-an-environment)
+  * [Activate/deactivate environment](#Activatedeactivate-environment)
+  * [Get list of environments](#Get-list-of-environments)
+  * [Get current activated environment](#Get-current-activated-environment)
+  * [Do something in environment without enabling it](#Do-something-in-environment-without-enabling-it)
+  * [Get help](#Get-help)
+  * [Get help for a command](#Get-help-for-a-command)
+* [How to add a plugin?](#How-to-add-a-plugin)
+  * [Mandatory elements](#Mandatory-elements)
+  * [Optional elements](#Optional-elements)
+  * [Examples](#Examples)
+* [Example of the usage](#Example-of-the-usage)
+* [Dependencies](#Dependencies)
+* [Supported OS](#Supported-OS)
+* [Tests](#Tests)
+* [Version History](#Version-History)
+* [License](#License)
+
 Idea
 ----
 
