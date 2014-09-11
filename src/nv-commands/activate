@@ -29,8 +29,8 @@ nv_cmd_default() {
         echo "export NV_IN_NEW_SHELL=yes" >> $TMPFILE
         echo "export NV_PATH=\"$NV_PATH\"" >> $TMPFILE
         echo ". \"$NV_PATH\"/nv" >> $TMPFILE
-        echo "nv activate $@ --same-shell" >> $TMPFILE
         echo ". ~/.${curr_shell}rc" >> $TMPFILE
+        echo "nv activate $@ --same-shell" >> $TMPFILE
         echo "rm -f $TMPFILE" >> $TMPFILE
 
         case $curr_shell in
