@@ -1,6 +1,24 @@
 Changelog
 =========
 
+0.7.3 (12-09-2014)
+------------------
+* added ``plug_check_deps`` into scala
+* fixed logic for ``DEBUG=yes``
+* improved ``mk``:
+  * clear env dir if configure failed
+  * more debug messages
+  * ensure that we have a version number before starting the download
+  * exit cleanly when failing to download the requested package
+* added plugin for [haskell-platform](https://www.haskell.org/platform/) (linux
+  only)
+* fixed test for ``ls-plugins``
+* ``common``: make curl fail on HTTP errors
+* ``activate``: propagate ``NV_PATH`` when creating the subshell environment
+* added ``sbt`` installation into ``scala`` plugin
+* fixed ``rust``/``rust-prebuilt`` plugin
+* fixed ``ls-versions`` for ``elixir``/``elixir-prebuilt``
+
 0.7.2 (25-04-2014)
 ------------------
 * ``nv off`` works in both cases: ``nv on <env-name>`` and
