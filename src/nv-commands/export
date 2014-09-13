@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+nv_cmd_default() {
+    local env_name_src=$1
+    local archive_name=$2
+
+    # envs are mandotory
+    if [ "$env_name_src" = "" ]; then
+        echo "Please, enter a name for a source environment"
+        echo ""
+        nv_cmd_help
+        return 1
+    fi
+    if [ "$archive_name" = "" ]; then
+        archive_name=${env_name_src}.tar
+    fi
+    # if not absolute path
+    if [[ ! "$archive_name" = /* ]]; then
+        archive_name="$(pwd)/$archive_name"
+    fi
+
+    # full paths
+    local env_name_src_full=$(nv_get_env_full_path $env_name_src)
+    (
+        cd $env_name_src_full
+        tar -cf "$archive_name" .
+    )
+
+    echo "Environment `nv_bold $env_name` archived into $archive_name"
+}
+
+nv_cmd_desc() {
+    echo "Export environment into tar archive"
+}
+
+nv_cmd_help() {
+    nv_show_usage "<env-name> [/path/to/archive.tar]"
+    nv_show_desc "$(nv_cmd_desc)"
+}
+
+# /* vim: set filetype=sh : */
