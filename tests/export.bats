@@ -22,3 +22,11 @@ load test_helper
     assert_equal "1" "$(ls -l ${tar_path}.tar | wc -l)"
     rm ${tar_path}.tar
 }
+
+@test "export: failed without env name" {
+    run nv mk test_env --node-prebuilt=0.10.26
+    assert_success
+    run nv export
+    assert_fail
+    [ "${lines[0]}"  = "Please, enter a name for a source environment" ]
+}
