@@ -27,21 +27,27 @@ plug_install() {
         fi
 
         # compiling (if need)
-        if [ ! -e "$arc_path/usr/bin/julia-readline" ]; then
+        if [ ! -f "$arc_path/usr/bin/julia-readline" ] &&
+            [ ! -f "$arc_path/usr/bin/julia" ]; then
             cd "$arc_path"
             git checkout v${version}
-            git pull
-            make clean
-            make -j $(nv_get_cpu_count) && {
-                echo 'envirius: configure failed!' ;
-                exit 1;
+            make -j $(nv_get_cpu_count) || {
+                echo 'envirius: make failed!' ;
+                return 1;
             }
         fi
 
         # copy bin into new environment
-        mkdir -p "$env_name_full/bin"
+        # mkdir -p "$env_name_full/bin"
         cp -r "$arc_path/usr"/* "$env_name_full"
-        ln -s "$env_name_full/bin/julia-readline" \
-                "$env_name_full/bin/julia"
+        if [ ! -e "$env_name_full/bin/julia" ]; then
+            if [ -e "$env_name_full/bin/julia-readline" ]; then
+                ln -s "$env_name_full/bin/julia-readline" \
+                        "$env_name_full/bin/julia"
+            else
+                echo "envirius: something went wrong! julia not found!"
+                return 1
+            fi
+        fi
     )
 }
