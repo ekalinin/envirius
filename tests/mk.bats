@@ -124,3 +124,9 @@ load test_helper
     assert_equal " * installing not-supported== ..." "${lines[1]}"
     assert_equal " - plugin not exists: not-supported" "${lines[2]}"
 }
+
+@test "mk: without name totaly" {
+    run nv mk
+    assert_success
+    assert_equal "Please, enter a name for a new environment." "${lines[0]}"
+}
