@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+nv_cmd_default() {
+    local archive_name=$1
+    local env_name_dst=$2
+
+    # envs are mandotory
+    if [ "$archive_name" = "" ]; then
+        echo "Please, enter path for archive to import"
+        echo ""
+        nv_cmd_help
+        exit 1
+    fi
+    if [ "$env_name_dst" = "" ]; then
+        echo "Please, enter a name for a destination environment"
+        echo ""
+        nv_cmd_help
+        exit 1
+    fi
+    # full paths
+    local env_name_dst_full=$(nv_get_env_full_path $env_name_dst)
+    if [ -d $env_name_dst_full ]; then
+        echo "Target environment already exists ($env_name_dst)."
+        exit 1
+    fi;
+    mkdir -p $env_name_dst_full
+    tar --directory $env_name_dst_full -xf "$archive_name" .
+
+    echo "Archive $archive_name imported into $env_name_dst"
+}
+
+nv_cmd_desc() {
+    echo "Import archive as environment"
+}
+
+nv_cmd_help() {
+    nv_show_usage "/path/to/archive.tar [env-name]"
+    nv_show_desc "$(nv_cmd_desc)"
+}
+
+# /* vim: set filetype=sh : */
