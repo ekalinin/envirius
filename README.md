@@ -273,6 +273,14 @@ Do something in environment without enabling it
 ➥ nv do node-0.10.26 'npm -g ls'
 ```
 
+Export environment into tar archive
+------------------------------------
+
+```bash
+➥ nv export node-0.10.26
+Environment php-5.5.11 archived into /home/user/current/directory/node-0.10.26.tar
+```
+
 Get help
 --------
 
