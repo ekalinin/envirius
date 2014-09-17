@@ -26,7 +26,7 @@ nv_cmd_default() {
         tar -cf "$archive_name" .
     )
 
-    echo "Environment `nv_bold $env_name` archived into $archive_name"
+    echo "Environment `nv_bold $env_name_src` archived into $archive_name"
 }
 
 nv_cmd_desc() {
