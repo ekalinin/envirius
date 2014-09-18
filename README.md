@@ -281,6 +281,14 @@ Export environment into tar archive
 Environment php-5.5.11 archived into /home/user/current/directory/node-0.10.26.tar
 ```
 
+Import environment from tar archive
+------------------------------------
+
+```bash
+➥ nv import /home/user/current/directory/node-0.10.26.tar node-0.10.26-new
+Archive /home/user/current/directory/node-0.10.26.tar imported into node-0.10.26-new
+```
+
 Get help
 --------
 
