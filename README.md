@@ -22,6 +22,7 @@ Table of Contents
     * [Get list of environments](#get-list-of-environments)
     * [Get current activated environment](#get-current-activated-environment)
     * [Do something in environment without enabling it](#do-something-in-environment-without-enabling-it)
+    * [Export environment into tar archive](#export-environment-into-tar-archive)
     * [Get help](#get-help)
     * [Get help for a command](#get-help-for-a-command)
   * [How to add a plugin?](#how-to-add-a-plugin)
