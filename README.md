@@ -23,7 +23,7 @@ Table of Contents
     * [Get current activated environment](#get-current-activated-environment)
     * [Do something in environment without enabling it](#do-something-in-environment-without-enabling-it)
     * [Export environment into tar archive](#export-environment-into-tar-archive)
-    * [Import environment from tar archive ](#import-environment-from-tar-arcive)
+    * [Import environment from tar archive ](#import-environment-from-tar-archive)
     * [Get help](#get-help)
     * [Get help for a command](#get-help-for-a-command)
   * [How to add a plugin?](#how-to-add-a-plugin)
