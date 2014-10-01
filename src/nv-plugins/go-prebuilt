@@ -2,18 +2,31 @@
 
 # Output lists of versions
 plug_list_versions() {
+    # < 1.2.2
     echo $(curl -s "https://code.google.com/p/go/downloads/list?can=1&q=Linux+386" | \
         egrep -o "\/go[0-9]+\.[0-9]+(\.[0-9]+|rc[0-9]{1})\.linux-386.tar.gz" | \
         sort | uniq | egrep -o "[0-9]+\.[0-9]+(\.[0-9]+|rc[0-9]{1})" | \
+        sort --version-sort)
+    # >= 1.2.2
+    echo $(curl -s "https://golang.org/dl/" | \
+        egrep -o "\/go[0-9]+\.[0-9]+(\.[0-9]+|rc[0-9]{1})\.linux-386.tar.gz" | \
+        egrep -o "[0-9]+\.[0-9]+(\.[0-9]+|rc[0-9]{1})" | \
         sort --version-sort)
 }
 
 # Return full url for archive
 plug_url_for_download() {
     local version=$1
+    local v1=$(nv_semver_get_major $1)
+    local v2=$(nv_semver_get_minor $1)
+    local v3=$(nv_semver_get_patch $1)
     local arch=$(nv_get_system_arch "386" "amd64")
     local system=$(nv_get_system "linux-${arch}" "darwin-${arch}-osx10.8")
-    echo "https://go.googlecode.com/files/go${version}.${system}.tar.gz"
+    if [ "$v1" -le "1" ] && [ "$v2" -le "2" ] && [ "$v3" -lt "2" ]; then
+        echo "https://go.googlecode.com/files/go${version}.${system}.tar.gz"
+    else 
+        echo "https://storage.googleapis.com/golang/go${version}.${system}.tar.gz"
+    fi
 }
 
 # Like we build
