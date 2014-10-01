@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.7.4 (01-10-2014)
+------------------
+* added commands ``export``/``import``
+* fixed plugin ``julia``
+* fixed plugin ``go-prebuilt``
+* added nightly builds for plugins ``rust``/``rust-prebuilt``
+
 0.7.3 (12-09-2014)
 ------------------
 * added ``plug_check_deps`` into scala
