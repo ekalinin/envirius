@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.7.5 (10-10-2014)
+------------------
+* imroved rust[-prebuilt] plugin:
+  * added export ``LD_LIBRARY_PATH`` before env activation
+  * each nightly build marked with date to see when it was build
+
 0.7.4 (01-10-2014)
 ------------------
 * added commands ``export``/``import``
