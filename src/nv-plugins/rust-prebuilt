@@ -8,7 +8,14 @@ plug_url_for_download() {
     local version=$1
     local arch=$(nv_get_system_arch "i686" "x86_64")
     local system=$(nv_get_system "unknown-linux-gnu" "apple-darwin")
-    echo "http://static.rust-lang.org/dist/rust-${version}-${arch}-${system}.tar.gz"
+    case $version in
+        *nightly*)
+            # just drop date and and download
+            echo "http://static.rust-lang.org/dist/rust-nightly-${arch}-${system}.tar.gz"
+        ;;
+        *)
+            echo "http://static.rust-lang.org/dist/rust-${version}-${arch}-${system}.tar.gz"
+    esac
 }
 
 # Like we build
