@@ -5,7 +5,7 @@ plug_list_versions() {
     echo $(curl -s http://www.php.net/downloads.php \
                    http://www.php.net/releases/ | \
             egrep -o '[0-9]+\.[0-9]+\.[0-9]+\.tar\.gz' | sed 's/.tar.gz//' | \
-            sort | uniq | sort --version-sort)
+            sort | uniq | sort)
 }
 
 # Download tarball
