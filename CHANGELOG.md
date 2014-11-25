@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.7.6 (25-11-2014)
+------------------
+* removed ``--version-sort`` from all sorts
+* fixed ``mk`` command for zsh
+
 0.7.5 (10-10-2014)
 ------------------
 * imroved rust[-prebuilt] plugin:
