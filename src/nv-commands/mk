@@ -89,16 +89,36 @@ nv_cmd_default() {
 
             # clear main functions
             # http://hyperpolyglot.org/unix-shells
-            unset -f plug_list_versions
-            unset -f plug_url_for_download
-            unset -f plug_check_deps
-            unset -f plug_install
-            unset -f plug_download
-            unset -f plug_unpack
-            unset -f plug_configure
-            unset -f plug_build
-            unset -f plug_build_env
-            unset -f plug_post_install_actions
+            if [ "`nv_is_function 'plug_list_versions'`" = "yes" ]; then
+                unset -f plug_list_versions
+            fi
+            if [ "`nv_is_function 'plug_url_for_download'`" = "yes" ]; then
+                unset -f plug_url_for_download
+            fi
+            if [ "`nv_is_function 'plug_check_deps'`" = "yes" ]; then
+                unset -f plug_check_deps
+            fi
+            if [ "`nv_is_function 'plug_install'`" = "yes" ]; then
+                unset -f plug_install
+            fi
+            if [ "`nv_is_function 'plug_download'`" = "yes" ]; then
+                unset -f plug_download
+            fi
+            if [ "`nv_is_function 'plug_unpack'`" = "yes" ]; then
+                unset -f plug_unpack
+            fi
+            if [ "`nv_is_function 'plug_configure'`" = "yes" ]; then
+                unset -f plug_configure
+            fi
+            if [ "`nv_is_function 'plug_build'`" = "yes" ]; then
+                unset -f plug_build
+            fi
+            if [ "`nv_is_function 'plug_build_env'`" = "yes" ]; then
+                unset -f plug_build_env
+            fi
+            if [ "`nv_is_function 'plug_post_install_actions'`" = "yes" ]; then
+                unset -f plug_post_install_actions
+            fi
             unset -v plug_state
 
             # source plugin code & call installation part
