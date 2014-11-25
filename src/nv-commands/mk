@@ -260,7 +260,7 @@ plug_install_default() {
                 cd "$subdir"
 
                 # compiling
-                if [ "`type -t plug_configure`" = "function" ]; then
+                if [ "`nv_is_function 'plug_configure'`" = "yes" ]; then
                     plug_configure "$build_path"
                 else
                     ./configure --prefix="$build_path" || {
@@ -277,7 +277,7 @@ plug_install_default() {
         fi
 
         # copy all bins into new environment
-        if [ "`type -t plug_build_env`" = "function" ]; then
+        if [ "`nv_is_function 'plug_build_env'`" = "yes" ]; then
             plug_build_env "$build_path" "$env_name_full"
         else
             cp -r "$build_path"/* $env_name_full
