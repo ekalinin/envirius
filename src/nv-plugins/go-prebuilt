@@ -9,8 +9,8 @@ plug_list_versions() {
         sort)
     # >= 1.2.2
     echo $(curl -s "https://golang.org/dl/" | \
-        egrep -o "\/go[0-9]+\.[0-9]+(\.[0-9]+|rc[0-9]{1})\.linux-386.tar.gz" | \
-        egrep -o "[0-9]+\.[0-9]+(\.[0-9]+|rc[0-9]{1})" | \
+        egrep -o "\/go[0-9]+\.[0-9]+(\.[0-9]+|rc[0-9]+)*\.linux-386.tar.gz" | \
+        egrep -o "[0-9]+\.[0-9]+(\.[0-9]+|rc[0-9]+)*" | \
         sort)
 }
 
