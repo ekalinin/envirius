@@ -131,4 +131,10 @@ if [ "$(nv_is_bash)" = "yes" ]; then
 
 fi
 
+if [ "$(nv_is_zsh)" = "yes" ]; then
+
+    compctl -k _$(nv ls-commands | cut -d ' ' -f 3) nv
+
+fi
+
 # /* vim: set filetype=sh : */
