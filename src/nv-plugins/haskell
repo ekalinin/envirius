@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-GHC_MIRROR=http://www.haskell.org/ghc
+GHC_MIRROR=https://www.haskell.org/ghc
 
 # Output lists of versions
 plug_list_versions() {
