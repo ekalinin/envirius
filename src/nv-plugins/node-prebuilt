@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 NODE_MIRROR="http://nodejs.org/dist"
+BIN_PREFIX="node"
 
 # Output lists of versions
 plug_list_versions() {
@@ -10,7 +11,8 @@ plug_list_versions() {
                 egrep -o '[0-9]+\.[0-9]+\.[0-9]+' | \
                 sort  | \
                 grep -A 1000000 "0.10.0" | \
-                uniq | sort)
+                uniq | sort | 
+                sort -u -k 1,1n -k 2,2n -k 3,3n -t .)
 }
 
 # Return full url for tarball for download
@@ -22,7 +24,7 @@ plug_url_for_download() {
     local version=$1
     local arch=$(nv_get_system_arch "x86" "x64")
     local system=$(nv_get_system "linux" "darwin")
-    echo "$NODE_MIRROR/v${version}/node-v${version}-${system}-${arch}.tar.gz"
+    echo "$NODE_MIRROR/v${version}/${BIN_PREFIX}-v${version}-${system}-${arch}.tar.gz"
 }
 
 # Like we build

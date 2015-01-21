@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Source parent plagin
+. "$(nv_get_plugin_full_path 'node')"
+
+NODE_MIRROR="https://iojs.org/dist"
+BIN_PREFIX="iojs"

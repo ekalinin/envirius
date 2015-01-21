@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Source parent plagin
+. "$(nv_get_plugin_full_path 'node-prebuilt')"
+
+NODE_MIRROR="https://iojs.org/dist"
+BIN_PREFIX="iojs"
+
+# Output lists of versions
+plug_list_versions() {
+    echo $(curl -s "$NODE_MIRROR/" | \
+                egrep -o '[0-9]+\.[0-9]+\.[0-9]+' | \
+                sort | uniq)
+}

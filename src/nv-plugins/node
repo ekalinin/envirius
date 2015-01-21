@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 NODE_MIRROR="http://nodejs.org/dist"
+BIN_PREFIX="node"
 
 # Output lists of versions
 plug_list_versions() {
@@ -17,7 +18,7 @@ plug_list_versions() {
 #   $1 — version for installation
 plug_url_for_download() {
     local version=$1
-    echo "$NODE_MIRROR/v${version}/node-v${version}.tar.gz"
+    echo "$NODE_MIRROR/v${version}/${BIN_PREFIX}-v${version}.tar.gz"
 }
 
 # Fix paths in shabangs
