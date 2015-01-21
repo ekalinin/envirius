@@ -133,7 +133,9 @@ fi
 
 if [ "$(nv_is_zsh)" = "yes" ]; then
 
-    compctl -k _$(nv ls-commands | cut -d ' ' -f 3) nv
+    local -a cmds
+    cmds=($(nv ls-commands | cut -d ' ' -f 3))
+    compctl -k cmds nv
 
 fi
 
