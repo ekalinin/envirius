@@ -107,6 +107,7 @@ You can create environments for the following programming languages:
 * [elixir](http://elixir-lang.org/)
 * [julia](http://julialang.org/)
 * [node.js](http://nodejs.org/)
+* [iojs](https://iojs.org/)
 * [python](https://www.python.org/)
 * [go](http://golang.org/)
 * [haskell](http://haskell.org/)
@@ -128,6 +129,8 @@ erlang
 go-prebuilt
 haskell
 haskell-prebuilt
+iojs
+iojs-prebuilt
 julia
 node
 node-prebuilt
