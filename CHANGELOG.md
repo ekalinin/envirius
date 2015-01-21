@@ -1,6 +1,15 @@
 Changelog
 =========
 
+0.8.0 (21-01-2015)
+------------------
+* added plugins iojs/iojs-prebuilt
+* autocmoplition for zsh
+* haskell[-prebuilt] plugin:
+    * now show most fresh releases
+    * used https
+* fixed go-prebuilt plugin for x.x versions
+
 0.7.6 (25-11-2014)
 ------------------
 * removed ``--version-sort`` from all sorts

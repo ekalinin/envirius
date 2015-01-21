@@ -1,4 +1,6 @@
 -  Eugene Kalinin 
 -  Emanuele Aina 
+-  Vincent Bernat 
 -  Peter Lyons 
 -  macie 
+-  Luca Favatella 
