@@ -84,8 +84,12 @@ nv() {
     unset SUBACTION
 }
 
+if [ "$(nv_is_zsh)" = "yes" ]; then
+    autoload -U +X bashcompinit && \
+        bashcompinit
+fi
 
-if [ "$(nv_is_bash)" = "yes" ]; then
+if [ "$(nv_is_bash)" = "yes" ] || [ "$(nv_is_zsh),$+functions[bashcompinit]" = "yes,1" ]; then
 
     _nv() {
         cur="${COMP_WORDS[COMP_CWORD]}"
@@ -130,9 +134,7 @@ if [ "$(nv_is_bash)" = "yes" ]; then
 
     complete -F _nv nv
 
-fi
-
-if [ "$(nv_is_zsh)" = "yes" ]; then
+elif [ "$(nv_is_zsh),$+functions[bashcompinit]" = "yes,0" ]; then
 
     local -a cmds
     cmds=($(nv ls-commands | cut -d ' ' -f 3))
