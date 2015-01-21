@@ -48,7 +48,8 @@ nv() {
     # some migrations
     local migrated_sign=$(nv_get_cache_full_path 'migrated_on_0.7.0')
     if [ ! -f $migrated_sign ]; then
-        local cmn_args="-mindepth 1 -maxdepth 1"
+        local -a cmn_args
+        cmn_args=(-mindepth 1 -maxdepth 1)
         find "$cache" $cmn_args -type d -iname "*-build" -exec mv {} "$build" \;
         find "$cache" $cmn_args -type d -iname "*-src" -exec mv {} "$src" \;
         find "$cache" $cmn_args -type f -iname "*tar*" -exec mv {} "$arc" \;
