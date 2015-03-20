@@ -28,5 +28,5 @@ load test_helper
 
     run pip -V
     assert_success
-    assert_output "pip 1.5.6 from $NV_HOME/envs/python_test_env/lib/python3.3/site-packages (python 3.3)"
+    assert_output "pip 6.0.8 from $NV_HOME/envs/python_test_env/lib/python3.3/site-packages (python 3.3)"
 }
