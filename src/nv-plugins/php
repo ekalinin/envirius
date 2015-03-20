@@ -2,8 +2,8 @@
 
 # Output lists of versions
 plug_list_versions() {
-    echo $(curl -s http://www.php.net/downloads.php \
-                   http://www.php.net/releases/ | \
+    echo $(curl -s http://php.net/downloads.php \
+                   http://php.net/releases/ | \
             egrep -o '[0-9]+\.[0-9]+\.[0-9]+\.tar\.gz' | sed 's/.tar.gz//' | \
             sort | uniq | sort)
 }
