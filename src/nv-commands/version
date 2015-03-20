@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-NV_VERSION=0.8.0
+NV_VERSION=0.8.1
 
 nv_cmd_default() {
     echo "$(nv_cmd_name) $NV_VERSION"
