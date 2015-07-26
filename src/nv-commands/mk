@@ -161,12 +161,12 @@ nv_cmd_default() {
             if [ "`nv_is_function 'plug_install'`" = "yes" ]; then
                 plug_install $plugin_name $plugin_ver $env_name_full || {
                     echo "envirius: unable to fetch source file for $plugin_name==$plugin_ver" >&2
-                    exit 1
+                    return
                 }
             else
                 plug_install_default $plugin_name $plugin_ver $env_name_full || {
                     echo "envirius: unable to fetch source file for $plugin_name==$plugin_ver" >&2
-                    exit 1
+                    return
                 }
             fi
 

@@ -25,7 +25,7 @@ nv_cmd_default() {
 
     if [ "$delete_entries" = "" ] && [ "$delete_all" = "no" ]; then
         echo "Please, enter entry's name to delete or use --all option."
-        exit 1
+        return
     fi
 
     for cache_type in arc src build

@@ -9,19 +9,19 @@ nv_cmd_default() {
         echo "Please, enter path for archive to import"
         echo ""
         nv_cmd_help
-        exit 1
+        return
     fi
     if [ "$env_name_dst" = "" ]; then
         echo "Please, enter a name for a destination environment"
         echo ""
         nv_cmd_help
-        exit 1
+        return
     fi
     # full paths
     local env_name_dst_full=$(nv_get_env_full_path $env_name_dst)
     if [ -d $env_name_dst_full ]; then
         echo "Target environment already exists ($env_name_dst)."
-        exit 1
+        return
     fi;
     mkdir -p $env_name_dst_full
     tar --directory $env_name_dst_full -xf "$archive_name" .

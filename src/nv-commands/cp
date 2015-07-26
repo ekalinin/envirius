@@ -9,13 +9,13 @@ nv_cmd_default() {
         echo "Please, enter a name for a source environment"
         echo ""
         nv_cmd_help
-        exit 1
+        return
     fi
     if [ "$env_name_dst" = "" ]; then
         echo "Please, enter a name for a destination environment"
         echo ""
         nv_cmd_help
-        exit 1
+        return
     fi
 
     # full paths
@@ -25,13 +25,13 @@ nv_cmd_default() {
     # sourc env should exists
     if [ ! -d "$env_name_src_full" ]; then
         echo "Source directory does not exist ($env_name_src)."
-        exit 1
+        return
     fi
 
     # target env should not exists
     if [ -d "$env_name_dst_full" ]; then
         echo "Target directory already exists ($env_name_dst)."
-        exit 1
+        return
     fi
 
     cp -r "$env_name_src_full" "$env_name_dst_full"

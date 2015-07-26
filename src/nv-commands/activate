@@ -8,7 +8,7 @@ nv_cmd_default() {
     # check that env name is not empty
     if [ "$env_name" = "" ]; then
         echo "Please, specify the name of the environment that will be activated."
-        exit 1
+        return
     fi
 
     # try to find --same-shell options
