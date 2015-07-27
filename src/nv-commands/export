@@ -9,7 +9,7 @@ nv_cmd_default() {
         echo "Please, enter a name for a source environment"
         echo ""
         nv_cmd_help
-        exit 1
+        return
     fi
     if [ "$archive_name" = "" ]; then
         archive_name=${env_name_src}.tar
