@@ -24,7 +24,7 @@ nv_cmd_default() {
     # start new shell (if need)
     if [ "$start_new_shell" = "yes" ]; then
         local curr_shell=$(echo "${SHELL##*/}")
-        local TMPFILE=$(mktemp)
+        local TMPFILE=$(mktemp /tmp/envirius-XXXXXX)
 
         echo "export NV_IN_NEW_SHELL=yes" >> $TMPFILE
         echo "export NV_PATH=\"$NV_PATH\"" >> $TMPFILE
