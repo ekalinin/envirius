@@ -281,7 +281,7 @@ plug_install_default() {
 
                 # compiling
                 if [ "`nv_is_function 'plug_configure'`" = "yes" ]; then
-                    plug_configure "$build_path"
+                    plug_configure "$build_path" "$env_name_full"
                 else
                     ./configure --prefix="$build_path" || {
                         rm -rf "$build_path"

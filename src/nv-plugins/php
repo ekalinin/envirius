@@ -19,3 +19,12 @@ plug_download() {
 
     echo "$tarball"
 }
+
+plug_configure() {
+    local build_path=$1
+    local env_name_full=$2
+    ./configure --prefix="$env_name_full" || {
+        rm -rf "$build_path"
+        exit 1;
+    }
+}
