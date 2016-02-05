@@ -57,3 +57,6 @@ loc2:
 
 loc3:
 	@cloc ./src/
+
+lint:
+	@shellcheck ./src/nv_common
