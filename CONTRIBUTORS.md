@@ -1,6 +1,9 @@
 -  Eugene Kalinin 
 -  Emanuele Aina 
 -  Vincent Bernat 
+-  Roland Karlsson 
 -  Peter Lyons 
+-  Max Kokorin 
 -  macie 
 -  Luca Favatella 
+-  Low Kian Seong 
