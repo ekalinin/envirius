@@ -17,7 +17,7 @@ plug_url_for_download() {
     case $version in
         *nightly*)
             # just drop date and and download
-            echo "http://static.rust-lang.org/dist/rust-nightly.tar.gz"
+            echo "http://static.rust-lang.org/dist/rust-nightly-src.tar.gz"
             ;;
         *)
             echo "http://static.rust-lang.org/dist/rust-${version}.tar.gz"
