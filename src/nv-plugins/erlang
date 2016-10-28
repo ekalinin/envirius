@@ -6,7 +6,7 @@ plug_list_versions_columns_count=6
 # Column's width in characters in the version's grid
 plug_list_versions_columns_size=10
 
-ERL_MIRROR="http://www.erlang.org/download/"
+ERL_MIRROR="http://erlang.org/download/"
 
 # Output lists of versions
 plug_list_versions() {
