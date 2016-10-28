@@ -26,29 +26,27 @@ load test_helper
 }
 
 @test "mk: with name" {
-    run nv mk test_env --erlang=17.0-rc1 --rust=0.9 --no-meta
-    assert_success
-    [ "${lines[0]}"  = "Creating environment: test_env ..." ]
-    [ "${lines[1]}"  = " * installing erlang==17.0-rc1 ..." ]
-    [ "${lines[3]}"  = " * installing rust==0.9 ..." ]
+    run nv mk test_env --rust-prebuilt=0.12.0 --no-meta
+    #assert_success
+    assert_equal "${lines[0]}"  "Creating environment: test_env ..."
+    assert_equal "${lines[1]}"  " * installing rust-prebuilt==0.12.0 ..."
 
     run nv ls
-    assert_success
+    #assert_success
     assert_equal "Available environment(s):" "${lines[0]}"
     assert_equal "test_env" "${lines[1]}"
 }
 
 @test "mk: without name" {
-    run nv mk --no-meta --erlang=17.0-rc1 --rust=0.9
+    run nv mk --no-meta --rust-prebuilt=0.12.0
     assert_success
-    assert_equal "Creating environment: erlang-17.0-rc1-rust-0.9 ..." "${lines[0]}"
-    assert_equal " * installing erlang==17.0-rc1 ..." "${lines[1]}"
-    assert_equal " * installing rust==0.9 ..." "${lines[3]}"
+    assert_equal "Creating environment: rust-prebuilt-0.12.0 ..." "${lines[0]}"
+    assert_equal " * installing rust-prebuilt==0.12.0 ..." "${lines[1]}"
 
     run nv ls
     assert_success
     assert_equal "Available environment(s):" "${lines[0]}"
-    assert_equal "erlang-17.0-rc1-rust-0.9" "${lines[1]}"
+    assert_equal "rust-prebuilt-0.12.0" "${lines[1]}"
 }
 
 @test "mk: without name & without version" {
@@ -61,29 +59,29 @@ load test_helper
 
 
 @test "mk: without name & meta" {
-    run nv mk --erlang=17.0-rc1 --rust=0.9
+    run nv mk --go-prebuilt=1.7.3 --rust-prebuilt=0.12.0
     assert_success
-    assert_equal "Creating environment: erlang-17.0-rc1-rust-0.9 ..." "${lines[0]}"
-    assert_equal " * installing erlang==17.0-rc1 ..." "${lines[1]}"
-    assert_equal " * installing rust==0.9 ..." "${lines[3]}"
+    assert_equal "Creating environment: go-prebuilt-1.7.3-rust-prebuilt-0.12.0 ..." "${lines[0]}"
+    assert_equal " * installing go-prebuilt==1.7.3 ..." "${lines[1]}"
+    assert_equal " * installing rust-prebuilt==0.12.0 ..." "${lines[3]}"
 
     run nv ls
     assert_success
     assert_equal "Available environment(s):" "${lines[0]}"
-    assert_equal "erlang-17.0-rc1-rust-0.9 (erlang==17.0-rc1, rust==0.9)" "${lines[1]}"
+    assert_equal "go-prebuilt-1.7.3-rust-prebuilt-0.12.0 (go-prebuilt==1.7.3, rust-prebuilt==0.12.0)" "${lines[1]}"
 }
 
 @test "mk: with name & meta" {
-    run nv mk test_env --erlang=17.0-rc1 --rust=0.9
+    run nv mk test_env --go-prebuilt=1.7.3 --rust-prebuilt=0.12.0
     assert_success
     [ "${lines[0]}"  = "Creating environment: test_env ..." ]
-    [ "${lines[1]}"  = " * installing erlang==17.0-rc1 ..." ]
-    [ "${lines[3]}"  = " * installing rust==0.9 ..." ]
+    [ "${lines[1]}"  = " * installing go-prebuilt==1.7.3 ..." ]
+    [ "${lines[3]}"  = " * installing rust-prebuilt==0.12.0 ..." ]
 
     run nv ls
     assert_success
     assert_equal "Available environment(s):" "${lines[0]}"
-    assert_equal "test_env (erlang==17.0-rc1, rust==0.9)" "${lines[1]}"
+    assert_equal "test_env (go-prebuilt==1.7.3, rust-prebuilt==0.12.0)" "${lines[1]}"
 }
 
 @test "mk: with --on option" {
