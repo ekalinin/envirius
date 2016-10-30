@@ -20,6 +20,7 @@ load test_helper
 @test "on: empty env name" {
     run nv on --same-shell
     assert_fail "Please, specify the name of the environment that will be activated."
+    #assert_equal "Please, specify the name of the environment that will be activated." "${lines[0]}"
 }
 
 @test "on: off previously activated environment" {
