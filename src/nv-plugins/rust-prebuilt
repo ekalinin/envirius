@@ -11,10 +11,10 @@ plug_url_for_download() {
     case $version in
         *nightly*)
             # just drop date and and download
-            echo "http://static.rust-lang.org/dist/rust-nightly-${arch}-${system}.tar.gz"
+            echo "https://static.rust-lang.org/dist/rustc-nightly-${arch}-${system}.tar.gz"
         ;;
         *)
-            echo "http://static.rust-lang.org/dist/rust-${version}-${arch}-${system}.tar.gz"
+            echo "https://static.rust-lang.org/dist/rustc-${version}-${arch}-${system}.tar.gz"
     esac
 }
 
@@ -23,4 +23,10 @@ plug_build() {
     local src_path=$1
     local build_path=$2
     cp -r "$src_path"/*/* "$build_path"
+}
+
+plug_build_env() {
+    local build_path=$1 
+    local env_name_full=$2
+    cp -r "$build_path"/rustc/* $env_name_full
 }
